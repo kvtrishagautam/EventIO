@@ -1,0 +1,352 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+/* login starts here */
+
+body{
+    background-color: #1c1caa;
+    background-image: linear-gradient(rgb(94, 94, 211),#7848F4);
+}
+
+
+.login {
+    display: flex;
+    width: 80%;
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 5rem;
+    border: none;
+    box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.3),0 8px 25px 0 rgba(0, 0, 0, 0.3);
+}
+
+.login-left {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    background-color: #ebebf9fa;
+    border-top-left-radius: 5rem;
+    border-bottom-left-radius: 5rem;
+}
+
+.login-right {
+    display: flex;
+    width: 40%;
+    background-color: rgb(40, 35, 35);
+    border-top-right-radius: 5rem;
+    border-bottom-right-radius: 5rem;
+    background-image: url(../images/login-signup/stem-list-EVgsAbL51Rk-unsplash.jpg);
+    background-size: cover;
+    background-blend-mode:overlay;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-txt {
+    height:10rem;
+    width: 100%;
+}
+
+.login-txt h1 {
+    font-size: 1.7rem;
+    padding-top: 4rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.login-txt h2 {
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    /* align-items: start; */
+    height: 25rem;
+    margin-top: 3rem;
+    width: 70%;
+}
+
+.login-form label {
+    font-size: 1.2rem;
+    margin-top: 0.7rem;
+    width: 30rem;
+    height: 1.4rem;
+    display: flex;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.login-form input {
+    height: 3rem;
+    padding-left: 1rem;
+    border-radius: 0.8rem;
+    border: none;
+    border-color: #ffffff;
+    width: 100%;
+    margin-top: 0.3rem;
+}
+
+.login-form .form-sbmt {
+    margin-top: 1.5rem;
+    width: max-content;
+    padding: .5rem 2rem;
+    border-radius: 0.4rem;
+    border-color: #E0E0E9;
+    background-color: #7848F4;
+    color: #F8F8FA;
+    font-size: medium;
+    align-self: center;
+    font-weight:bolder;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all ease 400ms;
+}
+.form-sbmt:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.google{
+    margin-top: .5rem;
+    display: flex;
+    justify-content: center;
+}
+.google button{
+    display: flex;
+    padding: .8rem 1.5rem;    align-items: center;
+    justify-content: center;
+    background-color:white ;
+    border-color: #dfdfeb;
+    border-radius: 0.4rem; 
+    cursor: pointer;
+    }
+
+.google img{
+    width: 1.5rem;
+    margin-right: 1rem;
+}
+
+.google p{
+    font-size: medium;
+    font-family: sans-serif;
+}
+
+.login-form h4{
+    width: 6rem;
+    font-weight: lighter;
+    align-self: center;
+    margin-top: .5rem;
+    font-size: 1.2rem;
+    color: rgb(115, 115, 109);
+}
+
+
+.login-img-txt {
+    width: 28rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   font-size: 18px;
+}
+
+.login-img-txt h2 {
+    display: flex;
+    justify-content: center;
+    color: #dfdfeb;
+    font-size: 2rem;
+    font-size: 2.5rem;
+}
+
+.login-img-txt p {
+    margin-top: 2rem;
+    color: #E0E0E9;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.login-img-txt button {
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: bolder;
+    background-color: #ebebf2e3;
+    color: #5921e7;
+    transition: all ease 400ms;
+}
+.login-img-txt button:hover{
+cursor: pointer;
+    transform: scale(1.1);
+    background-color: #7848F4;
+    color: #dfdfeb;
+}
+.login-form a {
+    color: #10107B;
+    display: flex;
+    width: 90%;
+    justify-content: end;
+
+}
+
+
+
+/* login ends here */
+
+
+
+/* responsive */
+
+
+@media screen and (max-width: 950px) {
+    .login-right {
+        display: none;
+    }
+
+    .body{
+        background-color: #10107B;
+    }
+
+    .login {
+        width: 85%;
+        height: 37rem;
+
+    }
+
+    .login-left {
+        width: 100%;
+        height: 100%;
+        border-radius: 5rem;
+
+
+    }
+
+    .login-txt h1 {
+        margin-top: 2rem;
+        font-size: 1.3rem;
+        padding-top: 2rem;
+    }
+
+    .login-txt h2 {
+        font-size: 1.7rem;
+    }
+
+    .login-form {
+        margin-top: 2rem;
+        width: 70%;
+    }
+
+    .form-txt {
+        width: 95%;
+    }
+
+    .form-box {
+        height: 2.6rem;
+        padding-left: 2rem;
+        width: 90%;
+    }
+
+    .login-form a{
+        padding-left: 1rem;
+        width: 90%;
+    }
+
+    .form-btn{
+        width: 100%;
+    }
+
+    .form-btn-sub{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+
+    .form-sbmt-login {
+        width: 28%;
+    }
+
+
+    .form-btn {
+        justify-content:center;
+    }
+
+    .form-sbmt-signup {
+        display: inline;
+        width: 28%;
+        height: 2.5rem;
+        border-radius: 0.4rem;
+        border: none;
+        border-color: #E0E0E9;
+        color: #7848F4;
+        background-color: #ffffff;
+        font-size: medium;
+        font-weight: bolder;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-sbmt-signup:hover {
+        background-color: #eaeaec;
+    }
+
+    .login-form a {
+        padding-right: 1rem;
+
+    }
+
+
+    .google{
+        width: 60%;
+    }
+
+
+}
+
+@media screen and (max-width: 430px) {
+    
+    
+    .login{
+        width: 90%;
+        background-color: #10107B;
+    }
+
+    .login-left{
+        border-radius: 2rem;
+    }
+
+    .login-form{
+        width: 85%;
+    }
+
+    .form-box{
+        width: 100%;
+    }
+
+    .form-btn-sub{
+        gap: 1rem;
+    }
+    .login-form a{
+        width: 100%;
+    }
+
+    .google p{
+        font-size: small;
+    }
+
+    .form-btn-sub{
+        gap: 2rem;
+        
+    }
+}

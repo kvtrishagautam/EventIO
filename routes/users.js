@@ -1,44 +1,27 @@
 var express = require('express');
 var router = express.Router();
 const { supabase } = require('../config/supabse')
+const {getHomePage , getDashboard,getEvents,getProfileAcc,getProfileAttendedEvents,getProfileChangeEmail,getProfileChangePass,loginUser,signupUser} = require('../controllers/user')
+
 
 /* GET home page. */
-router.get('/', function (req, res) {
-    supabase.
-    res.render('./user/home', { title: 'Home' });
-});
+router.get('/',getHomePage );
 
-router.get('/dashboard', (req, res) => {
-  res.render('./user/home', { title: "Dashboard" })
-});
+router.get('/dashboard',getDashboard );
 
-router.get('/events', (req, res) => {
-  res.render('./user/events', { title: 'Events' })
-})
+router.get('/events', getEvents )
 
-router.get('/profile-accinfo', (req, res) => {
-  res.render('./user/profile/profile-accinfo.ejs', { title: 'Profile | Account Information' })
-})
+router.get('/profile-accinfo', getProfileAcc)
 
-router.get('/profile-attendevents', (req, res) => {
-  res.render('./user/profile/profile-accinfo.ejs', { title: 'Profile | Account Information' })
-})
+router.get('/profile-attendevents', getProfileAttendedEvents )
 
-router.get('/profile-Change-Email', (res, req) => {
-  res.render('./user/profile/profile-changeEmail.ejs', { title: 'Profile | Change Email Address' })
-})
+router.get('/profile-Change-Email', getProfileChangeEmail)
 
-router.get('/profile-Change-Password', (req, res) => {
-  res.render('./user/profile/profile-changePass.ejs', { title: 'profile | Change Password' })
-})
+router.get('/profile-Change-Password',getProfileChangePass)
 
-router.get('/login', (req, res) => {
-  res.render('./user/login.ejs', { title: 'Login' })
-})
+router.get('/login', loginUser)
 
-router.get('/signup', (req, res) => {
-  res.render('./user/signup.ejs', { title: 'Signup' })
-})
+router.get('/signup', signupUser)
 
 
 module.exports = router;
