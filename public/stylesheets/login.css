@@ -7,9 +7,9 @@
 
 /* login starts here */
 
-body{
+body {
     background-color: #1c1caa;
-    background-image: linear-gradient(rgb(94, 94, 211),#7848F4);
+    background-image: linear-gradient(rgb(94, 94, 211), #7848F4);
 }
 
 
@@ -21,7 +21,7 @@ body{
     margin-top: 3rem;
     border-radius: 5rem;
     border: none;
-    box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.3),0 8px 25px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 25px 0 rgba(0, 0, 0, 0.3), 0 8px 25px 0 rgba(0, 0, 0, 0.3);
 }
 
 .login-left {
@@ -41,16 +41,16 @@ body{
     background-color: rgb(40, 35, 35);
     border-top-right-radius: 5rem;
     border-bottom-right-radius: 5rem;
-    background-image: url(../images/login-signup/stem-list-EVgsAbL51Rk-unsplash.jpg);
+    background-image: url(/images/login-signup/stem-list-EVgsAbL51Rk-unsplash.jpg);
     background-size: cover;
-    background-blend-mode:overlay;
+    background-blend-mode: overlay;
     justify-content: center;
     align-items: center;
 }
 
 
 .login-txt {
-    height:10rem;
+    height: 10rem;
     width: 100%;
 }
 
@@ -108,40 +108,44 @@ body{
     color: #F8F8FA;
     font-size: medium;
     align-self: center;
-    font-weight:bolder;
+    font-weight: bolder;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: all ease 400ms;
 }
-.form-sbmt:hover{
+
+.form-sbmt:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
-.google{
+
+.google {
     margin-top: .5rem;
     display: flex;
     justify-content: center;
 }
-.google button{
-    display: flex;
-    padding: .8rem 1.5rem;    align-items: center;
-    justify-content: center;
-    background-color:white ;
-    border-color: #dfdfeb;
-    border-radius: 0.4rem; 
-    cursor: pointer;
-    }
 
-.google img{
+.google button {
+    display: flex;
+    padding: .8rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-color: #dfdfeb;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.google img {
     width: 1.5rem;
     margin-right: 1rem;
 }
 
-.google p{
+.google p {
     font-size: medium;
     font-family: sans-serif;
 }
 
-.login-form h4{
+.login-form h4 {
     width: 6rem;
     font-weight: lighter;
     align-self: center;
@@ -156,7 +160,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-   font-size: 18px;
+    font-size: 18px;
 }
 
 .login-img-txt h2 {
@@ -186,12 +190,14 @@ body{
     color: #5921e7;
     transition: all ease 400ms;
 }
-.login-img-txt button:hover{
-cursor: pointer;
+
+.login-img-txt button:hover {
+    cursor: pointer;
     transform: scale(1.1);
     background-color: #7848F4;
     color: #dfdfeb;
 }
+
 .login-form a {
     color: #10107B;
     display: flex;
@@ -214,7 +220,7 @@ cursor: pointer;
         display: none;
     }
 
-    .body{
+    .body {
         background-color: #10107B;
     }
 
@@ -257,16 +263,16 @@ cursor: pointer;
         width: 90%;
     }
 
-    .login-form a{
+    .login-form a {
         padding-left: 1rem;
         width: 90%;
     }
 
-    .form-btn{
+    .form-btn {
         width: 100%;
     }
 
-    .form-btn-sub{
+    .form-btn-sub {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -280,7 +286,7 @@ cursor: pointer;
 
 
     .form-btn {
-        justify-content:center;
+        justify-content: center;
     }
 
     .form-sbmt-signup {
@@ -307,7 +313,7 @@ cursor: pointer;
     }
 
 
-    .google{
+    .google {
         width: 60%;
     }
 
@@ -315,38 +321,39 @@ cursor: pointer;
 }
 
 @media screen and (max-width: 430px) {
-    
-    
-    .login{
+
+
+    .login {
         width: 90%;
         background-color: #10107B;
     }
 
-    .login-left{
+    .login-left {
         border-radius: 2rem;
     }
 
-    .login-form{
+    .login-form {
         width: 85%;
     }
 
-    .form-box{
+    .form-box {
         width: 100%;
     }
 
-    .form-btn-sub{
+    .form-btn-sub {
         gap: 1rem;
     }
-    .login-form a{
+
+    .login-form a {
         width: 100%;
     }
 
-    .google p{
+    .google p {
         font-size: small;
     }
 
-    .form-btn-sub{
+    .form-btn-sub {
         gap: 2rem;
-        
+
     }
 }

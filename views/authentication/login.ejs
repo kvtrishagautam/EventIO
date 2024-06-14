@@ -4,36 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="stylesheets/login.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="/stylesheets/login.css">
 </head>
 
 <body>
     <!-- login page starts here -->
     <div class="login">
         <!-- login form  -->
-        <form action="" class="login-left">
+        <form action="/auth/login" class="login-left" method="post">
             <div class="login-txt">
                 <h1>
                     <font color="black">Event</font>
                     <font color="7848F4"> IO </font>
                 </h1>
                 <h2>Log in to Eventio</h2>
+                <p>
+                    <%= errMsg %>
+                </p>
+            </div>
+            <div class="forgPass-popup">
+                <form action="">
+                    <label for="Email">Enter </label>
+                </form>
             </div>
             <div class="login-form">
-
                 <label for="username">Username/email:</label>
                 <input type="text" class="form-box" id="username" name="username" placeholder="Enter your username">
 
                 <label for="password">Password:</label>
                 <input type="password" class="form-box" id="password" name="password" placeholder="Enter password">
                 <a href="">Forgot password</a>
-                <input type="submit" value="Login" class="form-sbmt" value="Submit">
+                <button type="submit" class="form-sbmt">Login</button>
                 <h4 align="center">Or</h4>
                 <!-- sign up with google  -->
-                <div class="google">  
+                <div class="google">
                     <button>
-                        <img src="images/login-signup/search.png" alt="g-logo">
+                        <img src="/images/login-signup/search.png" alt="g-logo">
                         <p>Sign up with Google</p>
                     </button>
                 </div>
@@ -47,7 +54,7 @@
             <div class="login-img-txt">
                 <h2>Hello!</h2>
                 <p>To keep connected with us provide us with your information </p>
-                <button>Sign Up</button>
+                <button><a href="/auth/signup">Sign Up</a></button>
             </div>
         </div>
 </body>

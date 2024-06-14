@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
 const { supabase } = require('../config/supabse')
+const { getLogin,getSignup,logedinUser,signedUpUser } = require('../controllers/auth')
 
-router.get('./signup',(req,res)=>{
-    res.render('./authentication/signup.ejs',{title: 'SignUp page'})
-})
+router.get('/signup', getSignup )
 
-router.get('./login',(req,res)=>{
-    res.render('./authentication/login.ejs',{title: 'Login page'})
-})
+router.get('/login',getLogin)
+
+router.post('/signup', signedUpUser)
+
+router.post('/login', logedinUser)
+
+module.exports = router;
+
 

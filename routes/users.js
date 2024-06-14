@@ -1,27 +1,22 @@
 var express = require('express');
 var router = express.Router();
-const { supabase } = require('../config/supabse')
-const {getHomePage , getDashboard,getEvents,getProfileAcc,getProfileAttendedEvents,getProfileChangeEmail,getProfileChangePass,loginUser,signupUser} = require('../controllers/user')
+const {getHomePage , getDashboard,getEvents,getProfileAcc,getProfileAttendedEvents,getProfileChangeEmail,getProfileChangePass} = require('../controllers/user');
+const checkLogedIn = require('../middlewares/checkLogedIn');
 
 
 /* GET home page. */
 router.get('/',getHomePage );
 
-router.get('/dashboard',getDashboard );
+router.get('/dashboard',checkLogedIn, getDashboard );
 
-router.get('/events', getEvents )
+router.get('/events',checkLogedIn, getEvents )
 
-router.get('/profile-accinfo', getProfileAcc)
+router.get('/profile-accinfo',checkLogedIn, getProfileAcc)
 
-router.get('/profile-attendevents', getProfileAttendedEvents )
+router.get('/profile-attendevents',checkLogedIn, getProfileAttendedEvents )
 
-router.get('/profile-Change-Email', getProfileChangeEmail)
+router.get('/profile-Change-Email',checkLogedIn, getProfileChangeEmail)
 
-router.get('/profile-Change-Password',getProfileChangePass)
-
-router.get('/login', loginUser)
-
-router.get('/signup', signupUser)
-
+router.get('/profile-Change-Password',checkLogedIn,getProfileChangePass)
 
 module.exports = router;
