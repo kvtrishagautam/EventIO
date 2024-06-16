@@ -1,22 +1,13 @@
 const { supabase } = require('../config/supabse');
 const express = require('express');
-const session = require('express-session');
 const app = express();
+// var router = express.Router();
 
 let errMsg = ''
 
+
 // let otp = ''
 
-
-
-
-
-app.use(session({
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
 
 module.exports = {
     getLogin: (req, res) => {
@@ -34,9 +25,12 @@ module.exports = {
                 { email: req.body.email, password: req.body.password },
             ])
             .select()
+        console.log(req.body);
+        console.log(data);
+
+        return res.redirect('/auth/login')
 
         console.log(data, error);
-        // console.log(req.body);
     },
     logedinUser: async (req, res) => {
         let { data: user, error } = await supabase
@@ -44,10 +38,11 @@ module.exports = {
             .select("*").eq("email", req.body.username).eq("password", req.body.password)
         if (!user[0]) {
             errMsg = 'user not found'
-            res.redirect('/auth/login')
+            res.redirect('/auth/signup')
         } else {
-            req.session.userLogedin = user.id;
-            res.redirect('/')
+            req.session.userId = user.user_id;
+            req.session.userLoggedIn = true ;
+            res.redirect('/');
         }
     }
 }

@@ -5,18 +5,18 @@ const checkLogedIn = require('../middlewares/checkLogedIn');
 
 
 /* GET home page. */
-router.get('/',getHomePage );
+router.get('/', getHomePage );
 
-router.get('/dashboard',checkLogedIn, getDashboard );
+router.get('/dashboard', getDashboard );
 
-router.get('/events',checkLogedIn, getEvents )
+router.get('/events', checkLogedIn, getEvents )
 
-router.get('/profile-accinfo',checkLogedIn, getProfileAcc)
+router.get('/profile-accinfo', getProfileAcc)
 
-router.get('/profile-attendevents',checkLogedIn, getProfileAttendedEvents )
+router.get('/profile-attendevents', getProfileAttendedEvents )
 
-router.get('/profile-Change-Email',checkLogedIn, getProfileChangeEmail)
+router.get('/profile-Change-Email', getProfileChangeEmail)
 
-router.get('/profile-Change-Password',checkLogedIn,getProfileChangePass)
+router.get('/profile-Change-Password',getProfileChangePass)
 
 module.exports = router;
