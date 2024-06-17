@@ -1,7 +1,7 @@
 module.exports={
     getHomePage: (req, res) => {
         // supabase.
-        res.render('./user/home', { title: 'Home' });
+        res.render('./user/home', { title: 'Home', loggedIn : false });
     },
     getDashboard : (req, res) => {
         res.render('./user/home', { title: "Dashboard" })

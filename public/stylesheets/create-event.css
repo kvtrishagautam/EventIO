@@ -1,0 +1,307 @@
+html{
+    box-sizing: border-box;
+}
+*,*::after,*::before{
+    box-sizing: inherit;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: poppins;
+}
+
+/*Nav_bar_start---------------------------------------------------------------- */
+.total_0{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: poppins;
+    align-items: center;
+
+}
+
+/* Event Hive*/
+.head{
+  width: 172px;
+  color: black ;
+  font-family: Alatsi;
+  font-weight: Regular bold;
+  font-size: 30px;
+  opacity: 1;
+  text-align: center;
+  margin: 0;
+}
+.head1{
+      color: #7848F4;
+  }
+
+/*
+.si{
+    background-color: #e7e3f1;
+    color: rgb(3, 1, 0);
+    padding: 0.5rem 2rem;
+   
+   font-family: poppins;
+   font-size: medium;
+   margin-left: 1rem;
+   cursor: pointer;
+}
+.si:hover{
+       box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(46, 41, 41, 0.19);
+       font-weight: 700;
+}
+.lo{
+       background-color: #7848F4;
+       color: white;
+      padding: 0.5rem 2rem;
+      border-radius: 50px;
+      font-family: poppins;
+      font-size: medium;
+      margin-left: 1rem;
+      margin-right: 3rem;
+      cursor: pointer;
+}
+.lo:hover{
+       box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(46, 41, 41, 0.19);
+       font-weight: 700;
+}
+*/
+
+
+  /* Total sec (Container) for the login and signup buttons */
+.nav_sec {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+}
+  
+  /* Totel styles for login and signup buttons */
+  .nav_sec button {
+    font-size: 16px; 
+    padding: 10px 20px; 
+    margin-left: 10px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+  /* Login button */
+.lo {
+    background-color: transparent;
+    color: #333;
+    transition: background-color 0.3s;
+}
+  
+  .nav_sec .lo:hover {
+    /*background-color: #f0f0f0;*/
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(46, 41, 41, 0.19);
+   font-weight: 700;
+}
+  
+  /* Signup button */
+  .nav_sec .si {
+    background-color: #6200ea; 
+    color: #fff;
+}
+  
+.si:hover {
+   /* background-color: #4500a0; */
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(46, 41, 41, 0.19);
+   font-weight: 700;
+}
+  
+/*Nav_bar_end------------------------------------------------------------------ */
+
+
+  /* Styling the Create Event Section */
+.total_1 {
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  min-height: 10vh;
+  /*background-color: #fff;*/
+  /*border-radius: 8px;*/
+  
+ /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+}
+
+.total_1 .head3 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/*.total_1 .form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}*/
+
+.total_1 .form label {
+  font-size: 14px;
+  margin-bottom: 50px;
+  color: #666;
+}
+
+.total_1 .form input[type="text"],
+.total_1 .form input[type="time"],
+.total_1 .form input[type="date"] {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+.total_1 .form input[type="text"]::placeholder {
+  color: #aaa;
+  
+}
+
+.total_1 .form input[type="time"],
+.total_1 .form input[type="date"] {
+  margin-bottom: 20px;
+}
+
+.total_1 .form input[type="text"]:focus,
+.total_1 .form input[type="time"]:focus,
+.total_1 .form input[type="date"]:focus {
+  border-color: #6200ea;
+  outline: none;
+}
+
+.time-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time-date .time,
+.time-date .date {
+  width: 48%;
+}
+/*Details_sec_starts----------------------------------------------------------- */
+.head4 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.hero1{
+  width: 100%;
+  
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#drope-area{
+  width: 500px;
+  height: 300px;
+  padding: 30px;
+  background: #fff;
+  text-align: center;
+  border-radius: 20px;
+}
+
+#img-view{
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 2px dashed #bbb5ff;
+  background: #f7f7f7 ;
+}
+
+#img-view img{
+  width: 150px;
+  margin-top: 10px;
+}
+
+.abo{
+  width: 470px;
+  background: #fff;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 20px;
+  align-content: center;
+  min-height: 10vh;
+  padding: none;
+}
+.abo h3{
+  text-align: left;
+}
+
+.abo textarea{
+  width: 100%;
+  height: 190px;
+  padding: 15px;
+  outline: none;
+  resize: both;
+  font-size: 16px;
+  border-radius: 5px;
+  border-color: #bfbfbf;
+  
+}
+textarea:is(:focus, :valid){
+  border-color: #6200ea;
+}
+
+
+/*.area{
+  border-radius: 20px;
+  border-color: #6200ea;
+  outline: none;
+}
+
+.textarea input [name="text"]:focus {
+  border-color: #6200ea;
+  outline: none;
+}*/
+
+/*Description_sec_starts--------------------------------------------------------*/
+
+.total_3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  
+  margin: 0;
+}
+
+.animated-button {
+  background-color: #6200ea;
+  color: #ffffff;
+  border: none;
+  padding: 15px 250px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.animated-button:hover {
+  background-color: #4500b5;
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.animated-button:active {
+  transform: scale(0.95);
+  background-color: #370093;
+}

@@ -10,8 +10,12 @@
             </ul>
         </div>
         <div class="navend">
-            <a href="/signup" class="btn">Signup</a>
-            <a href="/login" class="btn-1">Login</a>
+            <% if(loggedIn == true){ %>
+                <a href="/login" class="btn-1">Profile</a>
+            <% } else { %>
+                <a href="/signup" class="btn">Signup</a>
+                <a href="/login" class="btn-1">Login</a>
+            <% } %>
         </div>
     </nav>
 </section>
