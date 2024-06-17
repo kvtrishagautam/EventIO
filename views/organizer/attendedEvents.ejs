@@ -34,7 +34,7 @@
       <div class="c-events">
           <div class="c-heading">Your Events</div>
           <div class="c-event-box">
-            <% for(events of c_events){ %>
+            <% for(events of a_events){ %>
                 <%for(let eachEvent of events){%>
               <div class="event-cat-box">
                   <img src="/images/events/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
@@ -46,12 +46,13 @@
           
                       </div>
                       <div class="event-cat-edit">
-                          <span>Edit</span>
+                          <span>View</span>
                           <% if (eachEvent.expired === true) { %>
                             <h4>Expired</h4>
                           <% } else { %>
                             <h4><%= eachEvent.start_day %></h4>
                           <% } %>
+                          
                       </div>
                   </div>
               </div>
