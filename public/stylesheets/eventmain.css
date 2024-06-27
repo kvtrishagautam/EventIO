@@ -218,16 +218,15 @@ body{
     font-family: poppins;
 }
 
-.event-cat-desc h4{
-    width: 14rem;
+.event-cat-reg h4{
     height: 1rem;
-    margin: 0.3rem 0rem;
-    padding-left: 0.7rem;
-    font-size: 0.9rem;
-    font-family: poppins;
-    display: flex;
-    align-items: start;
-    color: #7d7986;
+      margin: 0.3rem 0rem;
+      padding-left: 0.7rem;
+      font-size: .9rem;
+      font-family: poppins;
+      display: flex;
+      align-items: start;
+      color: #7d7986;
 }
 
 .event-cat-desc{
@@ -241,7 +240,8 @@ body{
     height: 7.3rem;
 }
 
-.event-cat-reg{
+.event-cat-reg a{
+    text-decoration: none;
     width: 6.5rem;
     height: 2.5rem;
     display: flex;
@@ -250,8 +250,8 @@ body{
     font-family: poppins;
     color: #F8F8FA;
     border-radius: 0.6rem;
-    margin-top: 4rem;
-    margin-left: 1rem;
+    margin-top: 0.5rem;
+    /* margin-left: 1rem; */
     align-items: center;
     border: none;
     cursor: pointer;

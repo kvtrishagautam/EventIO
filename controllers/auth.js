@@ -1,5 +1,5 @@
-const { supabase } = require('../config/supabse');
 const express = require('express');
+const { supabase } = require('../config/supabse');
 const app = express();
 // var router = express.Router();
 
@@ -25,8 +25,8 @@ module.exports = {
                 { email: req.body.email, password: req.body.password, username: req.body.username },
             ])
             .select()
-        console.log(req.body);
-        console.log(data);
+        // console.log(req.body);
+        // console.log(data);
 
         return res.redirect('/auth/login')
 
