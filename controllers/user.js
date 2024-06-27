@@ -10,12 +10,32 @@ module.exports = {
     res.render("./user/home", { title: "Home" });
   },
 
-  getDashboard: async(req, res) => {
-    res.render("./user/profile/dashboard.ejs", {
-      title: "Profile | Dashboard",
-    });
-},
+  getDashboard: async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('user_info')
+            .select('f_name, l_name, phno, address, course, skills')
+            .eq('user_id', '1fd3c2b2-86d9-4baa-8aa4-748432d209db'); 
 
+        if (error) {
+            throw error;
+        }
+
+        if (data && data.length > 0) {
+          const userData = data[0]; 
+
+     res.render('./user/profile/dashboard', {
+                    title: 'Profile | Dashboard',
+                    userData: userData,
+                });
+            } else {
+                throw new Error('User data not found');
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error.message);
+            res.status(500).send('Error fetching user data');
+        }
+    },
 
   getEvents: (req, res) => {
     res.render("./user/events", { title: "Events" });
@@ -61,8 +81,6 @@ const { data, error } = await supabase
         
     console.log(req.body);
     console.log(data,error);
-    // if(!data[0]){
-    //     res.redirect
-    // }
+   
   },
 };

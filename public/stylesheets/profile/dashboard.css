@@ -173,33 +173,30 @@ ml {
   width:100%;
   height:46.4vh;
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 1rem;
   gap: 1.5rem;
   width: 100%;
 }
 
-.about{
+.box{
   background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 1.4rem;
+  border-radius: .7rem;
 }
-.contents{
-  background: white;
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.4rem;
-  padding: 0rem 4rem;
+
+.extra p{
+  margin-bottom: -1rem;
 }
-.extra{
-  background: white;
-  display: flex;
-  justify-content: center;
-  font-size: 1.4rem;
-  
+
+.extra li{
+  color: #7848F4;
+  padding: 1rem 0rem;
 }
+
 
 .aboutcontent{
   display: grid;

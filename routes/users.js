@@ -22,6 +22,8 @@ router.get('/profile-Change-Password',getProfileChangePass);
 
 router.get('/profile-accinfo',getAccInfo);
 
+// POST routes 
+
 router.post('/profile-accinfo', postAccInfo);
 
 module.exports = router;

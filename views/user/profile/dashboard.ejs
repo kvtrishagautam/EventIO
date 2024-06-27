@@ -38,9 +38,9 @@
                 <img src="./images/hiba/img-profile.svg" alt="" />
               </div>
               <div class="pro-details">
-                <p class="username">Hiba</p>
-                <p class="userfield">UI/UX Designer</p>
-              </div>
+                <p class="username"><%= userData.f_name %> <%= userData.l_name %></p>
+                <p class="userfield">UI/UX Designer</p> <!-- Update as per your actual user details -->
+            </div>
             </div>
             <div class="edit"><a href="/profile-accinfo">Edit Profile</a></div>
           </div>
@@ -49,31 +49,37 @@
 
         <!-- hero bottom starts -->
         <div class="hero-bottom">
-          <div class="about">
+          <div class="about box">
             <p id="about">About</p>
             <div class="aboutcontent">
               <div class="grid-item">
-                <img src="./images/hiba/person.svg" alt="" id="size" /><p>Gender</p>
+                <img src="./images/hiba/person.svg" alt="" id="size" /><p> <%= userData.course %></p>
               </div>
               <div class="grid-item">
-                <img src="./images/hiba/Call.svg" alt="" id="size"/><p>Phone</p>
-              </div>
+                <img src="./images/hiba/Call.svg" alt="" maxlength="10" id="size"/><p> <%= userData.phno %></p>
+            </div>
+            <div class="grid-item">
+              <img src="./images/hiba/Location.svg" alt="" id="size"/> <p> <%= userData.address %></p>
+          </div>
               <div class="grid-item">
-               <img src="./images/hiba/Location.svg" alt="" id="size"/>  <p>address</p>
-              </div>
-              <div class="grid-item">
-                <img src="./images/hiba/Message.svg" alt="" id="size"/> <p>Email</p>
+                <img src="./images/hiba/Message.svg" alt="" id="size"/> <p>email</p>
               </div>
             </div>
           </div>
-          <div class="contents " id="about">
+          <div class="contents box" id="about">
             <p>Events</p>
+          </div>
+          <div class="certificate box" id="about">
             <p>Certificates</p>
-           
           </div>
-          <div class="extra" id="about">
-            <p>Skills</p>
-          </div>
+          <div class="extra box" id="about">
+            <p>Skills</p> 
+            <ul>
+                <% userData.skills.forEach(skill => { %>
+                    <li><%= skill %></li>
+                <% }); %>
+            </ul>
+        </div>
         </div>
         <!-- hero bottom ends -->
       </div>
