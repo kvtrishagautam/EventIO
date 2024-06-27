@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
-``
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var organizerRouter = require('./routes/organizer');
@@ -19,8 +18,11 @@ app.set('view engine', 'ejs');
 app.use(session({
   secret: 'your-secret-key',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    maxAge: 1000 * 60 * 60 * 24,
+  },
 }));
 
 app.use(logger('dev'));

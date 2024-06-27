@@ -53,6 +53,13 @@ body {
     height: 10rem;
     width: 100%;
 }
+.errMsg{
+    display: flex;
+    justify-content: center;
+    color: red;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
 
 .login-txt h1 {
     font-size: 1.7rem;

@@ -6,15 +6,15 @@ const { supabase } = require('../config/supabse')
 
 
 /* GET home page. */
-router.get('/', getHomePage );
+router.get('/', checkLogedIn, getHomePage);
 
-router.get('/dashboard', getDashboard );
+router.get('/dashboard', getDashboard);
 
-router.get('/events', checkLogedIn, getEvents );
+router.get('/events', checkLogedIn, getEvents)
 
 router.get('/event-details',  getEvents );
 
-router.get('/profile-attendevents', getProfileAttendedEvents );
+router.get('/profile-attendevents', getProfileAttendedEvents)
 
 router.get('/profile-Change-Email', getProfileChangeEmail);
 
