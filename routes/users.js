@@ -21,7 +21,7 @@ router.get('/profile-Change-Email', getProfileChangeEmail);
 
 router.get('/profile-Change-Password',getProfileChangePass);
 
-router.get('/profile-accinfo',getAccInfo);
+router.get('/profile-accinfo',checkLogedIn,getAccInfo);
 
 // POST routes 
 
