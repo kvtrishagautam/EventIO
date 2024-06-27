@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/profile/profile-email.css">
+    <link rel="stylesheet" href="/stylesheets/profile/main-menu.css">
+    <title><%= title%></title>
+  </head>
+  <body>
+    <%- include('../includes/navbar') %>
+
+      <div class="container">
+        <%- include('../includes/main-menu') %>
+          <!-- herosection starts here -->
+          <div class="herosection">
+            <div class="headingg">
+                <h2>Change Email</h2>
+                <hr><br>
+            </div>
+            <div class=" textt">Current Email: <span class="currmail"> koilothkhadeejahiba@gmail.com</div></span><br>
+            <br>
+            <div class="form">
+                <label for="mail" class="textt">New Email:</label>
+                    <input type="email" name="" id="newmail" class="inputt mleft"> <br><br><br>
+                <label for="confirmmail"class="textt">Confirm Email:</label>
+                    <input type="email" name="" id="confirmmail" class="inputt"> 
+            </div>
+            <div class="bttn">
+                <button type="submit" id="submit">Save Email</button>
+            </div>
+         </div>
+      <!-- herosection ends here -->
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const hamburg = document.querySelector('.hamburg'); 
+          const mainmenu = document.querySelector('.main-menu'); 
+          const cross = document.querySelector('.cross');
+    
+          hamburg.addEventListener('click', function() {
+            hamburg.classList.toggle('inactive');
+            mainmenu.classList.toggle('inactive'); 
+          });
+    
+          cross.addEventListener('click', function() {
+            hamburg.classList.toggle('inactive');
+            mainmenu.classList.toggle('inactive'); 
+          });
+        });
+      </script>
+  </body>
+  </html>

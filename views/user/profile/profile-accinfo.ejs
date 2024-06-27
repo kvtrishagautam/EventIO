@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/profile-accinfo.css" />
+    <link rel="stylesheet" href="/stylesheets/profile/profile-accinfo.css" />
+    <link rel="stylesheet" href="/stylesheets/profile/main-menu.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
       rel="stylesheet"
@@ -106,7 +107,12 @@
           hamburg.classList.toggle('inactive');
           mainmenu.classList.toggle('inactive'); 
         });
-      });
+      })
+      document.getElementById('submit').addEventListener("click", function(z) {
+      z.preventDefault();  
+      document.getElementById('submit').innerHTML = 'SUBMITTING'
+      window.location.href = "/dashboard"; 
+    });
     </script>
 </body>
 </html>

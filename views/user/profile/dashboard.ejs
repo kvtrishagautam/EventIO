@@ -1,12 +1,99 @@
-<%- include('includes/header') %>
-  <body>
-    <%- include('includes/navbar') %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/profile/dashboard.css" />
+    <link rel="stylesheet" href="/stylesheets/profile/main-menu.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&display=swap"
+      rel="stylesheet"
+    />
+    <title><%= title%></title>
+  </head>
+    <body>
+      <%- include('../includes/navbar') %>
 
+        <div class="container">
+          <%- include('../includes/main-menu-pro') %>
 
-    <p>Welcome to <%= title %></p>
+           <!-- hero section starts here -->
+      <div class="herosection">
+        <!-- herotop starts -->
+        <div class="herotop">
+          <div class="sectionwithbg"></div>
+          <div class="herotopbtm">
+            <div class="pro-section">
+              <div class="profileicon">
+                <img src="./images/hiba/img-profile.svg" alt="" />
+              </div>
+              <div class="pro-details">
+                <p class="username">Hiba</p>
+                <p class="userfield">UI/UX Designer</p>
+              </div>
+            </div>
+            <div class="edit"><a href="/profile-accinfo">Edit Profile</a></div>
+          </div>
+        </div>
+        <!-- herotop ends -->
 
-
-
-    <%- include('includes/footer') %>
-  </body>
+        <!-- hero bottom starts -->
+        <div class="hero-bottom">
+          <div class="about">
+            <p id="about">About</p>
+            <div class="aboutcontent">
+              <div class="grid-item">
+                <img src="./images/hiba/person.svg" alt="" id="size" /><p>Gender</p>
+              </div>
+              <div class="grid-item">
+                <img src="./images/hiba/Call.svg" alt="" id="size"/><p>Phone</p>
+              </div>
+              <div class="grid-item">
+               <img src="./images/hiba/Location.svg" alt="" id="size"/>  <p>address</p>
+              </div>
+              <div class="grid-item">
+                <img src="./images/hiba/Message.svg" alt="" id="size"/> <p>Email</p>
+              </div>
+            </div>
+          </div>
+          <div class="contents " id="about">
+            <p>Events</p>
+            <p>Certificates</p>
+           
+          </div>
+          <div class="extra" id="about">
+            <p>Skills</p>
+          </div>
+        </div>
+        <!-- hero bottom ends -->
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const hamburg = document.querySelector('.hamburg'); 
+        const mainmenu = document.querySelector('.main-menu'); 
+        const cross = document.querySelector('.cross');
+  
+        hamburg.addEventListener('click', function() {
+          hamburg.classList.toggle('inactive');
+          mainmenu.classList.toggle('inactive'); 
+        });
+  
+        cross.addEventListener('click', function() {
+          hamburg.classList.toggle('inactive');
+          mainmenu.classList.toggle('inactive'); 
+        });
+      });
+    </script>
+</body>
 </html>

@@ -9,9 +9,14 @@ module.exports = {
     // supabase.
     res.render("./user/home", { title: "Home" });
   },
-  getDashboard: (req, res) => {
-    res.render("./user/home", { title: "Dashboard" });
-  },
+
+  getDashboard: async(req, res) => {
+    res.render("./user/profile/dashboard.ejs", {
+      title: "Profile | Dashboard",
+    });
+},
+
+
   getEvents: (req, res) => {
     res.render("./user/events", { title: "Events" });
   },
@@ -27,8 +32,8 @@ module.exports = {
     });
   },
   getProfileChangeEmail: (req, res) => {
-    res.render("./user/profile/profile-changePass.ejs", {
-      title: "profile | Change Password",
+    res.render("./user/profile/profile-changeEmail.ejs", {
+      title: "profile | Account Change Email",
     });
   },
 
