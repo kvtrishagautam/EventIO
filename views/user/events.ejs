@@ -9,7 +9,7 @@
     <section>
         <div class="hero">
             <div class="hero-img">
-                <img src="./images/aleksandr-popov-vCbKwN2IXT4-unsplash.jpg" alt="img" />
+                <img src="./images/heroimgs/aleksandr-popov-vCbKwN2IXT4-unsplash.jpg" alt="img" />
             </div>
             <div class="hero-text">
                 <h1>Empower your campus!</h1>
@@ -47,7 +47,7 @@
                     </form>
                 </div>
                 <div class="hero-box-search">
-                    <img src="./images/Button.svg" alt="search">
+                    <img src="./images/heroimgs/—Pngtree—search icon_4490393.png" alt="search">
                 </div>
             </div>
         </div>
@@ -63,119 +63,37 @@
                 <font color="#7848F4">Events</font>
             </h3>
             <div class="event-head-drop">
-                <form action="">
                     <select name="location" id="event-head">
                         <option value="">Weekdays</option>
                         <option value=""></option>
                     </select>
-                </form>
-                <form action="">
-                    <select name="location" id="event-head">
+                        <select name="location" id="event-head">
                         <option value="">Event type</option>
                         <option value=""></option>
                     </select>
-                </form>
-                <form action="">
                     <select name="location" id="event-head">
                         <option value="">Category</option>
                         <option value=""></option>
                     </select>
-                </form>
             </div>
-
-
         </div>
         <div class="event-cat">
-            <div class="event-cat-box">
-                <img src="./images/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
-                <div class="event-cat-box-in">
+            <% for(let e of event){ %>
 
+            <div class="event-cat-box">
+                <img src="/images/events/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
+                <div class="event-cat-box-in">
                     <div class="event-cat-desc">
-                        <h3>Event name</h3>
-                        <p>Event desc</p>
-                        <h4>Date and time</h4>
+                        <h3><%=e.title %></h3>
+                        <p><%= e.desc%></p>                       
                     </div>
                     <div class="event-cat-reg">
-                        Register
+                        <a href="/event/<%=e.title %>/<%=e.event_id %>">Register</a>
+                        <h4><%= e.start_day%></h4>
                     </div>
                 </div>
-
             </div>
-            <div class="event-cat-box">
-                <img src="./images/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
-                <div class="event-cat-box-in">
-
-                    <div class="event-cat-desc">
-                        <h3>Event name</h3>
-                        <p>Event desc</p>
-                        <h4>Date and time</h4>
-                    </div>
-                    <div class="event-cat-reg">
-                        Register
-                    </div>
-                </div>
-
-            </div>
-            <div class="event-cat-box">
-                <img src="./images/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
-                <div class="event-cat-box-in">
-
-                    <div class="event-cat-desc">
-                        <h3>Event name</h3>
-                        <p>Event desc</p>
-                        <h4>Date and time</h4>
-                    </div>
-                    <div class="event-cat-reg">
-                        Register
-                    </div>
-                </div>
-
-            </div>
-            <div class="event-cat-box">
-                <img src="./images/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
-                <div class="event-cat-box-in">
-
-                    <div class="event-cat-desc">
-                        <h3>Event name</h3>
-                        <p>Event desc</p>
-                        <h4>Date and time</h4>
-                    </div>
-                    <div class="event-cat-reg">
-                        Register
-                    </div>
-                </div>
-
-            </div>
-            <div class="event-cat-box">
-                <img src="./images/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
-                <div class="event-cat-box-in">
-
-                    <div class="event-cat-desc">
-                        <h3>Event name</h3>
-                        <p>Event desc</p>
-                        <h4>Date and time</h4>
-                    </div>
-                    <div class="event-cat-reg">
-                        Register
-                    </div>
-                </div>
-
-            </div>
-            <div class="event-cat-box">
-                <img src="./images/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
-                <div class="event-cat-box-in">
-
-                    <div class="event-cat-desc">
-                        <h3>Event name</h3>
-                        <p>Event desc</p>
-                        <h4>Date and time</h4>
-                    </div>
-                    <div class="event-cat-reg">
-                        Register
-                    </div>
-                </div>
-
-            </div>
+            <%} %>
         </div>
         <div class="event-cat-add">
             <h3>Load more..</h3>
@@ -189,7 +107,7 @@
 
     <div class="event-box">
         <div class="event-box-img">
-            <img src="./images/image 3.svg" alt="create logo">
+            <img src="./images/createeventimg/image 3.svg" alt="create logo">
         </div>
         <div class="event-box-text">
             <h2>Make your own event</h2>
@@ -238,9 +156,9 @@
                     <div>Hindi</div>
                 </div>
                 <div class="footer-bottom" style="margin-left: 8rem;">
-                    <img src="./images/LinkedinLogo.svg" alt="LinkedinLogo">
-                    <img src="./images/InstagramLogo.svg" alt="InstagramLogo">
-                    <img src="./images/FacebookLogo.svg" alt="FacebookLogo">
+                    <img src="./images/logos/LinkedinLogo.svg" alt="LinkedinLogo">
+                    <img src="./images/logos/InstagramLogo.svg" alt="InstagramLogo">
+                    <img src="./images/logos/FacebookLogo.svg" alt="FacebookLogo">
                 </div>
                 <div class="footer-bottom">
                     <p>Non Copyrighted &#169; upload by EventIO </p>
