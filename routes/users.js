@@ -5,9 +5,9 @@ const checkLogedIn = require('../middlewares/checkLogedIn');
 
 
 /* GET home page. */
-router.get('/', checkLogedIn, getHomePage);
+router.get('/', getHomePage);
 
-router.get('/dashboard', getDashboard);
+router.get('/dashboard',checkLogedIn, getDashboard);
 
 router.get('/events', checkLogedIn, getEvents)
 
