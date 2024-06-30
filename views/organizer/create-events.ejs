@@ -11,32 +11,32 @@
                 <div class="form">
                     <form action="/organizer/create-events" method="post">
                         <label for="title">Event Title</label>
-                        <input type="text" id="title" name="title" placeholder="Enter your event Title">
+                        <input type="text" id="title" name="title" placeholder="Enter your event Title" required>
 
                         <label for="venue">Event Venue</label>
-                        <input type="text" id="venue" name="venue" placeholder="Enter your event Venue">
+                        <input type="text" id="venue" name="venue" placeholder="Enter your event Venue" required>
 
                         <div class="time-date">
                             <div class="time">
                                 <label for="stime">Start Time</label>
-                                <input type="time" id="stime" name="start_time">
+                                <input type="time" id="stime" name="start_time" required>
                             </div>
 
                             <div class="time">
                                 <label for="etime">End Time</label>
-                                <input type="time" id="etime" name="end_time">
+                                <input type="time" id="etime" name="end_time" required>
                             </div>
                         </div>
 
                         <div class="time-date">
                             <div class="date">
                                 <label for="sdate">Start Date</label>
-                                <input type="date" id="sdate" name="start_day">
+                                <input type="date" id="sdate" name="start_day" required>
                             </div>
 
                             <div class="date">
                                 <label for="edate">End Date</label>
-                                <input type="date" id="edate" name="end_day">
+                                <input type="date" id="edate" name="end_day" required>
                             </div>
                         </div>
                     
@@ -48,9 +48,9 @@
 
     <!--Details_sec_ends-->
 
-    <!--Details_sec_starts----------------------------------------------------------- */-->
+    <!--image insertion----------------------------------------------------------- */-->
     <section class="total_2">
-        <div class="head4">Event Description</div>
+        <!-- <div class="head4">Event Description</div>
         <div class="hero1">
             <label for="input-file" id="drope-area">
                 <input type="file" accept="image/*" id="input-file" hidden>
@@ -59,18 +59,18 @@
                     <img src="\images\create_event_uploadpic\508-icon.png">
                 </div>
             </label><br>
-        </div>
+        </div> -->
         <div class="abo">
             <h3>About</h3>
-            <textarea placeholder="Type hear..." name="desc" cols="130" rows="15" required></textarea>
+            <textarea placeholder="Type here..." name="desc" cols="130" rows="15" required></textarea>
 
         </div>
 
     </section>
-    <!--/*Description_sec_ends--------------------------------------------------------*/-->
+    <!--image insertion_ends--------------------------------------------------------*/-->
 
     <section class="total_3">
-        <button type="submit" class="animated-button">create event</button>
+        <button type="submit" class="animated-button">Create Event</button>
     </section>
     <!--/*button_starts--------------------------------------------------------*/-->
 </form>

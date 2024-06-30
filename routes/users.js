@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {getHomePage , getDashboard,getEvents,getEventDetail,getProfileAcc,getProfileAttendedEvents,getProfileChangeEmail,getProfileChangePass} = require('../controllers/user');
+const {getHomePage , getDashboard,getEvents,getEventDetail,postEventDetail,getProfileAcc,getProfileAttendedEvents,getProfileChangeEmail,getProfileChangePass} = require('../controllers/user');
 const checkLogedIn = require('../middlewares/checkLogedIn');
 
 
@@ -12,6 +12,8 @@ router.get('/dashboard', getDashboard );
 router.get('/events', getEvents );
 
 router.get('/event/:title/:id', getEventDetail );
+
+router.post('/event/:title/:id', postEventDetail );
 
 router.get('/profile-accinfo', getProfileAcc);
 

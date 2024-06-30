@@ -108,7 +108,6 @@ module.exports = {
     },
 
     postCreateEvents: async (req, res) => {
-        // const { column1, column2 } = req.body;
 
         let { data, error } = await supabase
             .from('event')
@@ -129,10 +128,10 @@ module.exports = {
             .from('user_info')
             .select('c_events')
             .eq('org_id', 'f11ae58a-3e12-47d7-92aa-77bed087e5bb');
-        console.log(user_info[0].c_events)
+        // console.log(user_info[0].c_events)
 
 
-        const updatedEvents = [...user_info[0].c_events, event[0].event_id];
+        const updatedEvents = [...user_info[0].c_events || [], event[0].event_id];
         console.log(updatedEvents)
 
         let { data: updatedC_events, error4 } = await supabase

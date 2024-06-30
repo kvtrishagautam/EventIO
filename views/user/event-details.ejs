@@ -3,120 +3,193 @@
   </head>
 
   <body>
-    <%- include('includes/navbar') %>
+    <div id="body">
+      <%- include('includes/navbar') %>
 
-      <!-- hero section starts-->
-      <div class="herosection  ">
-        <div class="herocontent">
+        <!-- hero section starts-->
+        <div class="herosection  ">
+          <div class="herocontent">
 
-          <div class="herobtn">
-            <p>&lt;&lt; Back</p>
-          </div>
-          <div class="heroright">
-            <div class="herotext">
-              <h1>
-                <%=selectedEvent.title%>
-              </h1>
-              <p class="eventplace">
-                <%=selectedEvent.venue%>
-              </p>
-              <p class="desc">
-                <%=selectedEvent.desc%>
-              </p>
-              <div class="map">
-                <img src="/images/events/MapPin.svg" alt="map" />
-                <h5><i> View map</i></h5>
+            <a style="text-decoration: none;" href="/events">
+              <div class="herobtn">
+              <p>&lt;&lt; Back</p>
+            </div></a>
+            <div class="heroright">
+              <div class="herotext">
+                <h1>
+                  <%=selectedEvent.title%>
+                </h1>
+                <p class="eventplace">
+                  <%=selectedEvent.venue%>
+                </p>
+                <p class="desc">
+                  <%=selectedEvent.desc%>
+                </p>
+                <div class="map">
+                  <img src="/images/events/MapPin.svg" alt="map" />
+                  <h5><i> View map</i></h5>
+                </div>
+              </div>
+
+              <div class="herodate">
+                <h2>Date & time</h2>
+                <p>
+                  <%=selectedEvent.start_day%> -- <%=selectedEvent.start_time%>
+                </p>
+                <h3>Add to calender</h3>
+                <div id="registerEvent" class="btn4">
+                  <% if(attended){%>
+                    Registered
+                    <%}else{%>
+                      Book now
+                    <%}%>
+                  </div>
+                <!-- <dic class="btn5">Program promoter</dic> -->
+                <!-- <div class="btn6">No Refunds</div> -->
               </div>
             </div>
+          </div>
+        </div>
+        <!-- hero section ends -->
 
-            <div class="herodate">
-              <h2>Date & time</h2>
+        <!-- blog section starts -->
+        <div class="blogsection">
+          <div class="blogright">
+            <div class="description">
+              <h2>Description</h2>
               <p>
-                <%=selectedEvent.start_day%> -- <%=selectedEvent.start_time%>
+                <%=selectedEvent.desc%>
               </p>
-              <h3>Add to calender</h3>
-              <div class="btn4">Book now</div>
-              <!-- <dic class="btn5">Program promoter</dic> -->
-              <!-- <div class="btn6">No Refunds</div> -->
+            </div>
+            <div class="hours">
+              <h2>Hours</h2>
+              <p>Date: <span class="hour"><b>
+                    <% if (selectedEvent.start_day===selectedEvent.end_day) { %>
+                      <%= selectedEvent.start_day %>
+                        <% } else { %>
+                          <%= selectedEvent.start_day %> : <%= selectedEvent.end_day %>
+                              <% } %>
+                  </b></span></p>
+
+              <p>Start time: <span class="hour"><b>
+                    <%=selectedEvent.start_time%>
+                  </b></span></p>
+              <p>End time: <span class="hour"><b>
+                    <%=selectedEvent.end_time%>
+                  </b></span></p>
+            </div>
+            <div class="orgcont">
+              <h2>Organizer Contact</Canvas></h2>
+              <p>Please go to <a href="https://www.w3schools.com/">www.abc.com</a>and refer the FAQ section for
+                more details.</p>
             </div>
           </div>
+          <div class="blogleft">
+            <div class="location">
+              <h2>Event location</h2>
+              <img src="/images/events/map.svg" alt="Event location">
+              <h2>
+                <%=selectedEvent.title%>
+              </h2>
+              <!-- <p>small description about event and event location</p> -->
+            </div>
+            <div class="tags">
+              <h2>Tags</h2>
+              <div class="ttag">
+                <p>tag1</p>
+                <p> tag2</p>
+                <p>tag3</p>
+                <p>tag4</p>
+
+              </div>
+            </div>
+            <div class="withfriends">
+              <div class="withfriendsh2">
+                <h2>Share with friends</h2>
+              </div>
+              <div class="withfriendsimg">
+                <img src="./images/logos/InstagramLogo.svg" alt="Through whatsapp" class="imgstyle">
+                <img src="./images/logos/InstagramLogo.svg" alt="Through instagram">
+                <img src="./images/logos/FacebookLogo.svg" alt="FacebookLogo">
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include('includes/footer') %>
+    </div>
+
+    <!-- booking confirmation popup  -->
+    <div id="popup" class="popup">
+      <div class="popup-txt">
+        <h4>Event: <%=selectedEvent.title%>
+        </h4>
+        <h4>Date: <%=selectedEvent.start_day%>
+        </h4>
+      </div>
+      <div class="popup-sub">
+        <h3>Are you sure you want to confirm your booking?</h3>
+        <div class="popup-btn">
+          <button id="cancel-btn">Cancel</button>
+          <button id="confirm-btn">
+            Confirm
+          </button>
         </div>
       </div>
-      <!-- hero section ends -->
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-      <!-- blog section starts -->
-      <div class="blogsection">
-        <div class="blogright">
-          <div class="description">
-            <h2>Description</h2>
-            <p>
-              <%=selectedEvent.desc%>
-            </p>
-          </div>
-          <div class="hours">
-            <h2>Hours</h2>
-            <p>Date: <span class="hour"><b>
-                  <% if (selectedEvent.start_day===selectedEvent.end_day) { %>
-                    <%= selectedEvent.start_day %>
-                      <% } else { %>
-                        <%= selectedEvent.start_day %> : <%= selectedEvent.end_day %>
-                            <% } %>
-                </b></span></p>
-
-            <p>Start time: <span class="hour"><b>
-                  <%=selectedEvent.start_time%>
-                </b></span></p>
-            <p>End time: <span class="hour"><b>
-                  <%=selectedEvent.end_time%>
-                </b></span></p>
-          </div>
-          <div class="orgcont">
-            <h2>Organizer Contact</Canvas></h2>
-            <p>Please go to <a href="https://www.w3schools.com/">www.abc.com</a>and refer the FAQ section for
-              more details.</p>
-          </div>
-        </div>
-        <div class="blogleft">
-          <div class="location">
-            <h2>Event location</h2>
-            <img src="/images/events/map.svg" alt="Event location">
-            <h2>
-              <%=selectedEvent.title%>
-            </h2>
-            <!-- <p>small description about event and event location</p> -->
-          </div>
-          <div class="tags">
-            <h2>Tags</h2>
-            <div class="ttag">
-              <p>tag1</p>
-              <p> tag2</p>
-              <p>tag3</p>
-              <p>tag4</p>
-
-            </div>
-          </div>
-          <div class="withfriends">
-            <div class="withfriendsh2">
-              <h2>Share with friends</h2>
-            </div>
-            <div class="withfriendsimg">
-              <img src="./img/Facebook.svg" alt="Through facebook" class="imgstyle">
-              <img src="./img/WhatsApp.svg" alt="Through whatsapp" class="imgstyle">
-              <img src="./img/LinkedIn.svg" alt="Through linkedin" class="imgstyle">
-              <img src="./img/Twitter.svg" alt="Through Twitter" class="imgstyle">
-            </div>
-          </div>
-        </div>
-      </div>
+    <script>
+      const register = document.getElementById('registerEvent');
+      var attended = '<%=attended%>' ;
+      console.log(attended);
 
       
+      register.addEventListener("click", () => {
+          if (attended=="false") {
+          document.getElementById("popup").style.display = "flex";
+          document.getElementById("body").style.filter = "blur(5px)";
+          document.getElementById("body").style.pointerEvents = "none";
+          }
+        });
+
+        document.getElementById('cancel-btn').addEventListener("click", () => {
+          document.getElementById("popup").style.display = "none";
+          document.getElementById("body").style.filter = "none";
+          document.getElementById("body").style.pointerEvents = "all";
+        });
+
+        $(document).ready(function () {
+          $('#confirm-btn').click(function () {
+            var eventId = '<%=selectedEvent.event_id%>';
+            attended=true;
+
+            $.ajax({
+              url: '/event/<%=selectedEvent.title %>/<%=selectedEvent.event_id %>',
+              type: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify({ eventId }),
+              success: function (response) {
+                if (response.success) {
+                  register.textContent = 'Registered'
+                  document.getElementById("popup").style.display = "none";
+                  document.getElementById("body").style.filter = "none";
+                  document.getElementById("body").style.pointerEvents = "all";
+                } else {
+                  console.error('Booking confirmation failed:', response.error); // Handle errors from the backend
+                }
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                console.error('AJAX error:', textStatus, errorThrown);
+                // Handle general AJAX errors
+              }
+            });
+          });
+        });
+
+      
+
+    </script>
+
   </body>
 
   </html>
-
-
-
-  <%- include('includes/footer') %>
-    </body>
-
-    </html>
