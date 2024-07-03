@@ -26,12 +26,9 @@ module.exports = {
                 { email: req.body.email, password: req.body.password, username: req.body.username },
             ])
             .select()
-<<<<<<< HEAD
         // console.log(req.body);
         // console.log(data);
-=======
     
->>>>>>> origin/trisha
 
         return res.redirect('/auth/login')
 
