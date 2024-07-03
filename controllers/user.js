@@ -6,6 +6,7 @@ const express = require('express');
 
 module.exports = {
     getHomePage: (req, res) => {
+        console.log(req.session);
         res.render('./user/home', { title: 'Home', loginStatus: req.session.userLoggedIn });
     },
     getDashboard: async (req, res) => {
