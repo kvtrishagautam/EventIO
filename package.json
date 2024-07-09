@@ -6,12 +6,8 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@supabase/supabase-js": "^2.43.5",
-=======
     "@supabase/supabase-js": "^2.43.4",
     "body-parser": "^1.20.2",
->>>>>>> origin/trisha
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.4.5",
