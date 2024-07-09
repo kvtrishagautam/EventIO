@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/profile/profile-email.css">
+    <link rel="stylesheet" href="/stylesheets/profile/main-menu.css">
+    <title><%= title%></title>
+  </head>
+  <body>
+    <%- include('../includes/navbar') %>
+
+      <div class="container">
+        <%- include('../includes/main-menu') %>
+          <!-- herosection starts here -->
+          <div class="herosection">
+            <div class="headingg">
+                <h2>Change Password</h2>
+                <hr><br>
+            </div>
+            <br>
+            <div class="form">
+                <label for="currentpass" class="textt">Current Password:</label>
+                    <input type="text" name="currentpass" id="currentpass" class="inputt"> <br><br><br>
+                <label for="newpass" class="textt">New Password:</label>
+                    <input type="text" name="newpass" id="newpass" class="inputt"> <br><br><br>
+                <label for="confirmpass"class="textt">Confirm Password:</label>
+                    <input type="text" name="confirmpass" id="confirmpass" class="inputt"> 
+            </div>
+            <div class="bttn">
+                <button type="submit" id="submit">Save Password</button>
+            </div>
+           
+         </div>
+        
+
+      <!-- herosection ends here -->
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const hamburg = document.querySelector('.hamburg'); 
+          const mainmenu = document.querySelector('.main-menu'); 
+          const cross = document.querySelector('.cross');
+    
+          hamburg.addEventListener('click', function() {
+            hamburg.classList.toggle('inactive');
+            mainmenu.classList.toggle('inactive'); 
+          });
+    
+          cross.addEventListener('click', function() {
+            hamburg.classList.toggle('inactive');
+            mainmenu.classList.toggle('inactive'); 
+          });
+        });
+      </script>
+  </body>
+  </html>

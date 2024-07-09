@@ -1,9 +1,23 @@
-<%- include('includes/header') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventio</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="stylesheets/eventmain.css">
+    <!-- <link rel="stylesheet" href="stylesheets/style.css"> -->
+	<link rel="stylesheet" href="stylesheets/navbar.css">
+
+<!-- <%- include('includes/header') %> -->
 <link rel="stylesheet" href="/stylesheets/eventmain.css" />
 </head>
 
 <body>
-  <%- include('includes/navbar') %>
+    <%- include('includes/navbar') %>
+
 
     <!-- hero starts here -->
     <section>
@@ -124,48 +138,7 @@
 
 
     <!-- footer starts here  -->
-    <footer>
-        <section class="footer">
-            <div class="logos">
-                <div class="logo" style="color: #fff;margin-top: 1.5rem;">Event <span class="logo-2">IO</span></div>
-            </div>
-            <div class="footer-footer">
-                <div class="footer-mail">
-                    <input type="email" placeholder="Enter your mail" class="foot-email">
-                </div>
-                <div class="footer-btn">
-                    <p>Subscribe</p>
-                </div>
-            </div>
-
-            <div class="footer-nav">
-                <ul>
-                    <li><a href="#">Home</a> </li>
-                    <li><a href="#">About</a> </li>
-                    <li><a href="#"> Services</a></li>
-                    <li><a href="#">Get in touch</a> </li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </div>
-
-            <hr>
-            <div class="footer-foot">
-                <div class="footer-bottom">
-                    <div>English</div>
-                    <div>French</div>
-                    <div>Hindi</div>
-                </div>
-                <div class="footer-bottom" style="margin-left: 8rem;">
-                    <img src="./images/logos/LinkedinLogo.svg" alt="LinkedinLogo">
-                    <img src="./images/logos/InstagramLogo.svg" alt="InstagramLogo">
-                    <img src="./images/logos/FacebookLogo.svg" alt="FacebookLogo">
-                </div>
-                <div class="footer-bottom">
-                    <p>Non Copyrighted &#169; upload by EventIO </p>
-                </div>
-
-        </section>
-    </footer>
+    <%- include('includes/footer') %>
 
     <!-- footer ends here  -->
 

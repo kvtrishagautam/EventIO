@@ -19,22 +19,22 @@
                     <font color="7848F4"> IO </font>
                 </h1>
                 <h2>Log in to Eventio</h2>
-                <p>
+                <p class="errMsg">
                     <%= errMsg %>
                 </p>
             </div>
-            <div class="forgPass-popup">
+            <!-- <div class="forgPass-popup">
                 <form action="">
                     <label for="Email">Enter</label>
                 </form>
-            </div>
+            </div> -->
             <div class="login-form">
-                <label for="username">Username/email:</label>
-                <input type="text" class="form-box" id="username" name="username" placeholder="Enter your username">
+                <label for="username">Username:</label>
+                <input type="text" class="form-box" id="username" name="username" placeholder="Enter your username" required>
 
                 <label for="password">Password:</label>
-                <input type="password" class="form-box" id="password" name="password" placeholder="Enter password">
-                <a href="">Forgot password</a>
+                <input type="password" class="form-box" id="password" name="password" placeholder="Enter password" required>
+                <a href="/auth/forgot-password">Forgot password</a>
                 <button type="submit" class="form-sbmt">Login</button>
                 <h4 align="center">Or</h4>
                 <!-- sign up with google  -->
