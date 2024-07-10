@@ -27,6 +27,8 @@ module.exports = {
             { email: req.body.email, password: req.body.password, username: req.body.username },
         ])
         .select()
+
+
     // console.log(req.body);
     // console.log(data);
 

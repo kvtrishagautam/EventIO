@@ -91,15 +91,25 @@ html {
 }
 
 .mydrop {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #fff;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    width: 200px;
-    border-radius: 1rem;
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  width: 200px;
+  border-radius: 1rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.mydrop.show {
+  display: block;
+  opacity: 1;
+  max-height: 500px;
 }
 
 .mydrop a {

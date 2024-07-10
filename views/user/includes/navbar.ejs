@@ -33,7 +33,11 @@
             const mydrop = document.querySelector('.mydrop');
 
             profileImg.addEventListener('click', function() {
-                mydrop.style.display = mydrop.style.display === 'block' ? 'none' : 'block';
+                if (mydrop.classList.contains('show')) {
+                    mydrop.classList.remove('show');
+                } else {
+                    mydrop.classList.add('show');
+                }
             });
 
             // Close the dropdown if the user clicks outside of it
