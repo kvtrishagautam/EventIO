@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/profile/skills.css" />
+    <link rel="stylesheet" href="/stylesheets/profile/main-menu.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&display=swap"
+      rel="stylesheet"
+    />
+    <title><%= title%></title>
+  </head>
+    <body>
+      <%- include('../includes/navbar') %>
+
+        <div class="container">
+          <%- include('../includes/main-menu') %>
+          <div class="herosection">
+            <div class="grid-container">
+                <div class="grid-item">Photography</div>
+                <div class="grid-item">Web Development</div>
+                <div class="grid-item">Solid works</div>
+                <div class="grid-item">Automation</div>
+                <div class="grid-item">Animations</div>
+                <div class="grid-item">Aftereffects</div>
+                <div class="grid-item">Managing Event</div>
+                <div class="grid-item">AI/ML</div>
+                <div class="grid-item">architecture</div>
+                <div class="grid-item">Building designing and constructions</div>
+                <div class="grid-item">Arts</div>
+                <div class="grid-item">Other skills</div>
+            </div>
+          </div>
+        </div>  
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const hamburg = document.querySelector('.hamburg'); 
+              const mainmenu = document.querySelector('.main-menu'); 
+              const cross = document.querySelector('.cross');
+        
+              hamburg.addEventListener('click', function() {
+                hamburg.classList.toggle('inactive');
+                mainmenu.classList.toggle('inactive'); 
+              });
+        
+              cross.addEventListener('click', function() {
+                hamburg.classList.toggle('inactive');
+                mainmenu.classList.toggle('inactive'); 
+              });
+            })
+            document.getElementById('submit').addEventListener("click", function(z) {
+            document.getElementById('submit').innerHTML = 'SUBMITTING'
+             
+          });
+          </script>
+      </body>
+      </html>
+

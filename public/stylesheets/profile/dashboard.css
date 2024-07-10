@@ -185,12 +185,14 @@ ml {
   flex-direction: column;
   align-items: center;
   font-size: 1.4rem;
-  border-radius: .7rem;
+  border-radius: .6rem;
 }
 
 .extra p{
   margin-bottom: -1rem;
 }
+
+
 
 .extra li{
   color: #7848F4;
@@ -205,9 +207,11 @@ ml {
   display: flex;
   flex-direction: column;
   align-items: start;
+  margin-top: -1rem;
 }
 
 .grid-item {
+
  color: #7848F4;
  display: flex;
  
@@ -223,3 +227,71 @@ ml {
   font-weight: 500;
   
 }
+
+.lists{
+  display: flex;
+  justify-content: start;
+}
+
+.skills{
+  color: #7848F4;
+  padding-bottom: 1rem;
+}
+
+
+.imgcon{
+  width:17.5rem;
+  display: flex;
+  justify-content: space-between;
+  margin: .6rem;
+  border-radius: .4rem;
+  background-color:  #f6f2f2;
+  border-style: none;
+  padding: .5rem;
+}
+
+.imageplus {
+  display: flex;
+  
+ 
+}
+
+.imageplus img{
+  width: 1.6rem;
+ 
+}
+
+.dashevents p{
+  margin: 0rem;
+
+}
+
+
+.DEtitle{
+  color: #7848F4;
+  font-size:x-large;
+  padding: 0rem 1.6rem;
+}
+
+.DEdesc{
+  display: flex;
+  font-size: medium;
+  color: #403952;
+  padding: .5rem 1.6rem;
+
+}
+
+.skillslist {
+  margin: 0rem;
+  padding: 0rem;
+  color: #7848F4;
+  font-size: x-large;
+  
+}
+
+
+
+.listofskills{
+ padding: 1rem;
+}
+

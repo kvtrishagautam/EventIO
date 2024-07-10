@@ -8,33 +8,80 @@ module.exports = {
     getHomePage: (req, res) => {
         res.render('./user/home', { title: 'Home', loginStatus: req.session.userLoggedIn });
     },
+    
+    
     getDashboard: async (req, res) => {
-      try {
-          const { data, error } = await supabase
-              .from('user_info')
-              .select('f_name, l_name, phno, address, course, skills')
-              .eq('user_id', '1fd3c2b2-86d9-4baa-8aa4-748432d209db'); 
-  
-          if (error) {
-              throw error;
-          }
-  
-          if (data && data.length > 0) {
-            const userData = data[0]; 
-  
-       res.render('./user/profile/dashboard', {
-                      title: 'Profile | Dashboard',
-                      loginStatus: req.session.userLoggedIn,
-                      userData: userData,
-                  });
-              } else {
-                  throw new Error('User data not found');
-              }
-          } catch (error) {
-              console.error('Error fetching user data:', error.message);
-              res.status(500).send('Error fetching user data');
-          }
-      },
+        try {
+            const { data: userDash, error } = await supabase
+                .from('user_info')
+                .select('f_name, l_name, phno, address, course, sem, skills')
+                .eq('user_id', req.session.userId);
+            const { data: userDashuser, error:errorDash } = await supabase
+                .from('user')
+                .select('email')
+                .eq('user_id', req.session.userId);
+            console.log(userDashuser)
+             
+            let { data: aEvents, error:aEventsErr } = await supabase
+                .from('user_info')
+                .select('a_events')
+                .eq('user_id', req.session.userId);
+            console.log( aEvents)
+
+            let aResults = [];
+
+             // Loop through all c_events data and find matching values in event table
+             for (let item of aEvents) {
+                // console.log(aEvents)
+                let { a_events: arrayofAE } = item;
+                console.log(arrayofAE)
+                for (let value of arrayofAE) {
+                    // console.log(value)
+
+                    let { data: a_data, error } = await supabase
+                        .from('event')
+                        .select('event_id,title,desc,start_day,expired')
+                        .eq('event_id', value);
+
+                    // console.log(a_data)
+                    if (error) {
+                        console.error('Supabase search error:', error.message);
+                        console.error('Supabase search details:', error.details);
+                        console.error('Supabase search hint:', error.hint);
+                    } else {
+                        aResults.push(a_data);
+                    }
+                }
+            }
+            
+            if (error) {
+                throw error;
+            }
+            if (userDash && userDash.length > 0) {
+                const userDashData = userDash[0];
+                res.render('./user/profile/dashboard', {
+                    title: 'Profile | Dashboard',
+                    loginStatus: req.session.userLoggedIn,
+                    userDashData: userDashData,
+                    userDashuser: userDashuser[0],
+                    a_events: aResults
+                });
+            }
+           
+            else {
+                throw new Error('User data not found');
+            }
+            console.log(aResults)
+        } 
+        
+        catch (error) {
+            console.error('Error fetching user data:', error.message);
+            res.status(500).send('Error fetching user data');
+        }
+
+    },
+    
+
     getEvents: async (req, res) => {
         try {
             let { data: event, error } = await supabase
@@ -89,33 +136,80 @@ module.exports = {
     getProfileChangeEmail: (req, res) => {
         res.render('./user/profile/profile-changePass.ejs', { title: 'profile | Change Password',loginStatus: req.session.userLoggedIn })
     },
-    getAccInfo: (req, res) => {
-      res.render("./user/profile/profile-accinfo.ejs", {
-        title: "Profile | Account Information",
-        loginStatus: req.session.userLoggedIn,
-      });
+
+    getskills: (req, res) => {
+        res.render('./user/profile/skills.ejs', { title: 'profile | Skills',loginStatus: req.session.userLoggedIn })
     },
-    postAccInfo: async (req, res) => {
+
+    getAccInfo: async (req, res) => {
+        console.log(req.body);
+        try {
+            if (!req.session.userId) {
+                return res.status(401).send('User not logged in');
+            }
+            const { data: cur_user, error } = await supabase
+                .from('user')
+                .select('username')
+                .eq('user_id', req.session.userId);
+            if (error) {
+                throw error;     
+            }
+            if (cur_user && cur_user.length > 0) {
+                let cur_userData = cur_user[0].username;
+                console.log(cur_userData)
     
-      const { data, error } = await supabase
-      .from('user_info')
-      .insert([
-        { f_name: req.body.fname,
-          l_name: req.body.lname,
-          phno: req.body.phno,
-          address: req.body.address,
-          course: req.body.course,
-          sem: req.body.sem, 
-          user_id: req.session.userId,
-      },
-      ])
-      .select()
+             
+                res.render("./user/profile/profile-accinfo.ejs", {
+                    title: "Profile | Account Information",
+                    loginStatus: req.session.userLoggedIn,
+                    cur_userData: cur_userData
+                });
+            } else {
+                throw new Error('User data not found');
+            
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error.message);
+            res.status(500).send('Error fetching user data');
+        }
+    },
+    
+      
+      postAccInfo: async (req, res) => {
+        try {
+            const num = parseInt(req.body.phno);
+            console.log(typeof num)
+            console.log('Form data:', req.body); 
+            const { data: postuser, error } = await supabase
+                .from('user_info')
+                .insert([
+                    {
+                        f_name: req.body.fname,
+                        l_name: req.body.lname,
+                        phno:num,
+                        address: req.body.address,
+                        course: req.body.course,
+                        sem: (req.body.sem),
+                        user_id: req.session.userId,
+                    },
+                ])
+                .select();
+                console.log(postuser);
               
-          console.log(req.body);
-          console.log(data,error);
-         
-        },
-      };
+            if (error) {
+                console.error('Error inserting user info:', error.message);
+                res.status(500).send('Error inserting user info');
+            } else {
+                console.log('Inserted user info:', postuser);
+                res.redirect('/dashboard'); 
+            }
+        } catch (err) {
+            console.error('Unexpected error:', err.message);
+            res.status(500).send('Unexpected error');
+        }
+    },
+    
+};
   
     
 
