@@ -36,27 +36,49 @@ module.exports = {
     return res.redirect('/auth/login')
 
 },
-  logedinUser: async (req, res) => {
-    let { data: user, error } = await supabase
-      .from('user')
-      .select("*").eq("email", req.body.email).eq("password", req.body.password)
-    if (!user[0]) {
-      errMsg = 'user not found'
-      res.redirect('/auth/login')
-    } else {
-      req.session.userId = user[0].user_id;
+logedinUser: async (req, res) => {
+  try {
+      // Fetch user details from Supabase based on email
+      let { data: users, error } = await supabase
+          .from('user')
+          .select('*')
+          .eq('email', req.body.email)
+          .single();
+
+      if (error) {
+          throw error;
+      }
+
+      // Check if user exists and verify password
+      if (!users || users.password !== req.body.password) {
+          // User not found or password doesn't match
+           errMsg = 'user not found'
+          return res.redirect('/auth/login');
+      }
+
+      // Set session variables for logged in user
+      req.session.userId = users.user_id; // Assuming user_id is the primary key or unique identifier
       req.session.userLoggedIn = true;
-      console.log(req.session);
-      res.redirect('/');
-      console.log(user);
-    }
-  },
+
+      // Redirect based on user role
+      if (users.role == 'admin') {
+          res.redirect('/admin/dashboard');
+      } else if (users.role == 'org') {
+          res.redirect('/organizer/dashboard');
+      } else {
+          res.redirect('/');
+      }
+  } catch (error) {
+      console.error('Error logging in:', error.message);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+},
   logoutUser: (req, res) => {
     req.session.destroy((err) => {
       if (err) {
         return console.log(err);
       }
-      res.redirect('/');
+      res.redirect('/auth/login');
     })
   },
   getforpass: (req, res) => {

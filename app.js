@@ -8,6 +8,7 @@ var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var organizerRouter = require('./routes/organizer');
 var authRouter = require('./routes/authentication');
+var adminRouter = require('./routes/admin');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const { createClient } = require('@supabase/supabase-js');
@@ -45,6 +46,7 @@ app.use('/', usersRouter);
 app.use('/users', adminRouter);
 app.use('/organizer', organizerRouter);
 app.use('/auth', authRouter);
+app.use('/admin',adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

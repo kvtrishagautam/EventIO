@@ -1,0 +1,84 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #7848F4;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.logo-2 {
+    color: #f9f9f9;
+}
+
+main {
+    padding: 2rem;
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.category-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.back-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #7848F4;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.back-button:hover {
+    background-color: #5633c1;
+}
+
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.user-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.user-card h2 {
+    margin: 0 0 1rem;
+    color: #7848F4;
+}
+
+.user-card p {
+    margin: 0.5rem 0;
+    color: #555;
+}
