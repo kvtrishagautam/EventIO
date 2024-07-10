@@ -116,9 +116,41 @@ ml {
 
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     gap: 10px;
-    width: 60%;
-    height: 60%;
+    margin: 2rem;
 }
+
+.grid-item{
+  border-style: solid;
+  border-width: .1rem;
+  border-radius: 2rem;
+  width: 12rem;
+  height:3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.botton{
+  padding:1rem 3rem ;
+  border: none;
+  border-radius: 2rem;
+  background-color: #a586f4;
+  color: #f6f2f2;
+}
+
+.botton1{
+  margin: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.selected {
+  background-color: #9873f6;
+  color: #f6f2f2;
+}
+

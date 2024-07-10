@@ -140,6 +140,57 @@ module.exports = {
     getskills: (req, res) => {
         res.render('./user/profile/skills.ejs', { title: 'profile | Skills',loginStatus: req.session.userLoggedIn })
     },
+    
+    
+    postSkills:async(req, res) => {
+        try {
+            console.log(typeof req.body)
+            console.log(req.body)
+            console.log('hi')
+            const { selectedSkills }= req.body;
+            console.log('Selected Skills:', selectedSkills);
+
+        // Fetch current user's skills from the database    
+        let { data: user_info, error: fetchError } = await supabase
+        .from('user_info')
+        .select('skills')
+        .eq('user_id', req.session.userId);
+    // console.log(user_info[0].skills)
+
+    if (fetchError) 
+        {throw fetchError;}
+
+    // Extract current skills or initialize as an empty array
+    let currentSkills = user_info[0]?.skills || [];
+
+        // Filter out duplicate skills from selectedSkills
+        let uniqueSelectedSkills = selectedSkills.filter(skill => !currentSkills.includes(skill));
+
+        // Add unique selected skills to the current skills array
+        currentSkills.push(...uniqueSelectedSkills);
+    console.log(currentSkills);
+
+
+   // Update the skills field in the user_info table
+   let { data: updatedUser, error: updateError } = await supabase
+   .from('user_info')
+   .update({ skills: currentSkills })
+   .eq('user_id', req.session.userId);
+
+if (updateError) {
+   throw updateError;
+}
+
+console.log('Updated Skills:', currentSkills);
+res.status(200).send('Skills updated successfully');
+
+
+}
+catch (err) {
+    console.error('Error fetching specific column:', err.message);
+    res.status(500).send('Internal Server Error');
+}},
+
 
     getAccInfo: async (req, res) => {
         console.log(req.body);
