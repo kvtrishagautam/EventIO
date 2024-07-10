@@ -80,6 +80,47 @@ html {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(46, 41, 41, 0.19);
     font-weight: 700;
   }
+ 
+  .profile-img {
+    width: 5rem;
+    cursor: pointer;
+}
+
+.sub-menu-wrap {
+    position: relative;
+}
+
+.mydrop {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    width: 200px;
+    border-radius: 1rem;
+}
+
+.mydrop a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    text-align: center;
+}
+.mydrop a:nth-child(1){
+  padding-top: 1rem;
+}
+.mydrop a:nth-child(3){
+  padding-bottom: 1rem;
+}
+
+.mydrop a:hover {
+    background-color: #B69AFF;
+}
+
 
   .logo {
     width: 172px;
