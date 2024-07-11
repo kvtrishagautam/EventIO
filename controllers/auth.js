@@ -38,69 +38,70 @@ module.exports = {
   },
   logedinUser: async (req, res) => {
     try {
-      // Fetch user details from Supabase based on email
-      let { data: users, error } = await supabase
-        .from('user')
-        .select('*')
-        .eq('email', req.body.email)
-        .single();
-
-      if (error) {
-        throw error;
-      }
-
-      // Check if user exists and verify password
-      if (!users || users.password !== req.body.password) {
-        // User not found or password doesn't match
-        errMsg = 'user not found'
-        return res.redirect('/auth/login');
-      }
-
-      // Set session variables for logged in user
-      req.session.userId = users.user_id; // Assuming user_id is the primary key or unique identifier
-      req.session.userLoggedIn = true;
-
-      // Redirect based on user role
-      if (users.role == 'admin') {
-        res.redirect('/admin/dashboard');
-      } else if (users.role == 'org') {
-        // Retrieve user_info from Supabase
-        console.log(req.session.userId);
-        let { data: user_info, error } = await supabase
-          .from('user_info')
-          .select('org_id,f_name')
-          .eq('user_id', req.session.userId)
-          .single();
-        console.log(user_info);
-          console.log(user_info.org_id);
-          req.session.orgId = user_info.org_id;
-          console.log(req.session.orgId);
-
-          res.redirect('/organizer/conducted-events')
-        // Check for errors in the query
+        // Fetch user details from Supabase based on email
+        let { data: users, error } = await supabase
+            .from('user')
+            .select('*')
+            .eq('email', req.body.email)
+            .single();
+  
         if (error) {
-          console.error('Error retrieving user info:', error);
-          res.status(500).send('Error retrieving user info');
-          return;
-        }}else{
-          res.redirect('/')
+            throw error;
         }
-      } catch (error) {
+  
+        // Check if user exists and verify password
+        if (!users || users.password !== req.body.password) {
+            // User not found or password doesn't match
+             errMsg = 'user not found'
+            return res.redirect('/auth/login');
+        }
+  
+        // Set session variables for logged in user
+        req.session.userId = users.user_id; // Assuming user_id is the primary key or unique identifier
+        req.session.userLoggedIn = true;
+  
+        // Redirect based on user role
+if (users.role === 'admin') {
+  res.redirect('/admin/dashboard');
+} else if (users.role === 'org') {
+  // Retrieve user_info from Supabase
+  try {
+    console.log(req.session.userId);
+    const { data: user_info, error } = await supabase
+      .from('user_info')
+      .select('org_id, f_name')
+      .eq('user_id', req.session.userId)
+      .single();
+
+    // Check for errors in the query
+    if (error) {
+      console.error('Error retrieving user info:', error);
+      res.status(500).send('Error retrieving user info');
+      return;
+    }
+
+    console.log(user_info);
+    console.log(user_info.org_id);
+
+    // Store org_id in the session
+    req.session.orgId = user_info.org_id;
+    console.log(req.session.orgId);
+
+    // Redirect to the organizer conducted events page
+    res.redirect('/organizer/conducted-events');
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    res.status(500).send('Unexpected error');
+  }
+} else {
+  res.redirect('/');
+}
+
+    } catch (error) {
         console.error('Error logging in:', error.message);
         res.status(500).json({ message: 'Internal server error' });
-      }
-    },
-    logoutUser: (req, res) => {
-      req.session.destroy((err) => {
-        if (err) {
-          return console.log(err);
-        }
-        res.redirect('/auth/login');
-      })
-    },
-      getforpass: (req, res) => {
-        res.render('./authentication/forgot-password.ejs');
-      },
+    }
+  },
 
         postforpass: async (req, res) => {
           const { email } = req.body;

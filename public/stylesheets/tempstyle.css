@@ -29,10 +29,23 @@
 }
 
 .an {
+  display: flex;
   text-decoration: none;
   margin-right: 2rem;
   margin-left: 2rem;
   color: #000;
+  transition: all ease 400ms;
+  
+}
+
+.an:hover{
+  transform: scale(1.1);
+    text-decoration: underline;
+    text-underline-offset: 0.8rem;
+    cursor: pointer;
+    color: #10107B;
+
+
 }
 
 .btn {
@@ -91,6 +104,7 @@
   background-size: cover;
   opacity: 1;
   overflow: hidden;
+  height: 100%;
 }
 
 /* navbar ends here */

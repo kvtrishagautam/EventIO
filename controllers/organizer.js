@@ -24,13 +24,13 @@ module.exports = {
             // Array to store the results
             let cResults = [];
             let no_event;
-          
+
             if (cEvents[0].c_events != null) {
                 for (let value of cEvents[0].c_events) {
 
                     let { data: c_data, error } = await supabase
                         .from('event')
-                        .select('event_id,title,desc,start_day,expired')
+                        .select('event_id,title,desc,start_day,expired,status')
                         .eq('event_id', value)
 
 
@@ -42,31 +42,31 @@ module.exports = {
                         cResults.push(c_data);
                     }
                 }
-            }else{
+            } else {
                 no_event = true;
             }
             console.log(cResults);
-            res.render('./organizer/conductedEvents', { title: 'Conducted Events', c_events: cResults, no_event,loginStatus: req.session.userLoggedIn });
+            res.render('./organizer/conductedEvents', { title: 'Conducted Events', c_events: cResults, no_event, loginStatus: req.session.userLoggedIn });
         } catch (err) {
             console.error('Error fetching specific column:', err.message);
             res.status(500).send('Internal Server Error');
         }
 
     },
-    toStudentMode:async (req,res)=>{
+    toStudentMode: async (req, res) => {
         const { data: role, error1 } = await supabase
-                .from('user')
-                .update([
-                    { role: 'student' },
-                ])
-                .eq('user_id', req.session.userId)
-                .select()
+            .from('user')
+            .update([
+                { role: 'student' },
+            ])
+            .eq('user_id', req.session.userId)
+            .select()
 
-                if (role == null) {
-                    res.status(200).json({ success: false,error1 })
-                } else {
-                res.json({ success: true })
-            }
+        if (role == null) {
+            res.status(200).json({ success: false, error1 })
+        } else {
+            res.json({ success: true })
+        }
     },
     checkOrganizerExist: async (req, res) => {
         const userId = req.session.userId;
@@ -102,7 +102,7 @@ module.exports = {
     },
 
     getCreateEvents: (req, res) => {
-        res.render('./organizer/create-events', { title: "Create Event" ,loginStatus: req.session.userLoggedIn})
+        res.render('./organizer/create-events', { title: "Create Event", loginStatus: req.session.userLoggedIn })
     },
 
     postCreateEvents: async (req, res) => {
@@ -110,7 +110,13 @@ module.exports = {
         let { data, error } = await supabase
             .from('event')
             .insert([
-                { title: req.body.title, desc: req.body.desc, venue: req.body.venue, start_time: req.body.start_time, end_time: req.body.end_time, start_day: req.body.start_day, end_day: req.body.end_day, org_id: 'f11ae58a-3e12-47d7-92aa-77bed087e5bb' }
+                {
+                    title: req.body.title, desc: req.body.desc,
+                    venue: req.body.venue, start_time: req.body.start_time,
+                    end_time: req.body.end_time,
+                    start_day: req.body.start_day, end_day: req.body.end_day,
+                    org_id: req.session.orgId, status: 'pending'
+                }
             ]);
 
 
@@ -125,7 +131,7 @@ module.exports = {
         let { data: user_info, error3 } = await supabase
             .from('user_info')
             .select('c_events')
-            .eq('org_id', 'f11ae58a-3e12-47d7-92aa-77bed087e5bb');
+            .eq('org_id', req.session.orgId);
         // console.log(user_info[0].c_events)
 
 
@@ -135,7 +141,8 @@ module.exports = {
         let { data: updatedC_events, error4 } = await supabase
             .from('user_info')
             .update({ c_events: updatedEvents })
-            .eq('org_id', req.session.orgId)
+            .eq('org_id', req.session.orgId);
+
 
         if (error4) {
             console.error('Supabase error:', error.message);
@@ -150,12 +157,53 @@ module.exports = {
             res.status(500).send('Error inserting data');
         } else {
             res.redirect('/organizer/conducted-events');
-            
+
         }
     },
     getOrganizerDash: (req, res) => {
         res.render('./organizer/dashboard', { title: 'Dashboard', loginStatus: req.session.userLoggedIn });
     },
+
+    postOrganizer: async (req, res) => {
+        const { value } = req.body;
+        try {
+
+            const { data, error } = await supabase
+                .from('organizer')
+                .insert([
+                    { org_name: value, user_id: req.session.userId },
+                ])
+                .select();
+
+            // const { data:org, error1 } = await supabase
+            //     .from('user_info')
+            //     .insert([
+            //         { or_id: 'someValue', other_column: 'otherValue' },
+            //     ])
+            //     .select()
+
+            const { data: role, error2 } = await supabase
+                .from('user')
+                .update([
+                    { role: 'org' },
+                ])
+                .eq('user_id', req.session.userId)
+                .select()
+
+            req.session.orgId = data[0].org_id;
+
+
+            console.log(value, data[0].org_id, error);
+            if (error) {
+                return res.status(500).json({ success: false, error: 'Error inserting data' });
+            }
+
+            return res.status(200).json({ success: true, message: 'Data successfully inserted', data });
+
+        } catch (error) {
+            return res.status(500).json({ success: false, error: 'Unexpected error' });
+        }
+    }
 
 };
 

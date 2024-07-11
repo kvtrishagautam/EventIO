@@ -341,39 +341,7 @@ module.exports = {
         }
     },
 
-    postOrganizer: async (req, res) => {
-        const { value } = req.body;
-        try {
-
-            const { data, error } = await supabase
-                .from('organizer')
-                .insert([
-                    { org_name: value, user_id: req.session.userId },
-                ])
-                .select()
-
-            const { data: role, error1 } = await supabase
-                .from('user')
-                .update([
-                    { role: 'org' },
-                ])
-                .eq('user_id', req.session.userId)
-                .select()
-
-            req.session.orgId = data[0].org_id;
-
-
-            console.log(value, data[0].org_id, error);
-            if (error) {
-                return res.status(500).json({ success: false, error: 'Error inserting data' });
-            }
-
-            return res.status(200).json({ success: true, message: 'Data successfully inserted', data });
-
-        } catch (error) {
-            return res.status(500).json({ success: false, error: 'Unexpected error' });
-        }
-    },
+    
     getProfileAttendedEvents: async (req, res) => {
         try {
 

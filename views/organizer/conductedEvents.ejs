@@ -59,7 +59,15 @@
 
                   </div>
                   <div class="event-cat-edit">
-                    <span>Edit</span>
+                    <% if (eachEvent.status=='approved') { %>
+                      <span>Edit</span>
+                      <% } else if(eachEvent.status=='pending') { %>
+                        <span>Pending</span>
+                        <% } %>
+                      <% } else if(eachEvent.status=='denied') { %>
+                        <span>Denied</span>
+                        <% } %>
+                    
                     <% if (eachEvent.expired===true) { %>
                       <h4>Expired</h4>
                       <% } else { %>

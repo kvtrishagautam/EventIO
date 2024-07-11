@@ -38,12 +38,24 @@ html {
     font-family: poppins;
     font-size: larger;
   }
-  
   .an {
+    display: flex;
     text-decoration: none;
     margin-right: 2rem;
     margin-left: 2rem;
     color: #000;
+    transition: all ease 400ms;
+    
+  }
+  
+  .an:hover{
+    transform: scale(1.1);
+      text-decoration: underline;
+      text-underline-offset: 0.8rem;
+      cursor: pointer;
+      color: #10107B;
+  
+  
   }
   
   .btn {
@@ -156,4 +168,119 @@ html {
   }
   
   /* navbar ends here */
-  
+  /*org popup*/
+
+.org_popup {
+  /* top: 3rem;
+     left: 25rem; */
+  position: fixed;
+  width: 40rem;
+  height: 13rem;
+  background-color: #ffffff;
+  top: -100%;
+  left: 50%;
+  transition: top 0.5s ease-in-out;
+  transform: translateX(-50%);
+  opacity: 0;
+  padding: 1rem;
+  /* padding-top: 0; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  /* justify-content: space-around; */
+  /* gap: .7rem; */
+  border: 1px inset #a4a1ac;
+}
+
+.org_close {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.org_close img {
+  width: 2rem;
+  cursor: pointer;
+}
+
+#orgDetail {
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pop-sub1 {
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pop-sub1 h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.pop-sub1 input {
+  padding: 0.5rem .5rem;
+  border: 1px solid #ccc;
+  border-radius: .2rem;
+  width: 50%;
+}
+
+.pop-sub2 {
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  align-items: center;
+}
+
+.pop-sub2 h5 {
+  margin: 0;
+  font-size: .9rem;
+  color: #908a9b;
+  font-weight: lighter;
+}
+
+#org_confirm {
+  padding: .7rem 2rem;
+  border: none;
+  background-color: #7444ee;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  border-radius: .3rem;
+  cursor: pointer;
+}
+
+.org_popup.showw {
+  top: 5%;
+  opacity: 1;
+}
+
+#toOrg{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.2rem;
+}
+
+#toOrg_confirm {
+  width: max-content;
+  padding: .7rem 2rem;
+  border: none;
+  background-color: #7444ee;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  border-radius: .3rem;
+  cursor: pointer;
+}
