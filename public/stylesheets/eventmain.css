@@ -206,7 +206,7 @@ body{
     margin: 0.3rem 0rem;
     padding-left: 0.7rem;
     font-weight:bolder;
-    cursor: pointer;
+    cursor: default;
 }
 
 .event-cat-desc p{
@@ -298,7 +298,7 @@ body{
 }
 
 .event-box-text{
-    
+    width: 25rem;
     display: flex;
     flex-direction: column;
     /* text-align: center; */

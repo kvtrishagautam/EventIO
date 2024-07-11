@@ -1,5 +1,5 @@
-const express = require('express');
 const { supabase } = require('../config/supabse');
+const express = require('express');
 const app = express();
 const nodemailer = require('nodemailer')
 // var router = express.Router();
@@ -176,4 +176,3 @@ logedinUser: async (req, res) => {
     res.send('Password reset successfully.');
   },
 }
-

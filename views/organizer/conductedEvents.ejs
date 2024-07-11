@@ -33,7 +33,13 @@
       <!-- conducted events starts here -->
 
       <div class="c-events">
-          <div class="c-heading">Your Events</div>
+          <div class="c-heading">
+            <% if(no_event){%>
+              No Conducted Events
+              <%}else{%>
+                Your Events
+                <%}%>
+          </div>
           <div class="c-event-box">
             <% for(events of c_events){ %>
                 <%for(let eachEvent of events){%>

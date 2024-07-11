@@ -1,0 +1,86 @@
+<div id="org_popup" class="org_popup">
+    <div class="org_close">
+        <img id="org_close" src="./images/heroimgs/cross-svgrepo-com.svg" alt="">
+    </div>
+    <div id="toOrg">
+        <h3>Are you sure you want to continue as Organizer?</h3>
+        <button id="toOrg_confirm">Confirm</button> 
+    </div>
+    <div id="orgDetail">
+        <div class="pop-sub1">
+            <h2>Enter Organization name:</h2>
+            <input type="text" name="org_name" id="org_name">
+        </div>
+        <div class="pop-sub2">
+            <h5>Continue as Organizer</h5>
+            <a href="/organizer/create-events"><button id="org_confirm">Confirm</button></a>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#toOrg_confirm').click(function () {
+            $.ajax({
+                url: '/organizer/check-org',
+                method: 'GET',
+                success: function (response) {
+                    console.log(response);
+                    if (response.login === false) {
+                        window.location.href = "/auth/login";
+                    } else {
+                        if (response.success == true && response.is_org == false) {
+                            // window.location.href = "/organizer/create-events";
+                            document.getElementById("org_popup").classList.add("show");
+                            document.getElementById("toOrg").style.display = "none";
+                            document.getElementById("orgDetail").style.display = "flex";
+                            document.getElementById("body").style.filter = "blur(5px)";
+                            document.getElementById("body").style.pointerEvents = "none";
+                        }else{
+                        window.location.href = "/organizer/create-events";
+                        }
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error checking org_id:', error);
+                }
+            });
+        });
+
+        document.getElementById("create_event").addEventListener("click", () => {
+            document.getElementById("org_popup").classList.add("show");
+            document.getElementById("body").style.filter = "blur(5px)";
+            document.getElementById("body").style.pointerEvents = "none";
+
+        });
+
+        document.getElementById('org_close').addEventListener("click", () => {
+            document.getElementById("org_popup").classList.remove("show");
+            document.getElementById("body").style.filter = "none";
+            document.getElementById("body").style.pointerEvents = "all";
+        });
+
+        $('#org_confirm').click(function () {
+            const org_name = $('#org_name').val();
+
+            $.ajax({
+                url: '/',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ value: org_name }),
+                success: function (response) {
+                        // document.getElementById("org_popup").classList.remove ("show");
+                        // document.getElementById("body").style.filter = "none";
+                        // document.getElementById("body").style.pointerEvents = "all";
+                        console.log(response);
+                        window.location.href = '/organizer/create-events';
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+
+</script>
