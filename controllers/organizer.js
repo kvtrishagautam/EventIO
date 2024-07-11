@@ -155,5 +155,8 @@ module.exports = {
             res.send('Data inserted successfully');
         }
     },
+    getOrganizerDash: (req, res) => {
+        res.render('./organizer/dashboard', { title: 'Dashboard', loginStatus: req.session.userLoggedIn });
+    },
 
 }

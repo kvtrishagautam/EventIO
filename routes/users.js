@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {getHomePage , getDashboard,getEvents,postAccInfo,getProfileAttendedEvents,getAccInfo,getProfileChangeEmail,getProfileChangePass,getEventDetail} = require('../controllers/user');
+const { getHomePage, getDashboard, getEvents, getAccInfo,postAccInfo, getProfileAttendedEvents, getProfileChangeEmail, getProfileChangePass,getCategory,getEventDetail} = require('../controllers/user');
 const checkLogedIn = require('../middlewares/checkLogedIn');
 const { supabase } = require('../config/supabse')
 
@@ -28,5 +28,7 @@ router.get('/profile-accinfo',checkLogedIn,getAccInfo);
 router.post('/profile-accinfo', postAccInfo);
 
 
+
+router.get('/category',getCategory)
 
 module.exports = router;

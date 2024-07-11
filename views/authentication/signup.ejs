@@ -25,7 +25,7 @@
             </div>
         </div>
         <!-- sign up form  -->
-        <form action="/auth/signup" class="signup-right" method="post">
+        <form id="signupForm" action="/auth/signup" class="signup-right" method="post">
             <div class="signup-txt">
                 <h1>
                     <font color="black">Event</font>
@@ -36,22 +36,26 @@
             <div class="signup-form">
 
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username">
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter password">
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
 
-                <label for="password">Password:</label>
-                <input type="password" id="conf-password" name="confirm-password" placeholder="Confirm password">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirm-password" placeholder="Confirm password" required>
 
                 <button type="submit" class="form-sbmt">Sign Up</button>
+
+                <p id="passwordError" style="color: red; display: none;">Password must contain at least 8 characters, including uppercase, lowercase, and digits.</p>
+                <p id="passwordMismatchError" style="color: red; display: none;">Passwords do not match.</p>
+
                 <h4 align="center">Or</h4>
                 <!-- sign up with google  -->
                 <div class="google">
-                    <button>
+                    <button type="button">
                         <img src="/images/login-signup/search.png" alt="g-logo">
                         <p>Sign up with Google</p>
                     </button>
@@ -59,6 +63,30 @@
             </div>
 
         </form>
+
+        <script>
+            document.getElementById('signupForm').addEventListener('submit', function(event) {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+
+                if (!regex.test(password)) {
+                    document.getElementById('passwordError').style.display = 'block';
+                    event.preventDefault();
+                    return;
+                } else {
+                    document.getElementById('passwordError').style.display = 'none';
+                }
+
+                if (password !== confirmPassword) {
+                    document.getElementById('passwordMismatchError').style.display = 'block';
+                    event.preventDefault();
+                    return;
+                } else {
+                    document.getElementById('passwordMismatchError').style.display = 'none';
+                }
+            });
+        </script>
 
     </div>
 </body>

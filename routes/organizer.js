@@ -2,6 +2,9 @@ var express = require('express');
 const { getHomePage } = require('../controllers/user');
 const { getConductedEvents,getAttendedEvents,getCreateEvents,postCreateEvents } = require('../controllers/organizer');
 var router = express.Router();
+const {getOrganizerDash} = require('../controllers/organizer')
+
+router.get('/dashboard',getOrganizerDash)
 
 router.get('/',getHomePage);
 
