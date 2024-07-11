@@ -139,6 +139,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+      $(document).ready(function () {
+
       const register = document.getElementById('registerEvent');
       var attended = '<%=attended%>' ;
       console.log(attended);
@@ -146,19 +148,18 @@
       
       register.addEventListener("click", () => {
           if (attended=="false") {
-          document.getElementById("popup").style.display = "flex";
+          document.getElementById("popup").classList.add("show");
           document.getElementById("body").style.filter = "blur(5px)";
           document.getElementById("body").style.pointerEvents = "none";
           }
         });
 
         document.getElementById('cancel-btn').addEventListener("click", () => {
-          document.getElementById("popup").style.display = "none";
+          document.getElementById("popup").classList.remove("show");
           document.getElementById("body").style.filter = "none";
           document.getElementById("body").style.pointerEvents = "all";
         });
 
-        $(document).ready(function () {
           $('#confirm-btn').click(function () {
             var eventId = '<%=selectedEvent.event_id%>';
             attended=true;
@@ -169,7 +170,7 @@
               contentType: 'application/json',
               data: JSON.stringify({ eventId }),
               success: function (response) {
-                if (response.success) {
+                if (response.success) { 
                   register.textContent = 'Registered'
                   document.getElementById("popup").style.display = "none";
                   document.getElementById("body").style.filter = "none";
@@ -190,13 +191,6 @@
 
     </script>
 
-  </body>
-
-  </html>
-
-
-
-  <%- include('includes/footer') %>
     </body>
 
   </html>

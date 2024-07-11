@@ -26,8 +26,7 @@ module.exports = {
                 { email: req.body.email, password: req.body.password, username: req.body.username },
             ])
             .select()
-        // console.log(req.body);
-        // console.log(data);
+       
     
 
         return res.redirect('/auth/login')
@@ -43,9 +42,8 @@ module.exports = {
         } else {
             req.session.userId = user[0].user_id;
             req.session.userLoggedIn = true;
-            console.log(req.session);
+      
             res.redirect('/');
-            console.log(user);
         }
     },
     logoutUser: (req, res) => {
@@ -71,8 +69,6 @@ module.exports = {
           .from('user')
           .update({ otp: otp })
           .eq('email', email);
-          console.log(user);
-      
         if (error) {
           return res.status(500).send('Error storing OTP');
         }
@@ -109,7 +105,7 @@ module.exports = {
 
       postVerifyOtp:  async (req, res) => {
         const { otp , email} = req.body;
-        console.log(req.body);
+    
 
       
         // Verify OTP
@@ -118,7 +114,7 @@ module.exports = {
           .select('otp')
           .eq('email', email)
           .single();
-        console.log(user.otp);
+     
       
         if (error) {
           return res.status(500).send('Error retrieving OTP');
