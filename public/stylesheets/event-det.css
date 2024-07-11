@@ -338,9 +338,7 @@ html {
   
   /* 2xl */
   @media (max-width: 360px) {
-    .navbar{
     
-    }
   .navend{
     margin-top: 3rem;
     width: 3rem;
@@ -425,9 +423,7 @@ html {
   
   /* md */
   @media (max-width: 768px) {
-    .herobtn{
-      /* margin-bottom: -.2rem; */
-    }
+   
     .heroright{
       display: flex;
       flex-direction: column;  

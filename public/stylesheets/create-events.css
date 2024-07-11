@@ -125,6 +125,7 @@ body{
 .total_1 {
   width: 50%;
   margin: 20px auto;
+  margin-bottom: 0;
   padding: 20px;
   min-height: 10vh;
   /*background-color: #fff;*/
@@ -234,14 +235,15 @@ body{
   width: 470px;
   background: #fff;
   border-radius: 10px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 0px auto;
+  /* padding: 20px; */
   align-content: center;
   min-height: 10vh;
   padding: none;
 }
 .abo h3{
   text-align: left;
+  margin: 0;
 }
 
 .abo textarea{
@@ -286,7 +288,7 @@ textarea:is(:focus, :valid){
   background-color: #6200ea;
   color: #ffffff;
   border: none;
-  padding: 15px 250px;
+  padding: 15px 25px;
   font-size: 16px;
   font-weight: bold;
   border-radius: 10px;

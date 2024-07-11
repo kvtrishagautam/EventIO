@@ -1,0 +1,21 @@
+.dashnav{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+}
+.mydrop {
+    display: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.mydrop.show {
+    display: block;
+}
+
+.main-menu {
+    transition: transform 0.3s ease-in-out;
+}
+
+.main-menu.inactive {
+    transform: translateX(-100%);
+}

@@ -1,16 +1,22 @@
 var express = require('express');
 const { getHomePage } = require('../controllers/user');
-const { getConductedEvents,getAttendedEvents,getCreateEvents,postCreateEvents } = require('../controllers/organizer');
+const { getConductedEvents,checkOrganizerExist,postCreateEvents, getCreateEvents } = require('../controllers/organizer');
+const checkOrg = require('../middlewares/checkOrg');
+const checkLogedIn = require('../middlewares/checkLogedIn');
 var router = express.Router();
+const {getOrganizerDash} = require('../controllers/organizer')
+
+router.get('/dashboard',getOrganizerDash)
 
 router.get('/',getHomePage);
 
 router.get('/conducted-events', getConductedEvents);
 
-router.get('/attended-events', getAttendedEvents);
+router.get('/check-org', checkOrganizerExist);
 
 router.get('/create-events', getCreateEvents);
 
 router.post('/create-events', postCreateEvents);
+
 
 module.exports = router;

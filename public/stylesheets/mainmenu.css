@@ -1,0 +1,67 @@
+ /* hamburg starts */
+ .hamburg img{
+    width:4rem;
+    cursor: pointer;
+    font-family: poppins;
+    }
+  
+    .inactive{
+      width:4rem;
+      display: none;
+    }
+  
+    .cross img{
+      width: 3.5rem;
+      margin-left: 15rem;
+      margin-top: -1rem;
+      cursor: pointer;
+    }
+  
+    /* .active{
+      display: block;
+    } */
+  
+    /* hamburg starts */
+    
+    /* main-menu starts here */
+  
+    .container{
+      display: flex;
+    }
+  
+    .main-menu{
+     width: 20%;
+    }
+  
+    .full{
+      border-top-right-radius: .7rem ;
+      padding: 1.3rem 0rem;
+      height:100vh;
+      background-color: #7848F4;
+      width:100%;
+     
+    }
+    
+    .list a{
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content:center;
+      align-items: start;
+      text-align: center; 
+      font-size: 1.2rem;
+      padding: 0rem 2.5rem;
+      color: #ffffff;
+      text-decoration: none;
+      font-family: poppins;
+    }
+  
+    .heading{
+      margin-top: -2rem;
+      margin-left: 1.3rem;
+      font-weight: bold;
+      font-size: 1.4rem;
+      font-family: poppins;
+      color: #ffffff;
+    }
+  /* mainmenu ends */
