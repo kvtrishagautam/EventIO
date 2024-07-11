@@ -42,7 +42,7 @@ module.exports = {
                 no_event = true;
             }
             console.log(cResults);
-            res.render('./organizer/conductedEvents', { title: 'Conducted Events', c_events: cResults, no_event });
+            res.render('./organizer/conductedEvents', { title: 'Conducted Events', c_events: cResults, no_event,loginStatus: req.session.userLoggedIn });
         } catch (err) {
             console.error('Error fetching specific column:', err.message);
             res.status(500).send('Internal Server Error');
@@ -84,7 +84,7 @@ module.exports = {
     },
 
     getCreateEvents: (req, res) => {
-        res.render('./organizer/create-events', { title: "Create Event" })
+        res.render('./organizer/create-events', { title: "Create Event" ,loginStatus: req.session.userLoggedIn})
     },
 
     postCreateEvents: async (req, res) => {
