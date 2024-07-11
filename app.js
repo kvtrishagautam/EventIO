@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 var usersRouter = require('./routes/users');
-var adminRouter = require('./routes/admin');
+// var adminRouter = require('./routes/admin');
 var organizerRouter = require('./routes/organizer');
 var authRouter = require('./routes/authentication');
 
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
-app.use('/admin', adminRouter);
+// app.use('/admin', adminRouter);
 app.use('/organizer', organizerRouter);
 app.use('/auth', authRouter);
 
