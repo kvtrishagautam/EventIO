@@ -29,24 +29,26 @@ module.exports = {
             console.log( aEvents)
 
             let aResults = [];
-            if(aEvents[0].a_events!= null){
-            for (let value of aEvents[0].a_events) {
-                // console.log(value)
 
-                let { data: a_data, error } = await supabase
-                    .from('event')
-                    .select('event_id,title,desc,start_day,expired')
-                    .eq('event_id', value);
-
-                // console.log(a_data)
-                if (error) {
-                    console.error('Supabase search error:', error.message);
-                    console.error('Supabase search details:', error.details);
-                    console.error('Supabase search hint:', error.hint);
-                } else {
-                    aResults.push(a_data);
-                }
+            if(aEvents[0].a_events!=null){
+                for (let value of aEvents[0].a_events) {
+                    // console.log(value)
+    
+                    let { data: a_data, error } = await supabase
+                        .from('event')
+                        .select('event_id,title,desc,start_day,expired')
+                        .eq('event_id', value);
+    
+                    // console.log(a_data)
+                    if (error) {
+                        console.error('Supabase search error:', error.message);
+                        console.error('Supabase search details:', error.details);
+                        console.error('Supabase search hint:', error.hint);
+                    } else {
+                        aResults.push(a_data);
+                    }
             }
+            
             }
             
             if (error) {
@@ -256,7 +258,6 @@ catch (err) {
     },
     
 };
-  
     
 
 

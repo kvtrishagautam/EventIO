@@ -1,8 +1,6 @@
 const express = require('express');
 const { supabase } = require('../config/supabse');
 const router = require('../routes/organizer');
-const QRCode = require('qrcode');
-
 module.exports = {
     getConductedEvents: async (req, res) => {
         try {
