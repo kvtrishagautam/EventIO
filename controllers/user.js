@@ -202,10 +202,6 @@ module.exports = {
     },
 
 
-    getProfileAcc: (req, res) => {
-        res.render('./user/profile/profile-accinfo.ejs', { title: 'Profile | Account Information', loginStatus: req.session.userLoggedIn })
-    },
-
     getProfileAttendedEvents: (req, res) => {
         res.render('./user/profile/profile-accinfo.ejs', { title: 'Profile | Account Information', loginStatus: req.session.userLoggedIn })
     },

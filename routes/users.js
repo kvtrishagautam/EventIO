@@ -16,8 +16,6 @@ router.get('/events', checkLogedIn, getEvents)
 
 router.get('/event/:title/:id', getEventDetail );
 
-router.get('/profile-accinfo', getProfileAcc);
-
 router.get('/profile-attendevents',checkAccCreated,  getProfileAttendedEvents)
 
 router.get('/profile-Change-Email',checkAccCreated,  getProfileChangeEmail);
