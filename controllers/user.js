@@ -92,7 +92,7 @@ module.exports = {
             let { data: event, error } = await supabase
                 .from('event')
                 .select('event_id,title,desc,start_day,expired')
-                // .neq('org_id', 'f11ae58a-3e12-47d7-92aa-77bed087e5bb')
+                // .neq('user_id', 'f11ae58a-3e12-47d7-92aa-77bed087e5bb')
                 .order('created_at', { ascending: false })
                 .limit(6);
 
@@ -425,8 +425,10 @@ module.exports = {
 
     },
     getCategory: async (req, res) => {
-        console.log(req.query);
+        
 
+        console.log(req.query);
+        console.log(re.query);                                                                      
         let { data: user_info, error } = await supabase
             .from('user_info')
             .select("*")

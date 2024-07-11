@@ -1,88 +1,82 @@
 <%- include('includes/header') %>
-<link rel="stylesheet" href="/stylesheets/c-events.css">
+
+  <link rel="stylesheet" href="/stylesheets/c-events.css">
+
 </head>
 
-  <body>
-    <%- include('includes/navbar') %>
+<body>
+  <%- include('includes/navbar') %>
 
-
-    <div class="container">
-      <!-- hamburg starts -->
-      <div class="hamburg">
-          <img src="/images/hamburger/burger-menu-svgrepo-com.svg" alt="">
+  <div class="body">
+    <!-- hamburg starts -->
+    <div class="hamburg">
+      <img src="/images/burger-menu-svgrepo-com.svg" alt="">
+    </div>
+    <!-- hamburg ends -->
+    <!-- main menu starts here -->
+    <div class="main-menu inactive">
+      <div class="full" id="full">
+        <div class="cross">
+          <img src="/images/cross-svgrepo-com.svg" alt="">
+        </div>
+        <p><span class="heading">Account Settings</span></p>
+        <div class="list orgp">
+          <a href="/organizer/create-events">
+            <p>Create events</p>
+          </a>
+          <a href="/organizer/conducted-events">
+            <p>Conducted Events</p>
+          </a>
+        </div>
       </div>
-      <!-- hamburg ends -->
-      <!-- main menu starts here -->
-      <div class="main-menu inactive">
-          <div class="full " id="full">
-              <div class="cross">
-                  <img src="/images/hamburger/cross-svgrepo-com.svg" alt="">
-              </div>
-              <p><span class="heading">Account Settings</span></p>
-              <div class="list">
-                  <p>Account info</p>
-                  <p>Change Email</p>
-                  <p>Password</p>
-                  <p>Dashboard</p>
-                  <p>ConductedEvents</p>
-              </div>
-          </div>
-      </div>
-      <!-- main menu ends here -->
-
+    </div>
+    <!-- main menu ends here -->
+    <div class="new-new">
       <!-- conducted events starts here -->
 
       <div class="c-events">
-          <div class="c-heading">
-            <% if(no_event){%>
-              No Conducted Events
-              <%}else{%>
-                Your Events
-                <%}%>
-          </div>
-          <div class="c-event-box">
-            <% for(events of c_events){ %>
-                <%for(let eachEvent of events){%>
+        <div class="c-heading">
+          <% if(no_event){%>
+            No Conducted Events
+            <%}else{%>
+              Your Events
+              <%}%>
+        </div>
+        <div class="c-event-box">
+          <% for(events of c_events){ %>
+            <%for(let eachEvent of events){%>
               <div class="event-cat-box">
-                  <img src="/images/events/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
-                  <div class="event-cat-box-in">
+                <img src="/images/events/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
+                <div class="event-cat-box-in">
 
-                      <div class="event-cat-desc">
-                          <h3><%=eachEvent.title%></h3>
-                          <p><%=eachEvent.desc%></p>
-          
-                      </div>
-                      <div class="event-cat-edit">
-                          <span>Edit</span>
-                          <% if (eachEvent.expired === true) { %>
-                            <h4>Expired</h4>
-                          <% } else { %>
-                            <h4><%= eachEvent.start_day %></h4>
-                          <% } %>
-                      </div>
+                  <div class="event-cat-desc">
+                    <h3>
+                      <%=eachEvent.title%>
+                    </h3>
+                    <p>
+                      <%=eachEvent.desc%>
+                    </p>
+
                   </div>
+                  <div class="event-cat-edit">
+                    <span>Edit</span>
+                    <% if (eachEvent.expired===true) { %>
+                      <h4>Expired</h4>
+                      <% } else { %>
+                        <h4>
+                          <%= eachEvent.start_day %>
+                        </h4>
+                        <% } %>
+                  </div>
+                </div>
               </div>
-            <%} } %>
-                  
-          </div>
+              <%} } %>
 
+        </div>
+      </div>
+    </div>
+    <!-- button_starts -------------------------------------------------------- -->
+    
+</body>
 
-    <!-- <%- include('includes/footer') %> -->
-  </body>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    const hamburg = document.querySelector('.hamburg'); 
-    const mainmenu = document.querySelector('.main-menu'); 
-    const cross = document.querySelector('.cross');
-
-    hamburg.addEventListener('click', function() {
-        hamburg.classList.toggle('inactive');
-        mainmenu.classList.toggle('inactive'); 
-    });
-    cross.addEventListener('click', function() {
-        hamburg.classList.toggle('inactive');
-        mainmenu.classList.toggle('inactive'); 
-    });
-});
-  </script>
 </html>

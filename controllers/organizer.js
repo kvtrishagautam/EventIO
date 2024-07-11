@@ -4,13 +4,15 @@ const router = require('../routes/organizer');
 module.exports = {
     getConductedEvents: async (req, res) => {
         try {
-
+            console.log(req.session.orgId);
             // Fetch the all a-event id from the table userinfo
             let { data: cEvents, error } = await supabase
                 .from('user_info')
-                .select('c_events,f_name')
+                .select('c_events')
                 .eq('org_id', req.session.orgId);
-            console.log(cEvents[0].c_events)
+
+            cEvents[0].c_events.reverse();
+
             if (error) {
                 console.error('Supabase error:', error.message);
                 console.error('Supabase details:', error.details);
@@ -29,7 +31,8 @@ module.exports = {
                     let { data: c_data, error } = await supabase
                         .from('event')
                         .select('event_id,title,desc,start_day,expired')
-                        .eq('event_id', value);
+                        .eq('event_id', value)
+
 
                     if (error) {
                         console.error('Supabase search error:', error.message);
@@ -50,7 +53,21 @@ module.exports = {
         }
 
     },
+    toStudentMode:async (req,res)=>{
+        const { data: role, error1 } = await supabase
+                .from('user')
+                .update([
+                    { role: 'student' },
+                ])
+                .eq('user_id', req.session.userId)
+                .select()
 
+                if (role == null) {
+                    res.status(200).json({ success: false,error1 })
+                } else {
+                res.json({ success: true })
+            }
+    },
     checkOrganizerExist: async (req, res) => {
         const userId = req.session.userId;
 
@@ -118,7 +135,7 @@ module.exports = {
         let { data: updatedC_events, error4 } = await supabase
             .from('user_info')
             .update({ c_events: updatedEvents })
-            .eq('org_id', 'f11ae58a-3e12-47d7-92aa-77bed087e5bb')
+            .eq('org_id', req.session.orgId)
 
         if (error4) {
             console.error('Supabase error:', error.message);
