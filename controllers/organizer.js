@@ -1,16 +1,16 @@
 const express = require('express');
 const { supabase } = require('../config/supabse');
 const router = require('../routes/organizer');
-
 module.exports = {
     getConductedEvents: async (req, res) => {
         try {
-            // Fetch the all c-event id from the table userinfo
+
+            // Fetch the all a-event id from the table userinfo
             let { data: cEvents, error } = await supabase
                 .from('user_info')
-                .select('c_events')
-                .eq('user_id', '1fd3c2b2-86d9-4baa-8aa4-748432d209db');
-
+                .select('c_events,f_name')
+                .eq('org_id', req.session.orgId);
+            console.log(cEvents[0].c_events)
             if (error) {
                 console.error('Supabase error:', error.message);
                 console.error('Supabase details:', error.details);
@@ -21,16 +21,13 @@ module.exports = {
 
             // Array to store the results
             let cResults = [];
-
-            // Loop through all c_events data and find matching values in event table
-            for (let item of cEvents) {
-                let { c_events: arrayofCE } = item;
-                for (let value of arrayofCE) {
+            let no_event;
+            if (cEvents[0].c_events != null) {
+                for (let value of cEvents[0].c_events) {
 
                     let { data: c_data, error } = await supabase
                         .from('event')
                         .select('event_id,title,desc,start_day,expired')
-
                         .eq('event_id', value);
 
                     if (error) {
@@ -41,74 +38,56 @@ module.exports = {
                         cResults.push(c_data);
                     }
                 }
+            }else{
+                no_event = true;
             }
-            console.log(cResults)
-            res.render('./organizer/conductedEvents', { title: 'Conducted Events', c_events: cResults });
+            console.log(cResults);
+            res.render('./organizer/conductedEvents', { title: 'Conducted Events', c_events: cResults, no_event,loginStatus: req.session.userLoggedIn });
         } catch (err) {
             console.error('Error fetching specific column:', err.message);
             res.status(500).send('Internal Server Error');
         }
+
     },
 
-    getAttendedEvents: async (req, res) => {
-        try {
+    checkOrganizerExist: async (req, res) => {
+        const userId = req.session.userId;
 
-            // Fetch the all c-event id from the table userinfo
-            let { data: aEvents, error } = await supabase
+        if (req.session.userLoggedIn) {
+            const { data, error } = await supabase
                 .from('user_info')
-                .select('a_events')
-                .eq('user_id', '1fd3c2b2-86d9-4baa-8aa4-748432d209db');
-            console.log('hello')
-            console.log(aEvents)
-            if (error) {
-                console.error('Supabase error:', error.message);
-                console.error('Supabase details:', error.details);
-                console.error('Supabase hint:', error.hint);
-                res.status(500).send('Error fetching data');
-                return;
+                .select('org_id')
+                .eq('user_id', userId)
+                .single();
+            console.log(data);
+
+            const { data: role, error1 } = await supabase
+                .from('user')
+                .update([
+                    { role: 'org' },
+                ])
+                .eq('user_id', req.session.userId)
+                .select()
+
+            if (data != null) {
+                req.session.orgId = data.org_id;
             }
 
-            // Array to store the results
-            let aResults = [];
-
-            // Loop through all c_events data and find matching values in event table
-            for (let item of aEvents) {
-                console.log(aEvents)
-                let { a_events: arrayofAE } = item;
-                console.log(arrayofAE)
-                for (let value of arrayofAE) {
-                    console.log(value)
-
-                    let { data: a_data, error } = await supabase
-                        .from('event')
-                        .select('event_id,title,desc,start_day,expired')
-                        .eq('event_id', value);
-
-                    console.log(a_data)
-                    if (error) {
-                        console.error('Supabase search error:', error.message);
-                        console.error('Supabase search details:', error.details);
-                        console.error('Supabase search hint:', error.hint);
-                    } else {
-                        aResults.push(a_data);
-                    }
-                }
+            if (data == null) {
+                res.status(200).json({ success: true, is_org: false, login: true })
+            } else {
+                res.status(200).json({ success: true, login: true, is_org: true })
             }
-            // console.log(aResults)
-            res.render('./organizer/attendedEvents', { title: 'Attended Events', a_events: aResults });
-        } catch (err) {
-            console.error('Error fetching specific column:', err.message);
-            res.status(500).send('Internal Server Error');
+        } else {
+            res.json({ success: false, login: false })
         }
     },
 
-    getCreateEvents: async (req, res) => {
-        res.render('./organizer/create-events', { title: 'Create Events' });
-
+    getCreateEvents: (req, res) => {
+        res.render('./organizer/create-events', { title: "Create Event" ,loginStatus: req.session.userLoggedIn})
     },
 
     postCreateEvents: async (req, res) => {
-        // const { column1, column2 } = req.body;
 
         let { data, error } = await supabase
             .from('event')
@@ -129,10 +108,10 @@ module.exports = {
             .from('user_info')
             .select('c_events')
             .eq('org_id', 'f11ae58a-3e12-47d7-92aa-77bed087e5bb');
-        console.log(user_info[0].c_events)
+        // console.log(user_info[0].c_events)
 
 
-        const updatedEvents = [...user_info[0].c_events, event[0].event_id];
+        const updatedEvents = [...user_info[0].c_events || [], event[0].event_id];
         console.log(updatedEvents)
 
         let { data: updatedC_events, error4 } = await supabase
@@ -159,4 +138,5 @@ module.exports = {
         res.render('./organizer/dashboard', { title: 'Dashboard', loginStatus: req.session.userLoggedIn });
     },
 
-}
+};
+

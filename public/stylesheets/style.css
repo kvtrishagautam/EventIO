@@ -281,6 +281,9 @@ body {
   margin-left: 39rem;
   cursor: pointer;
 }
+.cat-item a{
+  text-decoration: none;
+}
 
 .cat-txt {
   height: 18rem;

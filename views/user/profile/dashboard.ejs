@@ -39,7 +39,7 @@
                 <img src="./images/hiba/img-profile.svg" alt="" />
               </div>
               <div class="pro-details">
-                <p class="username"><%= userData.f_name %> <%= userData.l_name %></p>
+                <p class="username"><%= userDashData.f_name %> <%= userDashData.l_name %></p>
                 <p class="userfield">UI/UX Designer</p> <!-- Update as per your actual user details -->
             </div>
             </div>
@@ -54,34 +54,59 @@
             <p id="about">About</p>
             <div class="aboutcontent">
               <div class="grid-item">
-                <img src="./images/hiba/person.svg" alt="" id="size" /><p> <%= userData.course %></p>
+                <img src="./images/hiba/person.svg" alt="" id="size" /><p> <%= userDashData.course %></p>
               </div>
               <div class="grid-item">
-                <img src="./images/hiba/Call.svg" alt="" maxlength="10" id="size"/><p> <%= userData.phno %></p>
+                <img src="./images/hiba/Call.svg" alt="" maxlength="10" id="size"/><p> <%= userDashData.phno %></p>
             </div>
             <div class="grid-item">
-              <img src="./images/hiba/Location.svg" alt="" id="size"/> <p> <%= userData.address %></p>
+              <img src="./images/hiba/Location.svg" alt="" id="size"/> <p> <%= userDashData.address %></p>
           </div>
               <div class="grid-item">
-                <img src="./images/hiba/Message.svg" alt="" id="size"/> <p>email</p>
+                <img src="./images/hiba/Message.svg" alt="" id="size"/> <p><%= userDashuser.email %></p>
               </div>
             </div>
           </div>
-          <div class="contents box" id="about">
+
+<!-- attended events -->
+          <div class="contents box lists" id="about">
             <p>Events</p>
+            <% for(events of a_events){ %>
+              <%for(let eachEvent of events){%>
+                <div class="imgcon">
+                  <div class="dashevents">
+                   <p > <span class="DEtitle"><%=eachEvent.title%></span></p>
+                  <span class="DEdesc">
+                   <p><%=eachEvent.start_day%></p>
+                  </span> 
+                  </div>
+                  <div class="imageplus">
+                    <a href="/event/<%=eachEvent.title %>/<%=eachEvent.event_id %>"><img src="./images/hiba/plus.svg" alt="" ></a>
+                  </div>
+                 </div>  
+                 <%} } %>
           </div>
+      
           <div class="certificate box" id="about">
             <p>Certificates</p>
+
+            
           </div>
-          <div class="extra box" id="about">
-            <p>Skills</p> 
-            <ul>
-                <% userData.skills.forEach(skill => { %>
-                    <li><%= skill %></li>
+          
+
+          <div class="box" id="about">
+            <p>Skills</p>
+            <div class="skillcontent">
+                <ul class="skillslist">
+                  <% (userDashData.skills || []).forEach(skill => { %>
+                    <li class="listofskills" ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="planeicon">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                    </svg>
+                    <%= skill %></li>
                 <% }); %>
-            </ul>
-        </div>
-        </div>
+                </ul>
+            </div>
+       
         <!-- hero bottom ends -->
       </div>
     </div>
@@ -101,6 +126,13 @@
           mainmenu.classList.toggle('inactive'); 
         });
       });
+
+      const skillContent = document.querySelector('.skillcontent');
+const skillsList = document.querySelectorAll('.skillslist li');
+
+if (skillsList.length >= 4) {
+  skillContent.classList.add('has-scrollbar');
+}
     </script>
 </body>
 </html>

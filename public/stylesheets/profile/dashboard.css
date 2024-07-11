@@ -184,13 +184,20 @@ ml {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.4rem;
-  border-radius: .7rem;
+  font-size: 1.3rem;
+  border-radius: .6rem;
+}
+
+.skillcontent{
+  height: 20rem;
+  overflow-y: scroll;
 }
 
 .extra p{
   margin-bottom: -1rem;
 }
+
+
 
 .extra li{
   color: #7848F4;
@@ -205,9 +212,11 @@ ml {
   display: flex;
   flex-direction: column;
   align-items: start;
+  margin-top: -1rem;
 }
 
 .grid-item {
+
  color: #7848F4;
  display: flex;
  
@@ -222,4 +231,111 @@ ml {
   font-size: 1.8rem;
   font-weight: 500;
   
+}
+
+.lists{
+  display: flex;
+  justify-content: start;
+  gap: .5rem;
+
+}
+
+.skills{
+  color: #7848F4;
+  padding-bottom: 1rem;
+}
+
+
+.imgcon{
+  width:16rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: .4rem;
+  background-color:  #f6f2f2;
+  border-style: none;
+  padding: .3rem;
+}
+
+.imageplus {
+  display: flex;
+  justify-content: center;
+ align-items: center; 
+ 
+}
+
+.imageplus img{
+  width: 1.6rem;
+ 
+}
+
+.dashevents p{
+  margin: 0rem;
+
+}
+
+
+.DEtitle{
+  color: #7848F4;
+  font-size:1.3rem;
+  padding: 0rem 1.6rem;
+}
+
+.DEdesc{
+  display: flex;
+  font-size: medium;
+  color: #403952;
+  padding: .5rem 1.6rem;
+
+}
+
+.skillslist {
+  margin: 0rem;
+  padding: 0rem;
+  color: #7848F4;
+  font-size: 1.3rem;
+  
+}
+
+.listofskills{
+ padding: 1rem;
+}
+
+.planeicon{
+  height: 1rem;
+  width: 1rem;
+  color: #7848F4;
+  padding-right: 0.6rem;
+}
+
+/* scrollbar styling */
+
+.skillcontent {
+  height: 20rem;
+  overflow-y: hidden; /* default overflow-y value */
+}
+
+.skillcontent.has-scrollbar {
+  overflow-y: auto; /* add scrollbar only if has-scrollbar class is present */
+}
+
+.skillcontent.has-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.skillcontent.has-scrollbar::-webkit-scrollbar-track {
+  background: #f6f2f2
+}
+
+/* Handle */
+.skillcontent.has-scrollbar::-webkit-scrollbar-thumb {
+  background: #d3c7f3;
+}
+
+/* Handle on hover */
+.skillcontent.has-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #d3c7f3;
+}
+.skillcontent.has-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 5px;
 }

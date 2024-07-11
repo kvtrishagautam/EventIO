@@ -201,6 +201,10 @@ ml {
  margin-top: -1.7rem;
 }
 
+.user{
+  margin-left: 2rem;
+}
+
 
 /* to remove default number type style  */
 input[type="number"]::-webkit-inner-spin-button,
@@ -239,4 +243,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .mll{
   margin-top: -2rem;
   margin-left: 7rem;
+}
+
+.currentuser{
+  padding-left: 4rem;
+  font-weight: bold;
+  color: #7848F4;
 }

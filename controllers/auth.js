@@ -1,5 +1,5 @@
-const express = require('express');
 const { supabase } = require('../config/supabse');
+const express = require('express');
 const app = express();
 const nodemailer = require('nodemailer')
 // var router = express.Router();
@@ -13,8 +13,8 @@ let errMsg = ''
 
 module.exports = {
   getLogin: (req, res) => {
-    res.render('./authentication/login.ejs', { title: 'Login', errMsg })
     errMsg = ''
+    res.render('./authentication/login.ejs', { title: 'Login', errMsg })
   },
   getSignup: (req, res) => {
     res.render('./authentication/signup.ejs', { title: 'Signup' })
@@ -176,4 +176,3 @@ logedinUser: async (req, res) => {
     res.redirect('/auth/login');
   },
 }
-

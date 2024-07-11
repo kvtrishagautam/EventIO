@@ -32,7 +32,11 @@
     .main-menu{
      width: 20%;
     }
-  
+    .body{
+      height: 100%;
+      width: 100%;
+      display: flex;
+    }
     .full{
       border-top-right-radius: .7rem ;
       padding: 1.3rem 0rem;
@@ -40,6 +44,10 @@
       background-color: #7848F4;
       width:100%;
      
+    }
+
+    .new-new{
+      width: 80%;
     }
     
     .list a{

@@ -1,56 +1,116 @@
-<%- include('includes/header') %>
-<link rel="stylesheet" href="/stylesheets/create-events.css" />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/mainmenu.css" />
+    <link rel="stylesheet" href="/stylesheets/admdash.css">
+    <link rel="stylesheet" href="/stylesheets/navbar.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/create-events.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&display=swap" rel="stylesheet">
+    <title><%-title%></title>
 </head>
 
-    <body>
-        <%- include('includes/navbar') %>
+<body>
+    
+        <div class="dashnav">
+            <div class="logo">Event <span class="logo-2">IO</span></div>
+            <div class="navend">
+                <% if(loginStatus) { %>
+                    <div class="sub-menu-wrap">
+                        <div class="dropdown">
+                            <img src="/images/login-signup/profile.svg" alt="Profile Image" class="profile-img"
+                                style="margin-right: 2rem;">
+                            <div class="mydrop">
+                                <a href="#" id="logoutLink">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } else { %>
+                        <a href="/auth/signup" class="btn">Signup</a>
+                        <a href="/auth/login" class="btn-1">Login</a>
+                        <% } %>
+            </div>
+        </div>
+        <div class="body">
+        <!-- hamburg starts -->
+        <div class="hamburg">
+            <img src="/images/burger-menu-svgrepo-com.svg" alt="">
+        </div>
+        <!-- hamburg ends -->
+        <!-- main menu starts here -->
 
+        <div class="main-menu inactive">
+            <div class="full " id="full">
+                <div class="cross">
+                    <img src="/images/cross-svgrepo-com.svg" alt="">
+                </div>
+                <p><span class="heading">Account Settings</span></p>
+                <div class="list">
 
+                    <a href="/organizer/create-events">
+                        <p>create events</p>
+                    </a>
+                    <a href="/organizer/conducted-events">
+                        <p>Conducted Events</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- main menu ends here -->
+        <div class="new-new">
             <section class="total_1">
                 <div class="head3">Create Event</div>
                 <div class="form">
                     <form action="/organizer/create-events" method="post">
                         <label for="title">Event Title</label>
-                        <input type="text" id="title" name="title" placeholder="Enter your event Title">
+                        <input type="text" id="title" name="title" placeholder="Enter your event Title" required>
 
                         <label for="venue">Event Venue</label>
-                        <input type="text" id="venue" name="venue" placeholder="Enter your event Venue">
+                        <input type="text" id="venue" name="venue" placeholder="Enter your event Venue" required>
 
                         <div class="time-date">
                             <div class="time">
                                 <label for="stime">Start Time</label>
-                                <input type="time" id="stime" name="start_time">
+                                <input type="time" id="stime" name="start_time" required>
                             </div>
 
                             <div class="time">
                                 <label for="etime">End Time</label>
-                                <input type="time" id="etime" name="end_time">
+                                <input type="time" id="etime" name="end_time" required>
                             </div>
                         </div>
 
                         <div class="time-date">
                             <div class="date">
                                 <label for="sdate">Start Date</label>
-                                <input type="date" id="sdate" name="start_day">
+                                <input type="date" id="sdate" name="start_day" required>
                             </div>
 
                             <div class="date">
                                 <label for="edate">End Date</label>
-                                <input type="date" id="edate" name="end_day">
+                                <input type="date" id="edate" name="end_day" required>
                             </div>
                         </div>
-                    
+
                 </div>
             </section>
-    </body>
+</body>
 
-    </html>
+</html>
 
-    <!--Details_sec_ends-->
+<!--Details_sec_ends-->
 
-    <!--Details_sec_starts----------------------------------------------------------- */-->
-    <section class="total_2">
-        <div class="head4">Event Description</div>
+<!--image insertion----------------------------------------------------------- */-->
+<section class="total_2">
+    <!-- <div class="head4">Event Description</div>
         <div class="hero1">
             <label for="input-file" id="drope-area">
                 <input type="file" accept="image/*" id="input-file" hidden>
@@ -59,23 +119,66 @@
                     <img src="\images\create_event_uploadpic\508-icon.png">
                 </div>
             </label><br>
-        </div>
-        <div class="abo">
-            <h3>About</h3>
-            <textarea placeholder="Type hear..." name="desc" cols="130" rows="15" required></textarea>
+        </div> -->
+    <div class="abo">
+        <h3>About</h3>
+        <textarea placeholder="Type here..." name="desc" cols="130" rows="15" required></textarea>
 
-        </div>
+    </div>
 
-    </section>
-    <!--/*Description_sec_ends--------------------------------------------------------*/-->
+</section>
+<!--image insertion_ends--------------------------------------------------------*/-->
 
-    <section class="total_3">
-        <button type="submit" class="animated-button">create event</button>
-    </section>
-    <!--/*button_starts--------------------------------------------------------*/-->
+<section class="total_3">
+    <button type="submit" class="animated-button">Create Event</button>
+</section>
 </form>
+</div>
+</div>
+<!--/*button_starts--------------------------------------------------------*/-->
 
-    <%- include('includes/footer') %>
-        </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const hamburg = document.querySelector('.hamburg');
+        const mainmenu = document.querySelector('.main-menu');
+        const cross = document.querySelector('.cross');
 
-        </html>
+        hamburg.addEventListener('click', function () {
+            hamburg.classList.add('inactive');
+            mainmenu.classList.remove('inactive');
+        });
+
+        cross.addEventListener('click', function () {
+            hamburg.classList.remove('inactive');
+            mainmenu.classList.add('inactive');
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const profileImg = document.querySelector('.profile-img');
+        const mydrop = document.querySelector('.mydrop');
+
+        profileImg.addEventListener('click', function () {
+            mydrop.classList.toggle('show');
+        });
+
+        // Close the dropdown if the user clicks outside of it
+        window.addEventListener('click', function (event) {
+            if (!profileImg.contains(event.target) && !mydrop.contains(event.target)) {
+                mydrop.classList.remove('show');
+            }
+        });
+
+        // Confirm logout
+        document.getElementById('logoutLink').addEventListener('click', function (event) {
+            event.preventDefault();
+            const confirmed = confirm('Are you sure you want to logout?');
+            if (confirmed) {
+                window.location.href = '/auth/logout';
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
