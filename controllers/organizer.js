@@ -1,6 +1,7 @@
 const express = require('express');
 const { supabase } = require('../config/supabse');
 const router = require('../routes/organizer');
+const QRCode = require('qrcode');
 
 module.exports = {
     getConductedEvents: async (req, res) => {
@@ -53,13 +54,12 @@ module.exports = {
     getAttendedEvents: async (req, res) => {
         try {
 
-            // Fetch the all c-event id from the table userinfo
+            // Fetch the all a-event id from the table userinfo
             let { data: aEvents, error } = await supabase
                 .from('user_info')
-                .select('a_events')
+                .select('a_events,f_name')
                 .eq('user_id', '1fd3c2b2-86d9-4baa-8aa4-748432d209db');
-            console.log('hello')
-            console.log(aEvents)
+            console.log(aEvents[0].a_events)
             if (error) {
                 console.error('Supabase error:', error.message);
                 console.error('Supabase details:', error.details);
@@ -71,30 +71,23 @@ module.exports = {
             // Array to store the results
             let aResults = [];
 
-            // Loop through all c_events data and find matching values in event table
-            for (let item of aEvents) {
-                console.log(aEvents)
-                let { a_events: arrayofAE } = item;
-                console.log(arrayofAE)
-                for (let value of arrayofAE) {
-                    console.log(value)
+            for (let value of aEvents[0].a_events) {
+                // console.log(value)
 
-                    let { data: a_data, error } = await supabase
-                        .from('event')
-                        .select('event_id,title,desc,start_day,expired')
-                        .eq('event_id', value);
+                let { data: a_data, error } = await supabase
+                    .from('event')
+                    .select('event_id,title,desc,start_day,expired')
+                    .eq('event_id', value);
 
-                    console.log(a_data)
-                    if (error) {
-                        console.error('Supabase search error:', error.message);
-                        console.error('Supabase search details:', error.details);
-                        console.error('Supabase search hint:', error.hint);
-                    } else {
-                        aResults.push(a_data);
-                    }
+                // console.log(a_data)
+                if (error) {
+                    console.error('Supabase search error:', error.message);
+                    console.error('Supabase search details:', error.details);
+                    console.error('Supabase search hint:', error.hint);
+                } else {
+                    aResults.push(a_data);
                 }
             }
-            // console.log(aResults)
             res.render('./organizer/attendedEvents', { title: 'Attended Events', a_events: aResults });
         } catch (err) {
             console.error('Error fetching specific column:', err.message);
@@ -156,4 +149,5 @@ module.exports = {
         }
     },
 
-}
+};
+

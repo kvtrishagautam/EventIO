@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Certificate</title>
+    <link rel="stylesheet" href="/stylesheets/profile/certificate.css">
+</head>
+<body>
+    <h1>Upload Certificate</h1>
+    <form action="/certificate" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="user_id">User ID:</label>
+            <input type="text" id="user_id" name="user_id" required>
+        </div>
+        <div>
+            <label for="certificate_name">Certificate Name:</label>
+            <input type="text" id="certificate_name" name="certificate_name" required>
+        </div>
+        <div>
+            <label for="certificateFile">Certificate File:</label>
+            <input type="file" id="certificateFile" name="certificateFile" accept=".pdf,.jpg,.jpeg,.png" required>
+        </div>
+        <div>
+            <button type="submit">Upload Certificate</button>
+        </div>
+    </form>
+</body>
+</html>

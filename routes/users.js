@@ -24,6 +24,8 @@ router.get('/profile-Change-Password',getProfileChangePass);
 router.get('/profile-accinfo',checkLogedIn,getAccInfo);
 
 router.get('/skills',checkLogedIn,getskills);
+
+
 // POST routes 
 
 router.post('/skills',checkLogedIn,postSkills);
