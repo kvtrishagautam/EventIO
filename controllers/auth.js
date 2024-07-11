@@ -24,7 +24,7 @@ module.exports = {
     const { data, error } = await supabase
         .from('user')
         .insert([
-            { email: req.body.email, password: req.body.password, username: req.body.username },
+            { email: req.body.email, password: req.body.password, username: req.body.username, role: "student" },
         ])
         .select()
 
@@ -64,7 +64,7 @@ logedinUser: async (req, res) => {
       if (users.role == 'admin') {
           res.redirect('/admin/dashboard');
       } else if (users.role == 'org') {
-          res.redirect('/organizer/dashboard');
+          res.redirect('/organizer/conducted-events');
       } else {
           res.redirect('/');
       }

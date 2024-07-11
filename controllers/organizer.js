@@ -22,6 +22,7 @@ module.exports = {
             // Array to store the results
             let cResults = [];
             let no_event;
+          
             if (cEvents[0].c_events != null) {
                 for (let value of cEvents[0].c_events) {
 
@@ -131,7 +132,8 @@ module.exports = {
             console.error('Supabase hint:', error.hint);
             res.status(500).send('Error inserting data');
         } else {
-            res.send('Data inserted successfully');
+            res.redirect('/organizer/conducted-events');
+            
         }
     },
     getOrganizerDash: (req, res) => {
