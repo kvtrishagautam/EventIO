@@ -16,17 +16,23 @@
     <main>
         <section class="category-header">
             <a href="/" class="back-button">Back to Home</a>
-            <h1>People who specialize in <%= skill %></h1>
+            <h1>People who specialize in <span style="color: #7848F4;"> <%= skill %></span></h1>
         </section>
         <section class="user-list">
             <% for(let user of user_info){ %>
                 <div class="user-card">
-                    <h2><%= user.f_name %></h2>
-                    <p>Email: <%= user.email %></p>
+                    <div class="user-card-det">
+                        <img src="/images/profile-icon.svg" alt="">
+                        <h2><%= user.f_name %></h2>
+                        
+                    </div>
+                    <p><span style="font-weight: bold;">Email: </span> <%= user.email %></p>
                     <p><span style="font-weight: bold;">Skills: </span><%= user.skills.join(' | ') %></p>
                 </div>
             <% } %>
         </section>
     </main>
+
+    <%- include('includes/footer') %>
 </body>
 </html>
