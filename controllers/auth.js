@@ -173,7 +173,7 @@ logedinUser: async (req, res) => {
       return res.status(500).send('Error resetting password');
     }
 
-    res.send('Password reset successfully.');
+    res.redirect('/auth/login');
   },
 }
 
