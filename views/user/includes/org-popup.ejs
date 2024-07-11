@@ -48,11 +48,18 @@
             });
         });
 
-        document.getElementById("create_event").addEventListener("click", () => {
+        const org1=document.getElementById("create_event");
+        const org2=document.getElementById('org2_btn')
+
+        org1.addEventListener("click", () => {
             document.getElementById("org_popup").classList.add("show");
             document.getElementById("body").style.filter = "blur(5px)";
             document.getElementById("body").style.pointerEvents = "none";
-
+        });
+        org2.addEventListener("click", () => {
+            document.getElementById("org_popup").classList.add("show");
+            document.getElementById("body").style.filter = "blur(5px)";
+            document.getElementById("body").style.pointerEvents = "none";
         });
 
         document.getElementById('org_close').addEventListener("click", () => {

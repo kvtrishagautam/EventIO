@@ -13,8 +13,8 @@ let errMsg = ''
 
 module.exports = {
   getLogin: (req, res) => {
-    res.render('./authentication/login.ejs', { title: 'Login', errMsg })
     errMsg = ''
+    res.render('./authentication/login.ejs', { title: 'Login', errMsg })
   },
   getSignup: (req, res) => {
     res.render('./authentication/signup.ejs', { title: 'Signup' })
