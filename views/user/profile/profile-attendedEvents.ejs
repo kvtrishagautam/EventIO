@@ -23,71 +23,76 @@
   </head>
 
   <body>
-    <%- include('../includes/navbar') %>
-
-      <div class="container">
-        <%- include('../includes/main-menu-pro') %>
-          <!-- conducted events starts here -->
-
-      <div class="c-events">
-        <div class="c-heading">
-          <% if(no_event){%>
-            No Attended Events
-            <%}else{%>
-              Your Events
-              <%}%>
-        </div>
-          <div class="c-event-box">
-            <% for(events of a_events){ %>
-                <%for(let eachEvent of events){%>
-              <div class="event-cat-box">
-                  <img src="/images/events/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
-                  <div class="event-cat-box-in">
-
-                      <div class="event-cat-desc">
-                          <h3><%=eachEvent.title%></h3>
-                          <p><%=eachEvent.desc%></p>
-          
-                      </div>
-                      <div class="event-cat-edit">
-                          <span>View</span>
-                          <% if (eachEvent.expired === true) { %>
-                            <h4>Expired</h4>
-                          <% } else { %>
-                            <h4><%= eachEvent.start_day %></h4>
-                          <% } %>
-                          
-                      </div>
-                  </div>
-              </div>
-            <%} } %>
-                  
+      <div id="body" class="body">
+      <%- include('../includes/navbar') %>
+  
+        <div class="container">
+          <%- include('../includes/main-menu-pro') %>
+            <!-- conducted events starts here -->
+  
+        <div class="c-events">
+          <div class="c-heading">
+            <% if(no_event){%>
+              No Attended Events
+              <%}else{%>
+                Your Events
+                <%}%>
           </div>
+            <div class="c-event-box">
+              <% for(events of a_events){ %>
+                  <%for(let eachEvent of events){%>
+                <div class="event-cat-box">
+                    <img src="/images/events/jr-korpa-9XngoIpxcEo-unsplash.jpg" alt="event-img">
+                    <div class="event-cat-box-in">
+  
+                        <div class="event-cat-desc">
+                            <h3><%=eachEvent.title%></h3>
+                            <p><%=eachEvent.desc%></p>
+            
+                        </div>
+                        <div class="event-cat-edit">
+                            <span>View</span>
+                            <% if (eachEvent.expired === true) { %>
+                              <h4>Expired</h4>
+                            <% } else { %>
+                              <h4><%= eachEvent.start_day %></h4>
+                            <% } %>
+                            
+                        </div>
+                    </div>
+                </div>
+              <%} } %>
+                    
+            </div>
+  
+  
+  
+        </div>
+        </div>
+        <%- include('../includes/org-popup') %>
 
-
-
-      </div>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const hamburg = document.querySelector('.hamburg');
-          const mainmenu = document.querySelector('.main-menu');
-          const cross = document.querySelector('.cross');
-
-          hamburg.addEventListener('click', function () {
-            hamburg.classList.toggle('inactive');
-            mainmenu.classList.toggle('inactive');
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const hamburg = document.querySelector('.hamburg');
+            const mainmenu = document.querySelector('.main-menu');
+            const cross = document.querySelector('.cross');
+  
+            hamburg.addEventListener('click', function () {
+              hamburg.classList.toggle('inactive');
+              mainmenu.classList.toggle('inactive');
+            });
+  
+            cross.addEventListener('click', function () {
+              hamburg.classList.toggle('inactive');
+              mainmenu.classList.toggle('inactive');
+            });
+          })
+          document.getElementById('submit').addEventListener("click", function (z) {
+            document.getElementById('submit').innerHTML = 'SUBMITTING'
+            window.location.href = "/dashboard";
           });
-
-          cross.addEventListener('click', function () {
-            hamburg.classList.toggle('inactive');
-            mainmenu.classList.toggle('inactive');
-          });
-        })
-        document.getElementById('submit').addEventListener("click", function (z) {
-          document.getElementById('submit').innerHTML = 'SUBMITTING'
-          window.location.href = "/dashboard";
-        });
-      </script>
-  </body>
+        </script>
+    </body>
+  
 
   </html>
