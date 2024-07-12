@@ -62,21 +62,24 @@ module.exports={
     
         res.redirect('/admin/addskills');
     },
-    deleteSkill: async (req, res) => {
+    deleteSkill:async (req, res) => {
         const { id } = req.params;
     
-        const { data, error } = await supabase
-            .from('skills')
-            .update({ skill: null })
-            .eq('skill_id', id);
+        try {
+            const { error } = await supabase
+                .from('skills')
+                .delete()
+                .eq('skill_id', id);
     
-        if (error) {
-            console.error('Error deleting skill:', error);
-            return res.status(500).json({ error: 'Failed to delete skill' });
+            if (error) {
+                console.error('Error deleting skill:', error);
+                return res.status(500).json({ success: false, message: 'Failed to delete skill' });
+            }
+    
+            res.json({ success: true });
+        } catch (error) {
+            console.error('Unexpected error deleting skill:', error);
+            res.status(500).json({ success: false, message: 'An unexpected error occurred' });
         }
-    
-        res.json({ message: 'Skill deleted successfully' });
-    }
-    
-
+},
 }

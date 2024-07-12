@@ -42,6 +42,6 @@ module.exports = {
         
 
         res.render('./user/category.ejs', { title: 'Category', loginStatus: req.session.userLoggedIn ,skill: req.query.tag, user_info})
-    }
+    },
 
 }
