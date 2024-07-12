@@ -134,8 +134,20 @@ module.exports = {
         res.render('./user/profile/profile-changePass.ejs', { title: 'profile | Change Password',loginStatus: req.session.userLoggedIn })
     },
 
-    getskills: (req, res) => {
-        res.render('./user/profile/skills.ejs', { title: 'profile | Skills',loginStatus: req.session.userLoggedIn })
+    getskills: async(req, res) => {
+        try{
+            let { data: skills, error } = await supabase
+      .from('skills')
+      .select('skill');
+        
+        if (error) {throw error};
+        console.log('skills:' ,skills)
+        res.render('./user/profile/skills.ejs', { title: 'profile | Skills',loginStatus: req.session.userLoggedIn ,skills: skills.map(skill => ({ name: skill.skill }))});
+    }
+    catch (error) {
+        console.error('Error fetching skills:', error.message);
+        res.status(500).send('Error fetching skills');
+      }
     },
     
     
@@ -259,6 +271,8 @@ catch (err) {
             res.status(500).send('Unexpected error');
         }
     },
+
+
     
 };
     
