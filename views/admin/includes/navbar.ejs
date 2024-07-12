@@ -1,23 +1,14 @@
 <section class="navbar">
     <nav class="nav">
         <div class="logo">Event <span class="logo-2">IO</span></div>
-        <div class="navmid">
-            <ul class="nav-list">
-                <li><a href="/" id="home" class="an">Home</a></li>
-                <li><a href="/events" id="ev" class="an">Events</a></li>
-                <li><a href="#" id="sponser" class="an">Sponser</a></li>
-                <li><a href="#" id="schedule" class="an">Schedule</a></li>
-            </ul>
-        </div>
+        
         <div class="navend">
             <% if(loginStatus) { %>
                 <div class="sub-menu-wrap">
                     <div class="dropdown">
                         <img src="/images/login-signup/profile.svg" id="profile-img" alt="Profile Image" class="profile-img" style="margin-right: 2rem;">
                         <div class="mydrop">
-                            <a href="/dashboard">Profile</a>
-                            <a href="#" id="org2_btn">Organizer Mode</a>
-                            <a href="#" id="logoutLink">Logout</a>
+                        <a href="#" id="logoutLink">Logout</a>
                         </div>
                     </div>
                 </div>

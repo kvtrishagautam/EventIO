@@ -92,7 +92,7 @@ module.exports = {
             let { data: event, error } = await supabase
                 .from('event')
                 .select('event_id,title,desc,start_day,expired')
-                // .neq('org_id', 'f11ae58a-3e12-47d7-92aa-77bed087e5bb')
+                // .neq('user_id', 'f11ae58a-3e12-47d7-92aa-77bed087e5bb')
                 .order('created_at', { ascending: false })
                 .limit(6);
 
@@ -111,7 +111,7 @@ module.exports = {
             return res.status(500).send('Internal Server Error');
         }
     },
-
+    
     getEventDetail: async (req, res) => {
         try {
             console.log(req.params.id);
@@ -340,39 +340,7 @@ module.exports = {
         }
     },
 
-    postOrganizer: async (req, res) => {
-        const { value } = req.body;
-        try {
-
-            const { data, error } = await supabase
-                .from('organizer')
-                .insert([
-                    { org_name: value, user_id: req.session.userId },
-                ])
-                .select()
-
-            const { data: role, error1 } = await supabase
-                .from('user')
-                .update([
-                    { role: 'org' },
-                ])
-                .eq('user_id', req.session.userId)
-                .select()
-
-            req.session.orgId = data[0].org_id;
-
-
-            console.log(value, data[0].org_id, error);
-            if (error) {
-                return res.status(500).json({ success: false, error: 'Error inserting data' });
-            }
-
-            return res.status(200).json({ success: true, message: 'Data successfully inserted', data });
-
-        } catch (error) {
-            return res.status(500).json({ success: false, error: 'Unexpected error' });
-        }
-    },
+    
     getProfileAttendedEvents: async (req, res) => {
         try {
 
@@ -424,8 +392,10 @@ module.exports = {
 
     },
     getCategory: async (req, res) => {
-        console.log(req.query);
+        
 
+        console.log(req.query);
+        console.log(re.query);                                                                      
         let { data: user_info, error } = await supabase
             .from('user_info')
             .select("*")
