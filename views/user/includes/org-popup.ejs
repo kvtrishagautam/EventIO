@@ -81,7 +81,7 @@
             const org_name = $('#org_name').val();
 
             $.ajax({
-                url: '/',
+                url: 'organizer/check-org',
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({ value: org_name }),

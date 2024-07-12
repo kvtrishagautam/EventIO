@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/stylesheets/admdash.css">
     <link rel="stylesheet" href="/stylesheets/navbar.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/admnoti.css">
+
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,18 +23,19 @@
         <div class="logo">Event <span class="logo-2">IO</span></div>
         <div class="navend">
             <% if(loginStatus) { %>
-            <div class="sub-menu-wrap">
-                <div class="dropdown">
-                    <img src="/images/login-signup/profile.svg" alt="Profile Image" class="profile-img" style="margin-right: 2rem;">
-                    <div class="mydrop">
-                        <a href="#" id="logoutLink">Logout</a>
+                <div class="sub-menu-wrap">
+                    <div class="dropdown">
+                        <img src="/images/login-signup/profile.svg" alt="Profile Image" class="profile-img"
+                            style="margin-right: 2rem;">
+                        <div class="mydrop">
+                            <a href="#" id="logoutLink">Logout</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <% } else { %>
-            <a href="/auth/signup" class="btn">Signup</a>
-            <a href="/auth/login" class="btn-1">Login</a>
-            <% } %>
+                <% } else { %>
+                    <a href="/auth/signup" class="btn">Signup</a>
+                    <a href="/auth/login" class="btn-1">Login</a>
+                    <% } %>
         </div>
     </div>
     <!-- hamburg starts -->
@@ -40,32 +43,67 @@
         <img src="/images/burger-menu-svgrepo-com.svg" alt="">
     </div>
     <!-- hamburg ends -->
-    <!-- main menu starts here -->
+    <div class="notif">
+        <!-- main menu starts here -->
 
-    <div class="main-menu inactive">
-        <div class="full " id="full">
-            <div class="cross">
-                <img src="/images/cross-svgrepo-com.svg" alt="">
+        <div class="main-menu inactive">
+            <div class="full " id="full">
+                <div class="cross">
+                    <img src="/images/cross-svgrepo-com.svg" alt="">
+                </div>
+                <p><span class="heading">Account Settings</span></p>
+                <div class="list">
+                    <a href="/admin/dashboard">
+                        <p>Dashboard</p>
+                    </a>
+                    <a href="/admin/addskills">
+                        <p>Add Skills</p>
+                    </a>
+                    <a href="/admin/notification">
+                        <p>Notifications</p>
+                    </a>
+                    <a href="/admin/manageEvents">
+                        <p>Manage Events</p>
+                    </a>
+                </div>
             </div>
-            <p><span class="heading">Account Settings</span></p>
-            <div class="list">
-                <a href="/admin/dashboard">
-                    <p>Dashboard</p>
-                </a>
-                <a href="/admin/addskills">
-                    <p>Add Skills</p>
-                </a>
-                <a href="/admin/notification">
-                    <p>Notifications</p>
-                </a>
-                <a href="/admin/manageEvents">
-                    <p>Manage Events</p>
-                </a>
+        </div>
+        <!-- main menu ends here -->
+
+        <!--notification starts-->
+        <div class="all-noti">
+            <div class="notification">
+                <div class="noti-content">
+                    <div class="notification-title"><span>Request for approval:</span></div>
+                    <div class="notification-details"><span>New event:</span></div>
+                    <div class="event_name"><span>workshop</span></div>
+                </div>
+                <div class="button-group">
+                    <button class="view-btn">View</button>
+                    <div class="approve">
+                        <span>Approve Request</span>
+                        <img src="./img/tick-svgrepo-com.svg" alt="reject">
+                        <img src="./img/cross-svgrepo-com.svg" alt="approve">
+                    </div>
+                </div>
+            </div>
+            <div class="notification">
+                <div class="noti-content">
+                    <div class="notification-title"><span>Request for approval:</span></div>
+                    <div class="notification-details"><span>New event:</span></div>
+                    <div class="event_name"><span>workshop</span></div>
+                </div>
+                <div class="button-group">
+                    <button class="view-btn">View</button>
+                    <div class="approve">
+                        <span>Approve Request</span>
+                        <img src="./img/tick-svgrepo-com.svg" alt="reject">
+                        <img src="./img/cross-svgrepo-com.svg" alt="approve">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- main menu ends here -->
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const hamburg = document.querySelector('.hamburg');

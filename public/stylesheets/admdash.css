@@ -19,3 +19,6 @@
 .main-menu.inactive {
     transform: translateX(-100%);
 }
+.notif{
+    display: flex;
+}

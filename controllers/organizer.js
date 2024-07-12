@@ -11,7 +11,6 @@ module.exports = {
                 .select('c_events')
                 .eq('org_id', req.session.orgId);
 
-            cEvents[0].c_events.reverse();
 
             if (error) {
                 console.error('Supabase error:', error.message);
@@ -26,6 +25,8 @@ module.exports = {
             let no_event;
 
             if (cEvents[0].c_events != null) {
+                cEvents[0].c_events.reverse();
+
                 for (let value of cEvents[0].c_events) {
 
                     let { data: c_data, error } = await supabase
@@ -73,22 +74,21 @@ module.exports = {
 
         if (req.session.userLoggedIn) {
             const { data, error } = await supabase
-                .from('user_info')
+                .from('organizer')
                 .select('org_id')
                 .eq('user_id', userId)
                 .single();
             console.log(data);
 
-            const { data: role, error1 } = await supabase
+            if (data != null) {
+                req.session.orgId = data.org_id;
+                const { data: role, error1 } = await supabase
                 .from('user')
                 .update([
                     { role: 'org' },
                 ])
                 .eq('user_id', req.session.userId)
                 .select()
-
-            if (data != null) {
-                req.session.orgId = data.org_id;
             }
 
             if (data == null) {
@@ -175,12 +175,16 @@ module.exports = {
                 ])
                 .select();
 
-            // const { data:org, error1 } = await supabase
-            //     .from('user_info')
-            //     .insert([
-            //         { or_id: 'someValue', other_column: 'otherValue' },
-            //     ])
-            //     .select()
+                console.log('33333333333');
+                console.log(data);
+                console.log(data[0].org_id);
+
+                const { data: org, error1 } = await supabase
+                .from('user_info')
+                .update([
+                  { org_id: data[0].org_id }
+                ])
+                .eq('user_id', req.session.userId);
 
             const { data: role, error2 } = await supabase
                 .from('user')
@@ -193,7 +197,7 @@ module.exports = {
             req.session.orgId = data[0].org_id;
 
 
-            console.log(value, data[0].org_id, error);
+            console.log(value, data[0].org_id, error1);
             if (error) {
                 return res.status(500).json({ success: false, error: 'Error inserting data' });
             }
