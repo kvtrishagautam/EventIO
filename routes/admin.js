@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {getAdminDash,getManageEvents,getNotification,getSkillPage,setPendingEvents}= require('../controllers/admin')
+const {getAdminDash,getManageEvents,getNotification,getSkillPage,setPendingEvents,viewEvent}= require('../controllers/admin')
 
 router.get('/dashboard',getAdminDash);
 
@@ -11,6 +11,9 @@ router.get('/notification',getNotification);
 router.get('/manageEvents',getManageEvents);
 
 router.post('/notification',setPendingEvents);
+
+router.get('/events/:title/:id', viewEvent );
+
 
 
 

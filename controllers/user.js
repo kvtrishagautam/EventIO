@@ -111,7 +111,7 @@ module.exports = {
             return res.status(500).send('Internal Server Error');
         }
     },
-
+    
     getEventDetail: async (req, res) => {
         try {
             console.log(req.params.id);

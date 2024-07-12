@@ -44,6 +44,7 @@ module.exports = {
                     console.error('Supabase search hint:', error.hint);
                 } else {
                     sResults.push(s_data);
+                    no_event=false;
                 }
             }
         } else {
@@ -51,26 +52,25 @@ module.exports = {
         }
         console.log(sResults);
 
-        res.render('./admin/notification', { title: 'Admin | Notification', loginStatus: req.session.userLoggedIn, s_events: sResults });
+        res.render('./admin/notification', { title: 'Admin | Notification', loginStatus: req.session.userLoggedIn, s_events: sResults ,no_event});
     },
     setPendingEvents: async (req, res) => {
-        const { value,approved } = req.body;
+        const { value,action } = req.body;
         
         console.log(value);
+        console.log(action);
     
         try {
-           if(approved){
+           
             const { data: approved_event, error } = await supabase
             .from('event')
-            .update({ status: 'approved' })
+            .update({ status: action })
             .eq('event_id', value)
             .select();
 
         if (error) {
             console.error('Error approving event:', error);
             return res.status(500).json({ success: false, message: 'Error approving event', error });
-        }
-
            }
             return res.status(200).json({ success: true, message: 'Event approved successfully' });
         } catch (err) {
@@ -83,4 +83,25 @@ module.exports = {
         res.render('./admin/manageevents', { title: 'Admin | Notification', loginStatus: req.session.userLoggedIn });
     },
 
+    viewEvent: async(req,res)=>{
+
+        try {
+            const { data: event, error } = await supabase
+                .from('event')
+                .select('*')
+                .eq('event_id', req.params.id)
+                .single();
+                console.log(event);
+    
+            if (error) {
+                return res.status(404).json({ error: 'Event not found' });
+            }
+            res.render('./admin/eventdetails.ejs', { title: 'Event | ' + req.params.title, loginStatus: req.session.userLoggedIn,selectedEvent: event });
+
+        } catch (err) {
+            res.status(500).json({ error: 'Internal server error' });
+        }
+        
+    }
+    
 }
