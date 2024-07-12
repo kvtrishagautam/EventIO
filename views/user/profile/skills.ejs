@@ -28,42 +28,17 @@
           <%- include('../includes/main-menu-pro') %>
           <div class="herosection">
             <div class="grid-container">
-                <div class="grid-item">Photography</div>
-                <div class="grid-item">Web Development</div>
-                <div class="grid-item">Solid works</div>
-                <div class="grid-item">Automation</div>
-                <div class="grid-item">Animations</div>
-                <div class="grid-item">Aftereffects</div>
-                <div class="grid-item">Managing Event</div>
-                <div class="grid-item">AI/ML</div>
-                <div class="grid-item">architecture</div>
-                <div class="grid-item">Building design</div>
-                <div class="grid-item">Arts</div>
-                <div class="grid-item">Fashion</div>
-                <div class="grid-item">Music</div>
-                <div class="grid-item">Economics</div>
-                <div class="grid-item">Current affairs</div>
-                <div class="grid-item">Scientific Research</div>
-                <div class="grid-item">Currency</div>
-                <div class="grid-item">Movies</div>
-                <div class="grid-item">Travelling</div>
-                <div class="grid-item">Coding</div>
-                <div class="grid-item">Robotics</div>
-                <div class="grid-item">UI/UX</div>
-                <div class="grid-item">Mechanical Design</div>
-                <div class="grid-item">Power Electronics</div>
-                <div class="grid-item">BIM/REVIT</div>
-                <div class="grid-item">MAT LAB</div>
-                <div class="grid-item">Sound Design</div>
-                <div class="grid-item"><A>AUTODESK Civil 3D</A></div>
+              <% skills.forEach(skill => { %>
+                <div class="grid-item"><%= skill.name %></div>
+                <% }); %> 
             </div>
             <div class="botton1">
               <a href="/dashboard"><button class="botton">SAVE CHANGES</button></a>
             </div>
-            
           </div>
         </div>  
           <script>
+
             document.addEventListener("DOMContentLoaded", function() {
               const hamburg = document.querySelector('.hamburg'); 
               const mainmenu = document.querySelector('.main-menu'); 
