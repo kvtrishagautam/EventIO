@@ -2,8 +2,6 @@ const { supabase } = require('../config/supabse')
 const express = require('express');
 
 
-
-
 module.exports = {
     getHomePage: async (req, res) => {
         console.log(req.session);
