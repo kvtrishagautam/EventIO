@@ -202,10 +202,6 @@ module.exports = {
     },
 
 
-    getProfileAcc: (req, res) => {
-        res.render('./user/profile/profile-accinfo.ejs', { title: 'Profile | Account Information', loginStatus: req.session.userLoggedIn })
-    },
-
     getProfileAttendedEvents: (req, res) => {
         res.render('./user/profile/profile-accinfo.ejs', { title: 'Profile | Account Information', loginStatus: req.session.userLoggedIn })
     },
@@ -326,14 +322,17 @@ module.exports = {
                     },
                 ])
                 .select();
-            console.log(postuser);
-
+                console.log('postuser:',postuser);
+                
+              
             if (error) {
                 console.error('Error inserting user info:', error.message);
                 res.status(500).send('Error inserting user info');
             } else {
                 console.log('Inserted user info:', postuser);
-                res.redirect('/dashboard');
+                req.session.userAccCreated = true;
+                console.log(req.session);
+                res.redirect('/dashboard'); 
             }
         } catch (err) {
             console.error('Unexpected error:', err.message);

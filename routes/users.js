@@ -4,26 +4,27 @@ const {getHomePage , getDashboard,getProfileAcc,getEvents,getEventDetail,postEve
 const checkLogedIn = require('../middlewares/checkLogedIn');
 const { supabase } = require('../config/supabse');
 const checkOrg = require('../middlewares/checkOrg');
+const checkAccCreated = require('../middlewares/checkAccCreated');
 
 
 /* GET home page. */
 router.get('/', getHomePage);
 
-router.get('/dashboard',checkLogedIn, getDashboard);
+router.get('/dashboard',checkLogedIn,checkAccCreated, getDashboard);
 
 router.get('/events', checkLogedIn, getEvents)
 
 router.get('/event/:title/:id', getEventDetail );
 
-router.get('/profile-accinfo', getProfileAcc);
+router.get('/profile-attendevents',checkAccCreated,  getProfileAttendedEvents)
 
-router.get('/profile-Change-Email', getProfileChangeEmail);
+router.get('/profile-Change-Email',checkAccCreated,  getProfileChangeEmail);
 
-router.get('/profile-Change-Password',getProfileChangePass);
+router.get('/profile-Change-Password',checkAccCreated, getProfileChangePass);
 
 router.get('/profile-accinfo',checkLogedIn,getAccInfo);
 
-router.get('/skills',checkLogedIn,getskills);
+router.get('/skills',checkLogedIn,checkAccCreated,getskills);
 
 router.get('/profile-attended-events', getProfileAttendedEvents); 
 
@@ -31,7 +32,7 @@ router.get('/category',checkLogedIn,getCategory)
 
 // POST routes 
 
-router.post('/skills',checkLogedIn,postSkills);
+router.post('/skills',checkLogedIn,checkAccCreated, postSkills);
 
 router.post('/profile-accinfo', postAccInfo);
 

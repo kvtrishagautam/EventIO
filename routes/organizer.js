@@ -4,6 +4,7 @@ const { getConductedEvents,checkOrganizerExist,postCreateEvents, getCreateEvents
 const checkOrg = require('../middlewares/checkOrg');
 const checkLogedIn = require('../middlewares/checkLogedIn');
 var router = express.Router();
+const checkAccCreated = require('../middlewares/checkAccCreated');
 const {getOrganizerDash} = require('../controllers/organizer')
 
 router.get('/dashboard',getOrganizerDash)
