@@ -34,7 +34,6 @@ module.exports = {
                 .from('user_info')
                 .select('a_events')
                 .eq('user_id', req.session.userId);
-            console.log(aEvents)
 
             let aResults = [];
 
@@ -258,8 +257,8 @@ module.exports = {
             }
 
             console.log('Updated Skills:', currentSkills);
-            res.status(200).send('Skills updated successfully');
-
+            // res.status(200).send('Skills updated successfully');
+            res.redirect('dashboard')
 
         }
         catch (err) {
@@ -350,7 +349,6 @@ module.exports = {
                 .select('a_events,f_name')
                 .eq('user_id', req.session.userId);
 
-            console.log(aEvents[0].a_events)
             if (error) {
                 console.error('Supabase error:', error.message);
                 console.error('Supabase details:', error.details);
@@ -384,7 +382,7 @@ module.exports = {
                 no_event = true;
             }
             console.log(aResults);
-            res.render('./profile/profile-attendedEvents', { title: 'Attended Events', a_events: aResults, no_event,loginStatus: req.session.userLoggedIn });
+            res.render('./user/profile/profile-attendedEvents', { title: 'Attended Events', a_events: aResults, no_event,loginStatus: req.session.userLoggedIn });
         } catch (err) {
             console.error('Error fetching specific column:', err.message);
             res.status(500).send('Internal Server Error');

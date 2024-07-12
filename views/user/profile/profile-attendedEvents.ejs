@@ -1,36 +1,33 @@
-<%- include('includes/header') %>
-<link rel="stylesheet" href="/stylesheets/c-events.css">
-</head>
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/profile/profile-accinfo.css" />
+    <link rel="stylesheet" href="/stylesheets/profile/main-menu.css" />
+    <link rel="stylesheet" href="/stylesheets/navbar.css" />
+    <link rel="stylesheet" href="/stylesheets/c-events.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Actor&display=swap" rel="stylesheet" />
+    <title>
+      <%= title%>
+    </title>
+  </head>
 
   <body>
-    <%- include('includes/navbar') %>
+    <%- include('../includes/navbar') %>
 
-
-    <div class="container">
-      <!-- hamburg starts -->
-      <div class="hamburg">
-          <img src="/images/hamburger/burger-menu-svgrepo-com.svg" alt="">
-      </div>
-      <!-- hamburg ends -->
-      <!-- main menu starts here -->
-      <div class="main-menu inactive">
-          <div class="full " id="full">
-              <div class="cross">
-                  <img src="/images/hamburger/cross-svgrepo-com.svg" alt="">
-              </div>
-              <p><span class="heading">Account Settings</span></p>
-              <div class="list">
-                  <p>Account info</p>
-                  <p>Change Email</p>
-                  <p>Password</p>
-                  <p>Dashboard</p>
-                  <p >AttendedEvents</p>
-              </div>
-          </div>
-      </div>
-      <!-- main menu ends here -->
-
-      <!-- conducted events starts here -->
+      <div class="container">
+        <%- include('../includes/main-menu-pro') %>
+          <!-- conducted events starts here -->
 
       <div class="c-events">
         <div class="c-heading">
@@ -68,22 +65,29 @@
           </div>
 
 
-    <!-- <%- include('includes/footer') %> -->
-  </body>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    const hamburg = document.querySelector('.hamburg'); 
-    const mainmenu = document.querySelector('.main-menu'); 
-    const cross = document.querySelector('.cross');
 
-    hamburg.addEventListener('click', function() {
-        hamburg.classList.toggle('inactive');
-        mainmenu.classList.toggle('inactive'); 
-    });
-    cross.addEventListener('click', function() {
-        hamburg.classList.toggle('inactive');
-        mainmenu.classList.toggle('inactive'); 
-    });
-});
-  </script>
-</html>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const hamburg = document.querySelector('.hamburg');
+          const mainmenu = document.querySelector('.main-menu');
+          const cross = document.querySelector('.cross');
+
+          hamburg.addEventListener('click', function () {
+            hamburg.classList.toggle('inactive');
+            mainmenu.classList.toggle('inactive');
+          });
+
+          cross.addEventListener('click', function () {
+            hamburg.classList.toggle('inactive');
+            mainmenu.classList.toggle('inactive');
+          });
+        })
+        document.getElementById('submit').addEventListener("click", function (z) {
+          document.getElementById('submit').innerHTML = 'SUBMITTING'
+          window.location.href = "/dashboard";
+        });
+      </script>
+  </body>
+
+  </html>

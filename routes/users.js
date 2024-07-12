@@ -26,8 +26,6 @@ router.get('/profile-accinfo',checkLogedIn,getAccInfo);
 
 router.get('/skills',checkLogedIn,checkAccCreated,getskills);
 
-router.get('/profile-attended-events', getProfileAttendedEvents); 
-
 router.get('/category',checkLogedIn,getCategory)
 
 // POST routes 
