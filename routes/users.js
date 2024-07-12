@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const {getHomePage , getDashboard,getProfileAcc,getEvents,getEventDetail,postEventDetail,postAccInfo,getCategory,getProfileAttendedEvents,getAccInfo,getProfileChangeEmail,getProfileChangePass,getskills,postSkills} = require('../controllers/user');
+const {getHomePage , getDashboard,getEvents,getEventDetail,postEventDetail,postAccInfo,getCategory,getProfileAttendedEvents,getAccInfo,getProfileChangeEmail,getProfileChangePass,getskills,postSkills} = require('../controllers/user');
+
 const checkLogedIn = require('../middlewares/checkLogedIn');
 const { supabase } = require('../config/supabse');
 const checkOrg = require('../middlewares/checkOrg');
@@ -28,7 +29,10 @@ router.get('/skills',checkLogedIn,checkAccCreated,getskills);
 
 router.get('/category',checkLogedIn,getCategory)
 
+
 // POST routes 
+
+
 
 router.post('/skills',checkLogedIn,checkAccCreated, postSkills);
 
