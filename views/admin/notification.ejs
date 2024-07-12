@@ -38,12 +38,12 @@
                     <% } %>
         </div>
     </div>
-    <!-- hamburg starts -->
-    <div class="hamburg">
-        <img src="/images/burger-menu-svgrepo-com.svg" alt="">
-    </div>
-    <!-- hamburg ends -->
     <div class="notif">
+        <!-- hamburg starts -->
+        <div class="hamburg">
+            <img src="/images/burger-menu-svgrepo-com.svg" alt="">
+        </div>
+        <!-- hamburg ends -->
         <!-- main menu starts here -->
 
         <div class="main-menu inactive">
@@ -72,38 +72,33 @@
 
         <!--notification starts-->
         <div class="all-noti">
-            <div class="notification">
-                <div class="noti-content">
-                    <div class="notification-title"><span>Request for approval:</span></div>
-                    <div class="notification-details"><span>New event:</span></div>
-                    <div class="event_name"><span>workshop</span></div>
-                </div>
-                <div class="button-group">
-                    <button class="view-btn">View</button>
-                    <div class="approve">
-                        <span>Approve Request</span>
-                        <img src="./img/tick-svgrepo-com.svg" alt="reject">
-                        <img src="./img/cross-svgrepo-com.svg" alt="approve">
+            <%for(let each of s_events){ %>
+                <%for (let pending of each){ %>
+                    <div class="notification">
+                        <div class="noti-content">
+                            <div class="notification-title"><span>Request for approval:</span></div>
+                            <div class="notification-details"><span>New event:</span></div>
+                            <div class="event_name"><span>
+                                    <%=pending.title%>
+                                </span></div>
+                        </div>
+                        <div class="button-group">
+                            <button class="view-btn">View</button>
+                            <div class="noti-approve">
+                                <span>Approve Request</span>
+                                <img class="reject" data-event-id="<%=pending.event_id%>"
+                                src="/images/admin/cross-svgrepo-com.svg" alt="reject">
+                                <img class="approve" data-event-id="<%=pending.event_id%>"
+                                    src="/images/admin/cross-svgrepo-com.svg" alt="approve">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="notification">
-                <div class="noti-content">
-                    <div class="notification-title"><span>Request for approval:</span></div>
-                    <div class="notification-details"><span>New event:</span></div>
-                    <div class="event_name"><span>workshop</span></div>
-                </div>
-                <div class="button-group">
-                    <button class="view-btn">View</button>
-                    <div class="approve">
-                        <span>Approve Request</span>
-                        <img src="./img/tick-svgrepo-com.svg" alt="reject">
-                        <img src="./img/cross-svgrepo-com.svg" alt="approve">
-                    </div>
-                </div>
-            </div>
+                    <%}}%>
+
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const hamburg = document.querySelector('.hamburg');
@@ -145,7 +140,38 @@
                 }
             });
         });
+
+        //code for approval
+        $(document).ready(function () {
+            $('.approve').click(function () {
+                const pending_eventId = $(this).data('event-id');
+                console.log(pending_eventId);
+                const button = $(this);
+
+                $.ajax({
+                    url: '/admin/notification',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ value: pending_eventId ,approved:true }),
+                    success: function (response) {
+                        if (response.success) {
+                            console.log(response.message);
+                            button.closest('.notification').fadeOut();
+                            location.reload();
+                        } else {
+                            console.error('Approval failed:', response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error approving event:', error);
+                    }
+                });
+            });
+
+        })
+
     </script>
+
 </body>
 
 </html>

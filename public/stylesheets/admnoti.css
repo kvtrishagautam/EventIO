@@ -1,12 +1,13 @@
 .all-noti{
     display: flex;
-    width: 100%;
+    width: 80%;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
 }
 .notification {
     padding: 1rem 1.5rem;
-    width: max-content;
+    width: 70rem;
     height: max-content;
     display: flex;
     gap: 1.5rem;
@@ -20,6 +21,7 @@
 
 .noti-content {
     display: flex;
+    width: 60%;
     gap: .5rem;
     align-items: center;
 }
@@ -44,18 +46,19 @@
     justify-content: space-between;
 }
 
-.approve{
+.noti-approve{
     display: flex;
     gap: 1rem;
     align-items: center;
 
 }
-.approve span {
+.noti-approve span {
     font-size: 1.1rem;
     font-weight: bold;
 }
-.approve img{
+.noti-approve img{
     width: 2rem;
+    cursor: pointer;
 }
 
 .view-btn {
@@ -75,13 +78,10 @@
 }
 
 .view-btn {
-    background-color: #28a745;
+    background-color:#7848F4 ;
 }
 
 .view-btn:hover {
-    background-color: #218838;
+    background-color: #5217e7;
 }
 
-.approve-btn:last-child {
-    margin-right: 0;
-}
