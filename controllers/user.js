@@ -85,14 +85,15 @@ module.exports = {
 
 
     getEvents: async (req, res) => {
+        console.log(req.session.userId);
         try {
             let { data: event, error } = await supabase
-    .from('event')
-    .select('event_id, title, desc, start_day, expired')
-    // .neq('user_id', req.session.userId)
-    .eq('status', 'approved') 
-    .order('created_at', { ascending: false })
-    .limit(6);
+                .from('event')
+                .select('event_id, title, desc, start_day, expired')
+                .neq('user_id', req.session.userId)
+                .eq('status', 'approved')
+                .order('created_at', { ascending: false })
+                .limit(6);
 
             console.log(event);
 
@@ -111,7 +112,7 @@ module.exports = {
     },
 
     getEventDetail: async (req, res) => {
-        
+
         try {
             console.log(req.params.id);
 
@@ -131,7 +132,7 @@ module.exports = {
             const { data: event, error: eventError } = eventResult;
             const { data: user_info, error: userInfoError } = userInfoResult;
 
-            console.log(event,'111111111111',user_info);
+            console.log(event, '111111111111', user_info);
             // Handle errors
             if (eventError) {
                 console.error('Supabase event fetch error:', eventError.message);
@@ -165,56 +166,60 @@ module.exports = {
 
     postEventDetail: async (req, res) => {
         const { eventId } = req.body;
-    
+
         try {
             const userId = req.session.userId;
             console.log(userId);
-    
+
             // Fetch user info
             const { data: user_info, error: fetchError } = await supabase
                 .from('user_info')
                 .select('a_events')
                 .eq('user_id', userId)
                 .single();
-    
+
             // Ensure user_info is not null
             if (user_info && user_info.a_events !== null) {
                 const currentEvents = user_info.a_events;
                 const updatedEvents = [...currentEvents, eventId];
                 console.log(updatedEvents);
-    
+
                 // Update user info
                 const { data: updatedData, error: updateError } = await supabase
                     .from('user_info')
                     .update({ a_events: updatedEvents })
                     .eq('user_id', userId)
                     .select();
-    
+
                 if (updateError) {
                     console.error('Supabase update error:', updateError.message);
                     return res.status(500).json({ error: 'Failed to update user info' });
                 }
-    
+
                 console.log(updatedData);
             } else {
                 // Insert new event list for the user
+                console.log(eventId);
+                console.log('33333333333');
                 const newEvents = [eventId];
-    
+
                 const { data: newevent, error: insertError } = await supabase
                     .from('user_info')
-                    .insert([
-                        { user_id: userId, a_events: newEvents }
+                    .update([
+                        { a_events: newEvents }
                     ])
+                    .eq('user_id', req.session.userId)
+
                     .select();
-    
+
                 if (insertError) {
                     console.error('Supabase insert error:', insertError.message);
                     return res.status(500).json({ error: 'Failed to insert new events' });
                 }
-    
+
                 console.log(newevent);
             }
-    
+
             // Send success response
             return res.json({ success: true });
         } catch (error) {
@@ -223,222 +228,222 @@ module.exports = {
             return res.status(500).json({ error: 'Booking confirmation failed' });
         }
     },
-    
 
 
-getProfileAttendedEvents: (req, res) => {
-    res.render('./user/profile/profile-accinfo.ejs', { title: 'Profile | Account Information', loginStatus: req.session.userLoggedIn })
-},
+
+    getProfileAttendedEvents: (req, res) => {
+        res.render('./user/profile/profile-accinfo.ejs', { title: 'Profile | Account Information', loginStatus: req.session.userLoggedIn })
+    },
 
     getProfileChangePass: (req, res) => {
         res.render('./user/profile/profile-changePass.ejs', { title: 'Profile | Account Change Password', loginStatus: req.session.userLoggedIn })
     },
 
-        getProfileChangeEmail: (req, res) => {
-            res.render('./user/profile/profile-changePass.ejs', { title: 'profile | Change Password', loginStatus: req.session.userLoggedIn })
-        },
+    getProfileChangeEmail: (req, res) => {
+        res.render('./user/profile/profile-changePass.ejs', { title: 'profile | Change Password', loginStatus: req.session.userLoggedIn })
+    },
 
-            getskills: async (req, res) => {
-                try {
-                    let { data: skills, error } = await supabase
-                        .from('skills')
-                        .select('skill');
+    getskills: async (req, res) => {
+        try {
+            let { data: skills, error } = await supabase
+                .from('skills')
+                .select('skill');
 
-                    if (error) { throw error };
-                    console.log('skills:', skills)
-                    res.render('./user/profile/skills.ejs', { title: 'profile | Skills', loginStatus: req.session.userLoggedIn, skills: skills.map(skill => ({ name: skill.skill })) });
-                }
-                catch (error) {
-                    console.error('Error fetching skills:', error.message);
-                    res.status(500).send('Error fetching skills');
-                }
-            },
-
-
-                postSkills: async (req, res) => {
-                    try {
-                        console.log(typeof req.body)
-                        console.log(req.body)
-                        console.log('hi')
-                        const { selectedSkills } = req.body;
-                        console.log('Selected Skills:', selectedSkills);
-
-                        // Fetch current user's skills from the database    
-                        let { data: user_info, error: fetchError } = await supabase
-                            .from('user_info')
-                            .select('skills')
-                            .eq('user_id', req.session.userId);
-                        // console.log(user_info[0].skills)
-
-                        if (fetchError) { throw fetchError; }
-
-                        // Extract current skills or initialize as an empty array
-                        let currentSkills = user_info[0]?.skills || [];
-
-                        // Filter out duplicate skills from selectedSkills
-                        let uniqueSelectedSkills = selectedSkills.filter(skill => !currentSkills.includes(skill));
-
-                        // Add unique selected skills to the current skills array
-                        currentSkills.push(...uniqueSelectedSkills);
-                        console.log(currentSkills);
+            if (error) { throw error };
+            console.log('skills:', skills)
+            res.render('./user/profile/skills.ejs', { title: 'profile | Skills', loginStatus: req.session.userLoggedIn, skills: skills.map(skill => ({ name: skill.skill })) });
+        }
+        catch (error) {
+            console.error('Error fetching skills:', error.message);
+            res.status(500).send('Error fetching skills');
+        }
+    },
 
 
-                        // Update the skills field in the user_info table
-                        let { data: updatedUser, error: updateError } = await supabase
-                            .from('user_info')
-                            .update({ skills: currentSkills })
-                            .eq('user_id', req.session.userId);
+    postSkills: async (req, res) => {
+        try {
+            console.log(typeof req.body)
+            console.log(req.body)
+            console.log('hi')
+            const { selectedSkills } = req.body;
+            console.log('Selected Skills:', selectedSkills);
 
-                        if (updateError) {
-                            throw updateError;
-                        }
+            // Fetch current user's skills from the database    
+            let { data: user_info, error: fetchError } = await supabase
+                .from('user_info')
+                .select('skills')
+                .eq('user_id', req.session.userId);
+            // console.log(user_info[0].skills)
 
-                        console.log('Updated Skills:', currentSkills);
-                        // res.status(200).send('Skills updated successfully');
-                        res.redirect('dashboard')
+            if (fetchError) { throw fetchError; }
 
-                    }
-                    catch (err) {
-                        console.error('Error fetching specific column:', err.message);
-                        res.status(500).send('Internal Server Error');
-                    }
-                },
+            // Extract current skills or initialize as an empty array
+            let currentSkills = user_info[0]?.skills || [];
 
+            // Filter out duplicate skills from selectedSkills
+            let uniqueSelectedSkills = selectedSkills.filter(skill => !currentSkills.includes(skill));
 
-                    getAccInfo: async (req, res) => {
-                        console.log(req.body);
-                        try {
-                            if (!req.session.userId) {
-                                return res.status(401).send('User not logged in');
-                            }
-                            const { data: cur_user, error } = await supabase
-                                .from('user')
-                                .select('username')
-                                .eq('user_id', req.session.userId);
-                            if (error) {
-                                throw error;
-                            }
-                            if (cur_user && cur_user.length > 0) {
-                                let cur_userData = cur_user[0].username;
-                                console.log(cur_userData)
+            // Add unique selected skills to the current skills array
+            currentSkills.push(...uniqueSelectedSkills);
+            console.log(currentSkills);
 
 
-                                res.render("./user/profile/profile-accinfo.ejs", {
-                                    title: "Profile | Account Information",
-                                    loginStatus: req.session.userLoggedIn,
-                                    cur_userData: cur_userData, loginStatus: req.session.userLoggedIn
-                                });
-                            } else {
-                                throw new Error('User data not found');
+            // Update the skills field in the user_info table
+            let { data: updatedUser, error: updateError } = await supabase
+                .from('user_info')
+                .update({ skills: currentSkills })
+                .eq('user_id', req.session.userId);
 
-                            }
-                        } catch (error) {
-                            console.error('Error fetching user data:', error.message);
-                            res.status(500).send('Error fetching user data');
-                        }
+            if (updateError) {
+                throw updateError;
+            }
+
+            console.log('Updated Skills:', currentSkills);
+            // res.status(200).send('Skills updated successfully');
+            res.redirect('dashboard')
+
+        }
+        catch (err) {
+            console.error('Error fetching specific column:', err.message);
+            res.status(500).send('Internal Server Error');
+        }
+    },
+
+
+    getAccInfo: async (req, res) => {
+        console.log(req.body);
+        try {
+            if (!req.session.userId) {
+                return res.status(401).send('User not logged in');
+            }
+            const { data: cur_user, error } = await supabase
+                .from('user')
+                .select('username')
+                .eq('user_id', req.session.userId);
+            if (error) {
+                throw error;
+            }
+            if (cur_user && cur_user.length > 0) {
+                let cur_userData = cur_user[0].username;
+                console.log(cur_userData)
+
+
+                res.render("./user/profile/profile-accinfo.ejs", {
+                    title: "Profile | Account Information",
+                    loginStatus: req.session.userLoggedIn,
+                    cur_userData: cur_userData, loginStatus: req.session.userLoggedIn
+                });
+            } else {
+                throw new Error('User data not found');
+
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error.message);
+            res.status(500).send('Error fetching user data');
+        }
+    },
+
+
+    postAccInfo: async (req, res) => {
+        try {
+            const num = parseInt(req.body.phno);
+            console.log(typeof num)
+            console.log('Form data:', req.body);
+            const { data: postuser, error } = await supabase
+                .from('user_info')
+                .insert([
+                    {
+                        f_name: req.body.fname,
+                        l_name: req.body.lname,
+                        phno: num,
+                        address: req.body.address,
+                        course: req.body.course,
+                        sem: (req.body.sem),
+                        user_id: req.session.userId,
                     },
+                ])
+                .select();
+            console.log('postuser:', postuser);
 
 
-                        postAccInfo: async (req, res) => {
-                            try {
-                                const num = parseInt(req.body.phno);
-                                console.log(typeof num)
-                                console.log('Form data:', req.body);
-                                const { data: postuser, error } = await supabase
-                                    .from('user_info')
-                                    .insert([
-                                        {
-                                            f_name: req.body.fname,
-                                            l_name: req.body.lname,
-                                            phno: num,
-                                            address: req.body.address,
-                                            course: req.body.course,
-                                            sem: (req.body.sem),
-                                            user_id: req.session.userId,
-                                        },
-                                    ])
-                                    .select();
-                                console.log('postuser:', postuser);
+            if (error) {
+                console.error('Error inserting user info:', error.message);
+                res.status(500).send('Error inserting user info');
+            } else {
+                console.log('Inserted user info:', postuser);
+                req.session.userAccCreated = true;
+                console.log(req.session);
+                res.redirect('/');
+            }
+        } catch (err) {
+            console.error('Unexpected error:', err.message);
+            res.status(500).send('Unexpected error');
+        }
+    },
 
 
-                                if (error) {
-                                    console.error('Error inserting user info:', error.message);
-                                    res.status(500).send('Error inserting user info');
-                                } else {
-                                    console.log('Inserted user info:', postuser);
-                                    req.session.userAccCreated = true;
-                                    console.log(req.session);
-                                    res.redirect('/dashboard');
-                                }
-                            } catch (err) {
-                                console.error('Unexpected error:', err.message);
-                                res.status(500).send('Unexpected error');
-                            }
-                        },
+    getProfileAttendedEvents: async (req, res) => {
+        try {
+
+            // Fetch the all a-event id from the table userinfo
+            let { data: aEvents, error } = await supabase
+                .from('user_info')
+                .select('a_events,f_name')
+                .eq('user_id', req.session.userId);
+
+            if (error) {
+                console.error('Supabase error:', error.message);
+                console.error('Supabase details:', error.details);
+                console.error('Supabase hint:', error.hint);
+                res.status(500).send('Error fetching data');
+                return;
+            }
+
+            // Array to store the results
+            let aResults = [];
+            let no_event;
+            if (aEvents[0].a_events != null) {
+                for (let value of aEvents[0].a_events) {
+                    // console.log(value)
+
+                    let { data: a_data, error } = await supabase
+                        .from('event')
+                        .select('event_id,title,desc,start_day,expired')
+                        .eq('event_id', value);
+
+                    // console.log(a_data)
+                    if (error) {
+                        console.error('Supabase search error:', error.message);
+                        console.error('Supabase search details:', error.details);
+                        console.error('Supabase search hint:', error.hint);
+                    } else {
+                        aResults.push(a_data);
+                    }
+                }
+            } else {
+                no_event = true;
+            }
+            console.log(aResults);
+            res.render('./user/profile/profile-attendedEvents', { title: 'Attended Events', a_events: aResults, no_event, loginStatus: req.session.userLoggedIn });
+        } catch (err) {
+            console.error('Error fetching specific column:', err.message);
+            res.status(500).send('Internal Server Error');
+        }
+
+    },
+    getCategory: async (req, res) => {
 
 
-                            getProfileAttendedEvents: async (req, res) => {
-                                try {
-
-                                    // Fetch the all a-event id from the table userinfo
-                                    let { data: aEvents, error } = await supabase
-                                        .from('user_info')
-                                        .select('a_events,f_name')
-                                        .eq('user_id', req.session.userId);
-
-                                    if (error) {
-                                        console.error('Supabase error:', error.message);
-                                        console.error('Supabase details:', error.details);
-                                        console.error('Supabase hint:', error.hint);
-                                        res.status(500).send('Error fetching data');
-                                        return;
-                                    }
-
-                                    // Array to store the results
-                                    let aResults = [];
-                                    let no_event;
-                                    if (aEvents[0].a_events != null) {
-                                        for (let value of aEvents[0].a_events) {
-                                            // console.log(value)
-
-                                            let { data: a_data, error } = await supabase
-                                                .from('event')
-                                                .select('event_id,title,desc,start_day,expired')
-                                                .eq('event_id', value);
-
-                                            // console.log(a_data)
-                                            if (error) {
-                                                console.error('Supabase search error:', error.message);
-                                                console.error('Supabase search details:', error.details);
-                                                console.error('Supabase search hint:', error.hint);
-                                            } else {
-                                                aResults.push(a_data);
-                                            }
-                                        }
-                                    } else {
-                                        no_event = true;
-                                    }
-                                    console.log(aResults);
-                                    res.render('./user/profile/profile-attendedEvents', { title: 'Attended Events', a_events: aResults, no_event, loginStatus: req.session.userLoggedIn });
-                                } catch (err) {
-                                    console.error('Error fetching specific column:', err.message);
-                                    res.status(500).send('Internal Server Error');
-                                }
-
-                            },
-                                getCategory: async (req, res) => {
+        console.log(req.query);
+        let { data: user_info, error } = await supabase
+            .from('user_info')
+            .select("*")
+            .contains('skills', [req.query.tag])
+        console.log(user_info);
 
 
-                                    console.log(req.query);
-                                    let { data: user_info, error } = await supabase
-                                        .from('user_info')
-                                        .select("*")
-                                        .contains('skills', [req.query.tag])
-                                    console.log(user_info);
-
-
-                                    res.render('./user/category.ejs', { title: 'Category', loginStatus: req.session.userLoggedIn, skill: req.query.tag, user_info })
-                                },
+        res.render('./user/category.ejs', { title: 'Category', loginStatus: req.session.userLoggedIn, skill: req.query.tag, user_info })
+    },
 
 
 };

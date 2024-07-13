@@ -115,7 +115,7 @@ module.exports = {
                     venue: req.body.venue, start_time: req.body.start_time,
                     end_time: req.body.end_time,
                     start_day: req.body.start_day, end_day: req.body.end_day,
-                    org_id: req.session.orgId, status: 'pending'
+                    org_id: req.session.orgId, status: 'pending',user_id: req.session.userId
                 }
             ]);
 
@@ -133,9 +133,10 @@ module.exports = {
             .select('c_events')
             .eq('org_id', req.session.orgId);
         // console.log(user_info[0].c_events)
+        console.log(user_info[0]);
 
-
-        const updatedEvents = [...user_info[0].c_events || [], event[0].event_id];
+       if(user_info[0] !=null) {
+        const updatedEvents = [...(user_info[0].c_events || []), event[0].event_id];
         console.log(updatedEvents)
 
         let { data: updatedC_events, error4 } = await supabase
@@ -149,6 +150,25 @@ module.exports = {
             console.error('Supabase details:', error.details);
             console.error('Supabase hint:', error.hint);
             res.status(500).send('Error inserting data');
+        }}else {
+            // Insert new event list for the user
+            let eventId=event[0].event_id;
+            const newEvents = [eventId];
+
+            const { data: newevent, error: insertError } = await supabase
+                .from('user_info')
+                .insert([
+                    { org_id: req.session.orgId, c_events: newEvents }
+                ])
+                .eq('user_id', req.session.userId)
+                .select();
+
+            if (insertError) {
+                console.error('Supabase insert error:', insertError.message);
+                return res.status(500).json({ error: 'Failed to insert new events' });
+            }
+
+            console.log(newevent);
         }
         if (error) {
             console.error('Supabase error:', error.message);
