@@ -10,7 +10,11 @@ body{
     font-size: 14px;
     font-family: poppins;
 }
-
+#body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
 
 /* navbar ends here */
 
@@ -72,6 +76,7 @@ body{
     height: 6rem;
     position: absolute;
     display: flex;
+    display: none;
     top: 42rem;
     justify-content: center;
 }
@@ -130,7 +135,6 @@ body{
     width: 100%;
     padding-bottom: 7rem;
     /* margin-left: 3.5rem; */
-
 }
 
 .event-head{
@@ -175,11 +179,12 @@ body{
 
 
 .event-cat{
-    width: 100%;
+    width: 95%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    justify-self: center;
 }
 
 .event-cat-box{

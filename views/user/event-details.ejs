@@ -1,6 +1,9 @@
 <%- include('includes/header') %>
   <link rel="stylesheet" href="/stylesheets/event-details.css" />
+  <link rel="stylesheet" href="/stylesheets/navbar.css" />
+
   </head>
+
 
   <body>
     <div id="body">
@@ -12,8 +15,9 @@
 
             <a style="text-decoration: none;" href="/events">
               <div class="herobtn">
-              <p>&lt;&lt; Back</p>
-            </div></a>
+                <p>&lt;&lt; Back</p>
+              </div>
+            </a>
             <div class="heroright">
               <div class="herotext">
                 <h1>
@@ -42,8 +46,8 @@
                     Registered
                     <%}else{%>
                       Book now
-                    <%}%>
-                  </div>
+                      <%}%>
+                </div>
                 <!-- <dic class="btn5">Program promoter</dic> -->
                 <!-- <div class="btn6">No Refunds</div> -->
               </div>
@@ -136,33 +140,136 @@
         </div>
       </div>
     </div>
+
+    <div id="org_popup" class="org_popup">
+      <div class="org_close">
+        <img id="org_close" src="./images/heroimgs/cross-svgrepo-com.svg" alt="">
+      </div>
+      <div id="toOrg">
+        <h3>Are you sure you want to continue as Organizer?</h3>
+        <button id="toOrg_confirm">Confirm</button>
+      </div>
+      <div id="orgDetail">
+        <div class="pop-sub1">
+          <h2>Enter Organization name:</h2>
+          <input type="text" name="org_name" id="org_name">
+        </div>
+        <div class="pop-sub2">
+          <h5>Continue as Organizer</h5>
+          <a href="/organizer/create-events"><button id="org_confirm">Confirm</button></a>
+        </div>
+      </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-      $(document).ready(function () {
+      const org1 = document.getElementById("create_event");
+      const org2 = document.getElementById('org2_btn')
 
-      const register = document.getElementById('registerEvent');
-      var attended = '<%=attended%>' ;
-      console.log(attended);
+      org1.addEventListener("click", () => {
+        document.getElementById("org_popup").classList.add("showw");
+        document.getElementById("body").style.filter = "blur(5px)";
+        document.getElementById("body").style.pointerEvents = "none";
+      });
 
-      
-      register.addEventListener("click", () => {
-          if (attended=="false") {
-          document.getElementById("popup").classList.add("show");
+      if ('<%=loginStatus%>' == true) {
+        org2.addEventListener("click", () => {
+          document.getElementById("org_popup").classList.add("showw");
           document.getElementById("body").style.filter = "blur(5px)";
           document.getElementById("body").style.pointerEvents = "none";
-          }
         });
 
-        document.getElementById('cancel-btn').addEventListener("click", () => {
-          document.getElementById("popup").classList.remove("show");
+
+        console.log('<%=loginStatus%>');
+
+
+        document.getElementById('org_close').addEventListener("click", () => {
+          document.getElementById("org_popup").classList.remove("showw");
           document.getElementById("body").style.filter = "none";
           document.getElementById("body").style.pointerEvents = "all";
         });
 
+        //once an organizer
+        $(document).ready(function () {
+          $('#toOrg_confirm').click(function () {
+            $.ajax({
+              url: '/organizer/check-org',
+              method: 'GET',
+              success: function (response) {
+                console.log(response);
+                if (response.login === false) {
+                  window.location.href = "/auth/login";
+                } else {
+                  if (response.success == true && response.is_org == false) {
+                    // window.location.href = "/organizer/create-events";
+                    document.getElementById("org_popup").classList.add("showw");
+                    document.getElementById("toOrg").style.display = "none";
+                    document.getElementById("orgDetail").style.display = "flex";
+                    document.getElementById("body").style.filter = "blur(5px)";
+                    document.getElementById("body").style.pointerEvents = "none";
+                  } else {
+                    window.location.href = "/organizer/create-events";
+                  }
+                }
+              },
+              error: function (xhr, status, error) {
+                console.error('Error checking org_id:', error);
+              }
+            });
+          });
+
+          //first time organizer
+
+          $('#org_confirm').click(function () {
+            const org_name = $('#org_name').val();
+
+            $.ajax({
+              url: 'organizer/check-org',
+              method: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify({ value: org_name }),
+              success: function (response) {
+                // document.getElementById("org_popup").classList.remove ("showw");
+                // document.getElementById("body").style.filter = "none";
+                // document.getElementById("body").style.pointerEvents = "all";
+                console.log(response);
+                window.location.href = '/organizer/create-events';
+              },
+              error: function (xhr, status, error) {
+                console.error(error);
+              }
+            });
+          });
+        });
+      }
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+          const register = document.getElementById('registerEvent');
+          var attended = '<%=attended%>';
+          console.log(attended);
+
+
+          register.addEventListener("click", () => {
+            if (attended == "false") {
+              document.getElementById("popup").classList.add("show");
+              document.getElementById("body").style.filter = "blur(5px)";
+              document.getElementById("body").style.pointerEvents = "none";
+            }
+          });
+
+          document.getElementById('cancel-btn').addEventListener("click", () => {
+            document.getElementById("popup").classList.remove("show");
+            document.getElementById("body").style.filter = "none";
+            document.getElementById("body").style.pointerEvents = "all";
+          });
+
           $('#confirm-btn').click(function () {
             var eventId = '<%=selectedEvent.event_id%>';
-            attended=true;
+            attended = true;
 
             $.ajax({
               url: '/event/<%=selectedEvent.title %>/<%=selectedEvent.event_id %>',
@@ -170,7 +277,7 @@
               contentType: 'application/json',
               data: JSON.stringify({ eventId }),
               success: function (response) {
-                if (response.success) { 
+                if (response.success) {
                   register.textContent = 'Registered'
                   document.getElementById("popup").style.display = "none";
                   document.getElementById("body").style.filter = "none";
@@ -187,10 +294,10 @@
           });
         });
 
-      
+
 
     </script>
 
-    </body>
+  </body>
 
   </html>

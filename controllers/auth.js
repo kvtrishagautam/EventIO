@@ -22,11 +22,11 @@ module.exports = {
 
   signedUpUser: async (req, res) => {
     const { data, error } = await supabase
-        .from('user')
-        .insert([
-            { email: req.body.email, password: req.body.password, username: req.body.username, role: "student" },
-        ])
-        .select()
+      .from('user')
+      .insert([
+        { email: req.body.email, password: req.body.password, username: req.body.username, role: "student" },
+      ])
+      .select()
 
 
     // console.log(req.body);
@@ -35,25 +35,25 @@ module.exports = {
 
     return res.redirect('/auth/login')
 
-},
-logedinUser: async (req, res) => {
-  try {
+  },
+  logedinUser: async (req, res) => {
+    try {
       // Fetch user details from Supabase based on email
       let { data: users, error } = await supabase
-          .from('user')
-          .select('*')
-          .eq('email', req.body.email)
-          .single();
+        .from('user')
+        .select('*')
+        .eq('email', req.body.email)
+        .single();
 
       if (error) {
-          throw error;
+        throw error;
       }
 
       // Check if user exists and verify password
       if (!users || users.password !== req.body.password) {
-          // User not found or password doesn't match
-           errMsg = 'user not found'
-          return res.redirect('/auth/login');
+        // User not found or password doesn't match
+        errMsg = 'user not found'
+        return res.redirect('/auth/login');
       }
 
       // Set session variables for logged in user
@@ -62,17 +62,36 @@ logedinUser: async (req, res) => {
 
       // Redirect based on user role
       if (users.role == 'admin') {
-          res.redirect('/admin/dashboard');
+        res.redirect('/admin/dashboard');
       } else if (users.role == 'org') {
-          res.redirect('/organizer/conducted-events');
+        // Retrieve user_info from Supabase
+        console.log(req.session.userId);
+        let { data: user_info, error } = await supabase
+          .from('user_info')
+          .select('org_id')
+          .eq('user_id', req.session.userId)
+          .single();
+        console.log(user_info);
+        console.log(user_info.org_id);
+
+        req.session.orgId = user_info.org_id;
+        console.log(req.session.orgId);
+
+        res.redirect('/organizer/conducted-events')
+        // Check for errors in the query
+        if (error) {
+          console.error('Error retrieving user info:', error);
+          res.status(500).send('Error retrieving user info');
+          return;
+        }
       } else {
-          res.redirect('/');
+        res.redirect('/')
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error logging in:', error.message);
       res.status(500).json({ message: 'Internal server error' });
-  }
-},
+    }
+  },
   logoutUser: (req, res) => {
     req.session.destroy((err) => {
       if (err) {
@@ -84,6 +103,7 @@ logedinUser: async (req, res) => {
   getforpass: (req, res) => {
     res.render('./authentication/forgot-password.ejs');
   },
+
 
   postforpass: async (req, res) => {
     const { email } = req.body;

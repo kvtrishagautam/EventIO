@@ -1,137 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/profile/dashboard.css" />
-    <link rel="stylesheet" href="/stylesheets/profile/main-menu.css" />
-    <link rel="stylesheet" href="/stylesheets/navbar.css">
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Actor&display=swap"
-      rel="stylesheet"
-    />
-    <title><%= title%></title>
-  </head>
-    <body>
-      <%- include('../includes/navbar') %>
 
-        <div class="container">
-          <%- include('../includes/main-menu-pro') %>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/profile/dashboard.css" />
+  <link rel="stylesheet" href="/stylesheets/profile/main-menu.css" />
+  <link rel="stylesheet" href="/stylesheets/navbar.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Actor&display=swap" rel="stylesheet" />
+  <title>
+    <%= title%>
+  </title>
+</head>
 
-           <!-- hero section starts here -->
-      <div class="herosection">
-        <!-- herotop starts -->
-        <div class="herotop">
-          <div class="sectionwithbg"></div>
-          <div class="herotopbtm">
-            <div class="pro-section">
-              <div class="profileicon">
-                <img src="./images/hiba/img-profile.svg" alt="" />
-              </div>
-              <div class="pro-details">
-                <p class="username"><%= userDashData.f_name %> <%= userDashData.l_name %></p>
-                <p class="userfield">UI/UX Designer</p> <!-- Update as per your actual user details -->
-            </div>
-            </div>
-            <div class="edit"><a href="/profile-accinfo">Edit Profile</a></div>
-          </div>
-        </div>
-        <!-- herotop ends -->
+<body>
+    <div id="body" class="body">
+    <%- include('../includes/navbar') %>
 
-        <!-- hero bottom starts -->
-        <div class="hero-bottom">
-          <div class="about box">
-            <p id="about">About</p>
-            <div class="aboutcontent">
-              <div class="grid-item">
-                <img src="./images/hiba/person.svg" alt="" id="size" /><p> <%= userDashData.course %></p>
-              </div>
-              <div class="grid-item">
-                <img src="./images/hiba/Call.svg" alt="" maxlength="10" id="size"/><p> <%= userDashData.phno %></p>
-            </div>
-            <div class="grid-item">
-              <img src="./images/hiba/Location.svg" alt="" id="size"/> <p> <%= userDashData.address %></p>
-          </div>
-              <div class="grid-item">
-                <img src="./images/hiba/Message.svg" alt="" id="size"/> <p><%= userDashuser.email %></p>
-              </div>
-            </div>
-          </div>
+      <div class="container">
+        <%- include('../includes/main-menu-pro') %>
 
-<!-- attended events -->
-          <div class="contents box lists" id="about">
-            <p>Events</p>
-            <% for(events of a_events){ %>
-              <%for(let eachEvent of events){%>
-                <div class="imgcon">
-                  <div class="dashevents">
-                   <p > <span class="DEtitle"><%=eachEvent.title%></span></p>
-                  <span class="DEdesc">
-                   <p><%=eachEvent.start_day%></p>
-                  </span> 
+          <!-- hero section starts here -->
+          <div class="herosection">
+            <!-- herotop starts -->
+            <div class="herotop">
+              <div class="sectionwithbg"></div>
+              <div class="herotopbtm">
+                <div class="pro-section">
+                  <div class="profileicon">
+                    <img src="./images/hiba/img-profile.svg" alt="" />
                   </div>
-                  <div class="imageplus">
-                    <a href="/event/<%=eachEvent.title %>/<%=eachEvent.event_id %>"><img src="./images/hiba/plus.svg" alt="" ></a>
+                  <div class="pro-details">
+                    <p class="username">
+                      <%= userDashData.f_name %>
+                        <%= userDashData.l_name %>
+                    </p>
+                    <p class="userfield">UI/UX Designer</p> <!-- Update as per your actual user details -->
                   </div>
-                 </div>  
-                 <%} } %>
-          </div>
-      
-          <div class="certificate box" id="about">
-            <p>Certificates</p>
-
-          </div>
-          
-
-          <div class="box" id="about">
-            <p>Skills</p>
-            <div class="skillcontent">
-                <ul class="skillslist">
-                  <% (userDashData.skills || []).forEach(skill => { %>
-                    <li class="listofskills" ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="planeicon">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                    </svg>
-                    <%= skill %></li>
-                <% }); %>
-                </ul>
+                </div>
+                <div class="edit"><a href="/profile-accinfo">Edit Profile</a></div>
+              </div>
             </div>
-       
-        <!-- hero bottom ends -->
-      </div>
-    </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const hamburg = document.querySelector('.hamburg'); 
-        const mainmenu = document.querySelector('.main-menu'); 
-        const cross = document.querySelector('.cross');
-  
-        hamburg.addEventListener('click', function() {
-          hamburg.classList.toggle('inactive');
-          mainmenu.classList.toggle('inactive'); 
-        });
-  
-        cross.addEventListener('click', function() {
-          hamburg.classList.toggle('inactive');
-          mainmenu.classList.toggle('inactive'); 
-        });
-      });
+            <!-- herotop ends -->
 
-      const skillContent = document.querySelector('.skillcontent');
-const skillsList = document.querySelectorAll('.skillslist li');
+            <!-- hero bottom starts -->
+            <div class="hero-bottom">
+              <div class="about box">
+                <p id="about">About</p>
+                <div class="aboutcontent">
+                  <div class="grid-item">
+                    <img src="./images/hiba/person.svg" alt="" id="size" />
+                    <p>
+                      <%= userDashData.course %>
+                    </p>
+                  </div>
+                  <div class="grid-item">
+                    <img src="./images/hiba/Call.svg" alt="" maxlength="10" id="size" />
+                    <p>
+                      <%= userDashData.phno %>
+                    </p>
+                  </div>
+                  <div class="grid-item">
+                    <img src="./images/hiba/Location.svg" alt="" id="size" />
+                    <p>
+                      <%= userDashData.address %>
+                    </p>
+                  </div>
+                  <div class="grid-item">
+                    <img src="./images/hiba/Message.svg" alt="" id="size" />
+                    <p>
+                      <%= userDashuser.email %>
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-if (skillsList.length >= 4) {
-  skillContent.classList.add('has-scrollbar');
-}
-    </script>
-</body>
+              <!-- attended events -->
+              <div class="contents box lists" id="about">
+                <p>Events</p>
+                <% for(events of a_events){ %>
+                  <%for(let eachEvent of events){%>
+                    <div class="imgcon">
+                      <div class="dashevents">
+                        <p> <span class="DEtitle">
+                            <%=eachEvent.title%>
+                          </span></p>
+                        <span class="DEdesc">
+                          <p>
+                            <%=eachEvent.start_day%>
+                          </p>
+                        </span>
+                      </div>
+                      <div class="imageplus">
+                        <a href="/event/<%=eachEvent.title %>/<%=eachEvent.event_id %>"><img
+                            src="./images/hiba/plus.svg" alt=""></a>
+                      </div>
+                    </div>
+                    <%} } %>
+              </div>
+
+              <div class="certificate box" id="about">
+                <p>Certificates</p>
+
+              </div>
+
+
+              <div class="box" id="about">
+                <p>Skills</p>
+                <div class="skillcontent">
+                  <ul class="skillslist">
+                    <% (userDashData.skills || []).forEach(skill=> { %>
+                      <li class="listofskills"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                          stroke-width="1.5" stroke="currentColor" class="planeicon">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                        </svg>
+                        <%= skill %>
+                      </li>
+                      <% }); %>
+                  </ul>
+                </div>
+
+                <!-- hero bottom ends -->
+              </div>
+            </div>
+          </div>
+          </div>
+          <%- include('../includes/org-popup') %>
+
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                const hamburg = document.querySelector('.hamburg');
+                const mainmenu = document.querySelector('.main-menu');
+                const cross = document.querySelector('.cross');
+
+                hamburg.addEventListener('click', function () {
+                  hamburg.classList.toggle('inactive');
+                  mainmenu.classList.toggle('inactive');
+                });
+
+                cross.addEventListener('click', function () {
+                  hamburg.classList.toggle('inactive');
+                  mainmenu.classList.toggle('inactive');
+                });
+              });
+
+              const skillContent = document.querySelector('.skillcontent');
+              const skillsList = document.querySelectorAll('.skillslist li');
+
+              if (skillsList.length >= 4) {
+                skillContent.classList.add('has-scrollbar');
+              }
+            </script>
+  </body>
+
+
 </html>

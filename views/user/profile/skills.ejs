@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/profile/skills.css" />
     <link rel="stylesheet" href="/stylesheets/profile/main-menu.css" />
+    <link rel="stylesheet" href="/stylesheets/navbar.css" />
+
     <link
       href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
       rel="stylesheet"
@@ -21,81 +23,86 @@
     />
     <title><%= title%></title>
   </head>
-    <body>
-      <%- include('../includes/navbar') %>
-
-        <div class="container">
-          <%- include('../includes/main-menu-pro') %>
-          <div class="herosection">
-            <div class="grid-container">
-              <% skills.forEach(skill => { %>
-                <div class="grid-item"><%= skill.name %></div>
-                <% }); %> 
-            </div>
-            <div class="botton1">
-              <a href="/dashboard"><button class="botton">SAVE CHANGES</button></a>
-            </div>
-          </div>
-        </div>  
-          <script>
-
-            document.addEventListener("DOMContentLoaded", function() {
-              const hamburg = document.querySelector('.hamburg'); 
-              const mainmenu = document.querySelector('.main-menu'); 
-              const cross = document.querySelector('.cross');
-        
-              hamburg.addEventListener('click', function() {
-                hamburg.classList.toggle('inactive');
-                mainmenu.classList.toggle('inactive'); 
-              });
-        
-              cross.addEventListener('click', function() {
-                hamburg.classList.toggle('inactive');
-                mainmenu.classList.toggle('inactive'); 
-              });
-            });
-
-
-            const selectedSkills = {};
-
-document.addEventListener("DOMContentLoaded", function() {
-document.querySelectorAll('.grid-item').forEach(item => {
-  const skill = item.textContent.trim();
-  selectedSkills[skill] = false; // Initialize all skills as false (not selected)
-
-  item.addEventListener('click', function() {
-    selectedSkills[skill] = !selectedSkills[skill]; // Toggle selected state
-    item.classList.toggle('selected');
-  });
-});
-console.log(selectedSkills);
-document.querySelector('.botton').addEventListener('click', async function() {
-  document.querySelector('.botton').innerHTML='Saved!';
-  const selectedSkillsArray = Object.keys(selectedSkills).filter(skill => selectedSkills[skill]);
-  console.log(selectedSkillsArray);
+  <body>
+        <div id="body" class="body">
+        <%- include('../includes/navbar') %>
   
-  try {
-      const response = await fetch('/skills', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ selectedSkills: selectedSkillsArray }),
-      
-      });
+          <div class="container">
+            <%- include('../includes/main-menu-pro') %>
+            <div class="herosection">
+              <div class="grid-container">
+                <% skills.forEach(skill => { %>
+                  <div class="grid-item"><%= skill.name %></div>
+                  <% }); %> 
+              </div>
+              <div class="botton1">
+                <a href="/dashboard"><button class="botton">SAVE CHANGES</button></a>
+              </div>
+            </div>
+          </div>  
+          </div>
+          <%- include('../includes/org-popup') %>
 
-      if (response.ok) {
-        console.log('Skills updated successfully');
-      } else {
-        console.error('Failed to update skills');
+            <script>
+  
+              document.addEventListener("DOMContentLoaded", function() {
+                const hamburg = document.querySelector('.hamburg'); 
+                const mainmenu = document.querySelector('.main-menu'); 
+                const cross = document.querySelector('.cross');
+          
+                hamburg.addEventListener('click', function() {
+                  hamburg.classList.toggle('inactive');
+                  mainmenu.classList.toggle('inactive'); 
+                });
+          
+                cross.addEventListener('click', function() {
+                  hamburg.classList.toggle('inactive');
+                  mainmenu.classList.toggle('inactive'); 
+                });
+              });
+  
+  
+              const selectedSkills = {};
+  
+  document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.grid-item').forEach(item => {
+    const skill = item.textContent.trim();
+    selectedSkills[skill] = false; // Initialize all skills as false (not selected)
+  
+    item.addEventListener('click', function() {
+      selectedSkills[skill] = !selectedSkills[skill]; // Toggle selected state
+      item.classList.toggle('selected');
+    });
+  });
+  console.log(selectedSkills);
+  document.querySelector('.botton').addEventListener('click', async function() {
+    document.querySelector('.botton').innerHTML='Saved!';
+    const selectedSkillsArray = Object.keys(selectedSkills).filter(skill => selectedSkills[skill]);
+    console.log(selectedSkillsArray);
+    
+    try {
+        const response = await fetch('/skills', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ selectedSkills: selectedSkillsArray }),
+        
+        });
+  
+        if (response.ok) {
+          console.log('Skills updated successfully');
+        } else {
+          console.error('Failed to update skills');
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-
-
-});});
-          </script>
-      </body>
+  
+  
+  });});
+            </script>
+        </body>
+    
       </html>
 

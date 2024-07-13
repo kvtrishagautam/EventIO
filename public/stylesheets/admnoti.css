@@ -1,0 +1,104 @@
+.notif{
+    display: flex;
+    flex-direction: row;
+}
+.noti-sub{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.all-noti{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.notification {
+    padding: 1rem 1.5rem;
+    width: 70rem;
+    height: max-content;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+.heading{
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-weight: bolder; 
+    color: #0b0813; 
+}
+
+.noti-content {
+    display: flex;
+    width: 60%;
+    gap: .5rem;
+    align-items: center;
+}
+
+.event_name {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.notification-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.notification-details {
+    font-size: 1.3rem;
+}
+
+.button-group {
+    display: flex;
+    gap: .8rem;
+    justify-content: space-between;
+}
+
+.noti-approve{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+}
+.noti-approve span {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.noti-approve img{
+    width: 2rem;
+    cursor: pointer;
+}
+
+.view-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem 2.5rem;
+    background-color: violet;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.1rem;
+    flex: 1;
+    height: max-content;
+}
+
+.view-btn {
+    background-color:#7848F4 ;
+}
+
+.view-btn:hover {
+    background-color: #5217e7;
+}
+

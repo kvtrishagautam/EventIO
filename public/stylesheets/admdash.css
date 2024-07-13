@@ -12,6 +12,9 @@
     display: block;
 }
 
+.hamburg{
+    width: max-content;
+}
 .main-menu {
     transition: transform 0.3s ease-in-out;
 }

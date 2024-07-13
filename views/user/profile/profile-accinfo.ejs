@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/profile/profile-accinfo.css" />
     <link rel="stylesheet" href="/stylesheets/profile/main-menu.css" />
+    <link rel="stylesheet" href="/stylesheets/navbar.css" />
+
     <link
       href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
       rel="stylesheet"
@@ -21,98 +23,103 @@
     />
     <title><%= title%></title>
   </head>
-    <body>
-      <%- include('../includes/navbar') %>
+  <body>
+        <div id="body" class="body">
+        <%- include('../includes/navbar') %>
+  
+          <div class="container">
+            <%- include('../includes/main-menu') %>
+            <div class="hero-sub">
+              <div class="p-info-heading ">Personal Information</div>
+              <form action="/profile-accinfo" method="post">
+              <div class="personal-info">
+                  <div class="p-img">
+                      <h3>Profile Photo</h3>
+                      <img src="images/hiba/User photo.svg" alt="hy">
+      
+                  </div>
+                  <div class="p-input ">
+                      <h4 class="ml">Profile information</h4>
+                      <p id="username " class="user">Username: <span class="currentuser"> <%=cur_userData %></p></span>
+                      <div class="p-input-sub">
+                          <label for="fname">First name:</label>
+                          <input type="text" name="fname" id="fname" class="inputt">
+                      </div>
+                      <div class="p-input-sub">
+                          <label for="lname">Last name:</label>
+                          <input type="text" name="lname" id="lname" class="inputt">
+                      </div>
+                  </div>
+      
+                  <div class="p-input">
+                      <h4 class="ml">Contact Details</h4>
+                      <p id="warning " class="mll">These details are private and only used to contact you.</p>
+                      <div class="p-input-sub">
+                          <label for="phno">Phone number:</label>
+                          <input type="number" name="phno" id="phno" class="inputt">
+                      </div>
+                      <div class="p-input-sub">
+                          <label for="address">Address:</label>
+                          <textarea name="address" id="address"  class="inputt"></textarea>
+                      </div>
+                      <div class="p-input-sub">
+                          <label for="course">Course:</label>
+                          <select name="course" id="course" class="inputt">
+                              <option value="B.Tech IT">B.Tech It</option>
+                              <option value="B.Tech C">B.Tech Civil</option>
+                              <option value="B.Tech mech">B.Tech Mechanical</option>
+                              <option value="B.Tech CS">B.Tech CS</option>
+                              <option value="B.Tech EEE">B.Tech EEE</option>
+                              <option value="B.Tech EC">B.Tech EC</option>
+                              <option value="B.Tech SF">B.Tech Safety and Fire</option>
+                              <option value="M.Tech ">M.Tech</option>
+                          </select>
+                      </div>
+                      <div class="p-input-sub">
+                          <label for="sem">Semester:</label>
+                          <select name="sem" id="sem" class="inputt">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                          </select>
+                      </div>
+                  </div>
+                  <button type="submit" id="submit">Save my Profile</button>
+                </div>
+            </form>
+          </div>
+      </div>
+      </div>
+      <%- include('../includes/org-popup') %>
 
-        <div class="container">
-          <%- include('../includes/main-menu') %>
-          <div class="hero-sub">
-            <div class="p-info-heading ">Personal Information</div>
-            <form action="/profile-accinfo" method="post">
-            <div class="personal-info">
-                <div class="p-img">
-                    <h3>Profile Photo</h3>
-                    <img src="images/hiba/User photo.svg" alt="hy">
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const hamburg = document.querySelector('.hamburg'); 
+          const mainmenu = document.querySelector('.main-menu'); 
+          const cross = document.querySelector('.cross');
     
-                </div>
-                <div class="p-input ">
-                    <h4 class="ml">Profile information</h4>
-                    <p id="username " class="user">Username: <span class="currentuser"> <%=cur_userData %></p></span>
-                    <div class="p-input-sub">
-                        <label for="fname">First name:</label>
-                        <input type="text" name="fname" id="fname" class="inputt">
-                    </div>
-                    <div class="p-input-sub">
-                        <label for="lname">Last name:</label>
-                        <input type="text" name="lname" id="lname" class="inputt">
-                    </div>
-                </div>
+          hamburg.addEventListener('click', function() {
+            hamburg.classList.toggle('inactive');
+            mainmenu.classList.toggle('inactive'); 
+          });
     
-                <div class="p-input">
-                    <h4 class="ml">Contact Details</h4>
-                    <p id="warning " class="mll">These details are private and only used to contact you.</p>
-                    <div class="p-input-sub">
-                        <label for="phno">Phone number:</label>
-                        <input type="number" name="phno" id="phno" class="inputt">
-                    </div>
-                    <div class="p-input-sub">
-                        <label for="address">Address:</label>
-                        <textarea name="address" id="address"  class="inputt"></textarea>
-                    </div>
-                    <div class="p-input-sub">
-                        <label for="course">Course:</label>
-                        <select name="course" id="course" class="inputt">
-                            <option value="B.Tech IT">B.Tech It</option>
-                            <option value="B.Tech C">B.Tech Civil</option>
-                            <option value="B.Tech mech">B.Tech Mechanical</option>
-                            <option value="B.Tech CS">B.Tech CS</option>
-                            <option value="B.Tech EEE">B.Tech EEE</option>
-                            <option value="B.Tech EC">B.Tech EC</option>
-                            <option value="B.Tech SF">B.Tech Safety and Fire</option>
-                            <option value="M.Tech ">M.Tech</option>
-                        </select>
-                    </div>
-                    <div class="p-input-sub">
-                        <label for="sem">Semester:</label>
-                        <select name="sem" id="sem" class="inputt">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                    </div>
-                </div>
-                <button type="submit" id="submit">Save my Profile</button>
-              </div>
-          </form>
-        </div>
-    </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const hamburg = document.querySelector('.hamburg'); 
-        const mainmenu = document.querySelector('.main-menu'); 
-        const cross = document.querySelector('.cross');
-  
-        hamburg.addEventListener('click', function() {
-          hamburg.classList.toggle('inactive');
-          mainmenu.classList.toggle('inactive'); 
-        });
-  
-        cross.addEventListener('click', function() {
-          hamburg.classList.toggle('inactive');
-          mainmenu.classList.toggle('inactive'); 
-        });
-      })
-      document.getElementById('submit').addEventListener("click", function(z) {
-      document.getElementById('submit').innerHTML = 'SUBMITTING'
-      window.location.href = "/dashboard"; 
-    });
-    </script>
-</body>
+          cross.addEventListener('click', function() {
+            hamburg.classList.toggle('inactive');
+            mainmenu.classList.toggle('inactive'); 
+          });
+        })
+        document.getElementById('submit').addEventListener("click", function(z) {
+        document.getElementById('submit').innerHTML = 'SUBMITTING'
+        window.location.href = "/dashboard"; 
+      });
+      </script>
+  </body>
+    
 </html>

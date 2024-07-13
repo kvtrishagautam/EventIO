@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="stylesheets/eventmain.css">
     <!-- <link rel="stylesheet" href="stylesheets/style.css"> -->
 	<link rel="stylesheet" href="stylesheets/navbar.css">
+	<!-- <link rel="stylesheet" href="stylesheets/template.css"> -->
 
 <!-- <%- include('includes/header') %> -->
 <link rel="stylesheet" href="/stylesheets/eventmain.css" />
 </head>
 
 <body>
-    <%- include('includes/navbar') %>
+    <div id="body" >
+        <%- include('includes/navbar') %>
 
 
     <!-- hero starts here -->
@@ -112,7 +114,6 @@
         <div class="event-cat-add">
             <h3>Load more..</h3>
         </div>
-
     </div>
 
     <!-- event category ends here  -->
@@ -127,7 +128,7 @@
             <h2>Make your own event</h2>
             <p>Lorem ipsum dolor sit amet, dolorem atque veritatis consectetur ad ducimus vero, dolores unde
                 est sint!</p>
-            <div class="event-box-btn">
+            <div id="create_event" class="event-box-btn">
                 Create Events
             </div>
         </div>
@@ -141,9 +142,14 @@
     <%- include('includes/footer') %>
 
     <!-- footer ends here  -->
+    </div>
+    <%- include('includes/org-popup') %>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script>
+        document.getElementById('ev').style.color ="#10107B"
+        document.getElementById('ev').style.fontWeight ="bold"
+        document.getElementById('ev').style.fontSize ="1.2rem"
+    </script>
 
 </body>
 
