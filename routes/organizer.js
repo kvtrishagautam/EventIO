@@ -1,11 +1,11 @@
 var express = require('express');
 const { getHomePage } = require('../controllers/user');
 const { getConductedEvents,checkOrganizerExist,postCreateEvents, getCreateEvents,toStudentMode,postOrganizer} = require('../controllers/organizer');
-const checkOrg = require('../middlewares/checkOrg');
-const checkLogedIn = require('../middlewares/checkLogedIn');
+const {checkOrg} = require('../middlewares/checkOrg');
+const {checkLogedIn} = require('../middlewares/checkLogedIn');
 var router = express.Router();
-const checkAccCreated = require('../middlewares/checkAccCreated');
-const {getOrganizerDash} = require('../controllers/organizer')
+const {checkAccCreated} = require('../middlewares/checkAccCreated');
+const {getOrganizerDash} = require('../controllers/organizer');
 
 router.get('/dashboard',getOrganizerDash)
 
