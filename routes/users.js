@@ -15,7 +15,7 @@ router.get('/dashboard',checkLogedIn,checkAccCreated, getDashboard);
 
 router.get('/events', checkLogedIn, getEvents)
 
-router.get('/event/:title/:id', getEventDetail );
+router.get('/event/:title/:id',checkAccCreated, getEventDetail );
 
 router.get('/profile-attendevents',checkAccCreated,  getProfileAttendedEvents)
 

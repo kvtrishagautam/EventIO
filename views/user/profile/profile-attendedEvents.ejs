@@ -51,7 +51,8 @@
             
                         </div>
                         <div class="event-cat-edit">
-                            <span>View</span>
+
+                          <a href="/event/<%=eachEvent.title %>/<%=eachEvent.event_id %>"><span>View</span></a>
                             <% if (eachEvent.expired === true) { %>
                               <h4>Expired</h4>
                             <% } else { %>
@@ -69,6 +70,8 @@
   
         </div>
         </div>
+        <div id="create_event" class="hy"></div>
+
         <%- include('../includes/org-popup') %>
 
         <script>

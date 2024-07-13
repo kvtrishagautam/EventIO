@@ -19,7 +19,7 @@ router.post('/check-org', postOrganizer);
 
 router.get('/check-stud', toStudentMode);
 
-router.get('/create-events', getCreateEvents);
+router.get('/create-events',checkAccCreated, getCreateEvents);
 
 router.post('/create-events', postCreateEvents);
 
